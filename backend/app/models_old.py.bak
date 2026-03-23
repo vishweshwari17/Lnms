@@ -1,0 +1,199 @@
+from typing import Dict, Optional
+from pydantic import BaseModel, ConfigDict
+from sqlalchemy import Boolean, Column, String, Integer, BigInteger, DateTime, Enum, ForeignKey, Text, JSON, func
+from sqlalchemy.orm import relationship
+from datetime import datetime
+from app.database import Base
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String(255), unique=True, nullable=False)
+    email = Column(String(255), unique=True, nullable=True)
+    password = Column(String(255), nullable=False)  # ← must match DB column exactly
+    role = Column(String(50), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    tickets = relationship("Ticket", back_populates="owner", foreign_keys="Ticket.user_id")
+
+
+class Ticket(Base):
+
+    __tablename__ = "tickets"
+
+    ticket_id = Column(String(36), primary_key=True, index=True)
+
+    alarm_id = Column(Integer)
+
+    title = Column(String)
+    device_name = Column(String)
+    host_name = Column(String)
+    ip_address = Column(String)
+
+    severity_original = Column(String)
+    severity_calculated = Column(String)
+
+    priority_level = Column(String)
+
+    status = Column(String)
+
+    occurrence_count = Column(Integer)
+    reopen_count = Column(Integer)
+
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+
+class Alarm(Base):
+    __tablename__ = "alarms"
+
+    alarm_id = Column(BigInteger, primary_key=True, index=True)
+    host_name = Column(String(255))
+    device_name = Column(String(255))
+    ip_address = Column(String(50))
+    severity = Column(String(50))
+    alarm_name = Column(String(255))
+    description = Column(Text)
+    parameter_data = Column(JSON)
+    problem_time = Column(DateTime)
+    resolved_time = Column(DateTime)
+    status = Column(String(50))
+    created_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    ticket_created = Column(Boolean, default=False)
+
+class Device(Base):
+    __tablename__ = "devices"
+
+    id = Column(Integer, primary_key=True, index=True)
+    hostname = Column(String, nullable=False)
+    ip_address = Column(String, nullable=False)
+    device_type = Column(String, nullable=False)
+    location = Column(String, nullable=False)
+    status = Column(String, nullable=False)
+    created_at = Column(DateTime)
+    device_name = Column(String, nullable=False)
+
+class AlarmResponse(BaseModel):
+    alarm_id: int
+    host_name: str
+    device_name: str
+    ip_address: str
+    severity: str
+    alarm_name: str
+    description: Optional[str] = None
+    parameter_data: Dict
+    problem_time: datetime
+    resolved_time: datetime
+    status: str
+    ticket_created: bool
+    created_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)
+
+class Incident(Base):
+    __tablename__ = "incidents"
+
+    id = Column(Integer, primary_key=True, index=True)
+    ticket_id = Column(String, unique=True)
+    host = Column(String)
+    device = Column(String)
+    severity = Column(String)
+    status = Column(String)
+    assigned_to = Column(String)
+    created_time = Column(DateTime, default=datetime.utcnow)
+    sla_deadline = Column(DateTime)
+    occurrence_count = Column(Integer, default=1)
+    risk_score = Column(Integer, default=0)
+
+class DeviceCreate(BaseModel):
+    hostname: str
+    ip_address: str
+    device_type: str
+    location: str
+
+
+class DeviceResponse(BaseModel):
+    id: int
+    hostname: str
+    ip_address: str
+    device_type: str
+    location: str
+    status: str
+    created_at: datetime
+    device_name: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UserCreate(BaseModel):
+    username: str
+    email: str
+
+
+class UserResponse(BaseModel):
+    id: int
+    username: str
+    email: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+class AuditLog(Base):
+    __tablename__ = "audit_logs"
+
+    log_id = Column(Integer, primary_key=True, index=True)
+    user_name = Column(String(100))
+    action = Column(String(255))
+    entity_type = Column(String(50))
+    entity_id = Column(Integer)
+    created_at = Column(DateTime, server_default=func.now())
+    
+class TicketMessage(Base):
+    __tablename__ = "ticket_messages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    ticket_id = Column(String(100), index=True)
+    sender = Column(String(100))
+    message = Column(String(1000))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+class HighRiskAlert(Base):
+    __tablename__ = "high_risk_alerts"
+
+    risk_id = Column(Integer, primary_key=True, index=True)
+    device_name = Column(String(100))
+    device_ip = Column(String(50))
+    location = Column(String(100))
+    risk_type = Column(String(100))
+    risk_level = Column(String(50))
+    value = Column(String(100))
+    threshold = Column(String(100))
+    status = Column(String(50))
+    detected_at = Column(DateTime)
+
+class MajorIncident(Base):
+    __tablename__ = "major_incidents"
+
+    incident_id = Column(Integer, primary_key=True, index=True)
+
+    title = Column(String(200))
+    severity = Column(String(50))
+    status = Column(String(50))
+    affected_users = Column(Integer)
+    location = Column(String(100))
+    incident_commander = Column(String(100))
+    description = Column(String(500))
+
+    start_time = Column(DateTime, default=datetime.utcnow)
+
+
+
+class StatusAlarm(Base):
+    __tablename__ = "status_alarms"
+
+    id = Column(Integer, primary_key=True, index=True)
+    device_name = Column(String(255))
+    alarm_type = Column(String(255))
+    severity = Column(String(50))
+    message = Column(String(500))
+    created_at = Column(DateTime)
