@@ -7,7 +7,7 @@ class Incident(Base):
     __tablename__ = "incidents"
 
     id = Column(Integer, primary_key=True, index=True)
-    ticket_id = Column(String(50), unique=True, index=True)
+    ticket_id = Column(String(64), unique=True, index=True)
 
     host = Column(String(100))
     device = Column(String(100))

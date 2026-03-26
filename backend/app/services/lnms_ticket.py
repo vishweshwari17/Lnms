@@ -1,7 +1,6 @@
 from datetime import datetime
-import uuid
 
-from sqlalchemy import or_
+from sqlalchemy import func
 
 from app.database import SessionLocal, SessionLocal2
 from app.models.alarms import Alarm
@@ -14,13 +13,22 @@ PRIORITY_MAP = {
     "Warning": "P4",
 }
 
-ACTIVE_STATUSES = ("OPEN", "Open", "ACK", "Ack")
+SOURCE_OPEN_STATUSES = ("open", "ack")
+DB_OPEN_STATUS = "Open"
+
+
+def _build_global_ticket_id(alarm):
+    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    alarm_part = str(alarm.alarm_id) if alarm.alarm_id is not None else "NA"
+    return f"TKT-{alarm_part}-{timestamp}"
 
 
 def _ticket_payload(alarm):
+    ticket_id = _build_global_ticket_id(alarm)
     severity = alarm.severity or "Minor"
     return {
-        "ticket_id": str(uuid.uuid4()),
+        "ticket_id": ticket_id,
+        "global_ticket_id": ticket_id,
         "alarm_id": alarm.alarm_id,
         "title": alarm.alarm_name or "Unknown Alarm",
         "device_name": alarm.device_name,
@@ -29,11 +37,14 @@ def _ticket_payload(alarm):
         "severity_original": severity,
         "severity_calculated": severity,
         "priority_level": PRIORITY_MAP.get(severity, "P3"),
-        "status": "OPEN",
+        "status": DB_OPEN_STATUS,
         "occurrence_count": 1,
         "reopen_count": 0,
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow(),
+        "last_updated_by": "LNMS",
+        "sync_version": 1,
+        "sync_status": "pending",
     }
 
 
@@ -43,19 +54,16 @@ def create_lnms_tickets():
     created = []
 
     try:
+        existing_alarm_ids = {
+            alarm_id
+            for (alarm_id,) in db1.query(Ticket.alarm_id).filter(Ticket.alarm_id.is_not(None)).all()
+        }
         alarms = db2.query(Alarm).filter(
-            Alarm.status == "Open",
-            or_(Alarm.ticket_created == False, Alarm.ticket_created.is_(None)),
+            func.lower(Alarm.status).in_(SOURCE_OPEN_STATUSES),
         ).all()
 
         for alarm in alarms:
-            existing = db1.query(Ticket).filter(
-                Ticket.alarm_id == alarm.alarm_id,
-                Ticket.device_name == alarm.device_name,
-                Ticket.status.in_(ACTIVE_STATUSES),
-            ).first()
-
-            if existing:
+            if alarm.alarm_id in existing_alarm_ids:
                 alarm.ticket_created = True
                 continue
 
@@ -63,11 +71,23 @@ def create_lnms_tickets():
             ticket = Ticket(**payload)
             db1.add(ticket)
             alarm.ticket_created = True
-            created.append(payload)
+            created.append(ticket)
+            existing_alarm_ids.add(alarm.alarm_id)
 
         db1.commit()
         db2.commit()
-        return created
+        
+        if created:
+            from app.routers.tickets import send_ticket_to_cnms
+            import asyncio
+            for new_ticket in created:
+                try:
+                    # Refresh to get auto-generated fields if any (like ticket_id default if it wasn't pre-filled, though it is)
+                    asyncio.run(send_ticket_to_cnms(new_ticket))
+                except Exception as e:
+                    print(f"Failed to auto-forward ticket to CNMS: {e}")
+
+        return [t.ticket_id for t in created]
 
     except Exception:
         db1.rollback()

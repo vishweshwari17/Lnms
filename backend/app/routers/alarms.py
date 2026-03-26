@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import OperationalError
 from datetime import datetime
 import logging
 import json
@@ -137,10 +138,14 @@ def create_alarm(alarm: AlarmCreate, db: Session = Depends(get_db)):
         logger.info(f"Alarm {db_alarm.alarm_id} saved - ticket engine picks up within 30s")
         return db_alarm
 
+    except OperationalError:
+        db.rollback()
+        logger.error("Alarm create failed: source database unavailable", exc_info=True)
+        raise HTTPException(status_code=503, detail="Alarm database unavailable")
     except Exception as e:
         db.rollback()
         logger.error(f"Error creating alarm: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail="Failed to create alarm")
 
 
 # =========================================================

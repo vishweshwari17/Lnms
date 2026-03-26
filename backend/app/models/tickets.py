@@ -10,10 +10,9 @@
 # created.  a small helper script ``scripts/reset_tickets_table.py`` is
 # provided for the latter case.
 
-from sqlalchemy import Column, Integer, String, DateTime, BigInteger, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, BigInteger, ForeignKey, Text, Boolean
 from sqlalchemy.orm import relationship
 from app.database import Base
-import mysql.connector
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -32,14 +31,11 @@ class TicketDetail(BaseModel):
 class Ticket(Base):
     __tablename__ = "tickets"
 
-    # every ticket needs a unique identifier; the underlying MySQL table
-    # doesn't autogenerate this column, so we provide a Python-side default
-    # factory that emits a v4 UUID string whenever one isn't supplied.
-    ticket_id = Column(String(36), primary_key=True, index=True,
-                       default=lambda: str(__import__('uuid').uuid4()))
+    # Ticket IDs now use a shared/global TKT-based format instead of UUIDs.
+    ticket_id = Column(String(64), primary_key=True, index=True)
 
     alarm_id = Column(BigInteger)
-    correlation_id = Column(String(36))
+    correlation_id = Column(String(64))
 
     title = Column(String(255))
     device_name = Column(String(100))
@@ -59,9 +55,19 @@ class Ticket(Base):
     sent_to_cnms_at = Column(DateTime, nullable=True)
     first_response_time = Column(DateTime)
     resolved_at = Column(DateTime)
+    resolution_note = Column(Text)
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
     closed_at = Column(DateTime)
+    last_updated_by = Column(String(20))
+    sync_version = Column(Integer, default=1)
+    global_ticket_id = Column(String(50))
+    last_synced_at = Column(DateTime)
+    acknowledged_at = Column(DateTime)
+    lnms_node_id = Column(String(50))
+    sync_status = Column(String(20), default="pending")
+    cnms_ticket_id = Column(String(50))
+    is_deleted = Column(Boolean, default=False)
 
     user_id = Column(Integer, ForeignKey("users.id"))
 

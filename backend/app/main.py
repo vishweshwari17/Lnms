@@ -1,14 +1,18 @@
 import asyncio
-from fastapi import FastAPI, WebSocket
+import logging
+from fastapi import FastAPI, WebSocket, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from apscheduler.schedulers.background import BackgroundScheduler
+from sqlalchemy.exc import OperationalError, SQLAlchemyError
 
 from app.services.ws_manager import ws_manager
-from app.database import Base, engine, SessionLocal
+from app.database import Base, drop_legacy_alarm_trigger, engine, SessionLocal
 from app.models.alarms import Alarm
 from app.models.tickets import Ticket
 
 from app.services.lnms_ticket import create_lnms_tickets
+from app.routers.tickets import sync_missed_tickets
 
 from app.routers import (
     alarms, tickets, incidents, correlated_alarms,
@@ -19,6 +23,7 @@ from app.routers import (
 from fastapi import APIRouter
 
 app = FastAPI(title="LNMS Backend")
+logger = logging.getLogger("lnms.backend")
 
 # ── CORS — must be registered before any routers ────────────────────────────
 app.add_middleware(
@@ -35,7 +40,31 @@ app.add_middleware(
 )
 
 # ── Database ─────────────────────────────────────────────────────────────────
-Base.metadata.create_all(bind=engine)
+try:
+    drop_legacy_alarm_trigger()
+    Base.metadata.create_all(bind=engine)
+except OperationalError as exc:
+    logger.warning("Database unavailable during startup: %s", exc)
+
+
+@app.exception_handler(OperationalError)
+async def operational_error_handler(request: Request, exc: OperationalError):
+    logger.error("Database connection error on %s %s: %s", request.method, request.url.path, exc)
+    return JSONResponse(
+        status_code=503,
+        content={
+            "detail": "Database unavailable. Please make sure MySQL is running on 127.0.0.1:7776 and try again."
+        },
+    )
+
+
+@app.exception_handler(SQLAlchemyError)
+async def sqlalchemy_error_handler(request: Request, exc: SQLAlchemyError):
+    logger.error("Database error on %s %s: %s", request.method, request.url.path, exc)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Database operation failed."},
+    )
 
 # ── Routers ──────────────────────────────────────────────────────────────────
 app.include_router(admin.router)
@@ -112,6 +141,7 @@ def alarm_engine_job():
     print("[ENGINE] -- Cycle start --")
     try:
         create_lnms_tickets()
+        asyncio.run(sync_missed_tickets())
         print("[ENGINE] -- Cycle complete --")
     except Exception as e:
         print(f"[ENGINE] Job failed: {e}")
