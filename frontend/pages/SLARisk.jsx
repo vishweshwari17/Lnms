@@ -61,7 +61,7 @@ function SLARisk() {
     ];
 
     const rows = filteredData.map((item) => [
-      item.ticket_id,
+      item.ticket_id || item.global_ticket_id,
       item.remaining_time,
       item.risk_percentage,
       item.severity_original,
@@ -218,19 +218,20 @@ function SLARisk() {
                 {filteredData.map((item) => {
 
                   const isEscalated = item.risk_percentage >= 85;
+                  const ticketIdentifier = item.ticket_id || item.global_ticket_id;
 
                   return (
 
                     <tr
-                      key={item.ticket_id}
+                      key={ticketIdentifier}
                       onClick={() =>
-                        navigate(`/tickets/${item.ticket_id}`)
+                        navigate(`/tickets/${ticketIdentifier}`)
                       }
                       className="border-t hover:bg-gray-50 cursor-pointer transition"
                     >
 
                       <td className="px-6 py-4 font-semibold text-indigo-600">
-                        #{item.ticket_id}
+                        #{ticketIdentifier}
                       </td>
 
                       <td className="px-6 py-4 text-red-600 font-medium">

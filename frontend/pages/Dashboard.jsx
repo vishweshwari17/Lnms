@@ -304,14 +304,14 @@ export default function Dashboard() {
                   </thead>
                   <tbody>
                     {recentTickets.map(t => (
-                      <tr key={t.ticket_id} className="trow" style={{ cursor: "pointer" }}>
+                      <tr key={t.ticket_id || t.global_ticket_id} className="trow" style={{ cursor: "pointer" }}>
                         <td style={td}>
                           <span style={{
                             fontFamily: "'JetBrains Mono',monospace",
                             fontSize: 11, color: "#3b82f6", fontWeight: 600,
                             background: "#eff6ff", padding: "3px 8px", borderRadius: 6
                           }}>
-                            {t.ticket_id?.slice(0, 8)}…
+                            {(t.ticket_id || t.global_ticket_id || "—").slice(0, 16)}
                           </span>
                         </td>
                         <td style={{ ...td, fontWeight: 600, color: "#1e293b" }}>

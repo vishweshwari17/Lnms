@@ -2,9 +2,9 @@
 // LNMS = RIGHT side (teal/green bubbles) | CNMS = LEFT side (white bubbles)
 //
 // ID FLOW (LNMS side):
-//   useParams() gives  id  = ticket_id from LNMS DB  (e.g. "TKT-001")
-//   ticket.ticket_id        = same value, used for API calls
-//   ticket.global_ticket_id = shared key with CNMS (for display only)
+//   useParams() gives the shared/global ticket identifier from the URL
+//   ticket.ticket_id        = canonical LNMS identifier
+//   ticket.global_ticket_id = optional mirror field from CNMS payloads
 //
 // ALL API calls use  id  from useParams() — never ticket.id
 
@@ -143,7 +143,7 @@ function Bubble({ msg }) {
 
 /* ═══════════════ MAIN ═══════════════ */
 export default function TicketDetails() {
-  // ✅  id  = LNMS ticket_id from URL — used for every API call
+  // ✅  id  = canonical ticket identifier from URL — used for every API call
   const { id }   = useParams();
   const navigate = useNavigate();
 
@@ -249,6 +249,7 @@ export default function TicketDetails() {
   const status     = normalizeStatus(ticket.status);
   const isResolved = ["RESOLVED", "CLOSED"].includes(status);
   const syncStatus = getSyncStatus(ticket, messages);
+  const displayTicketId = ticket.ticket_id || ticket.global_ticket_id;
 
   const tsRows = [
     { l: "Created",      v: ticket.created_at },
@@ -289,9 +290,8 @@ export default function TicketDetails() {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <h1 className="text-xl font-bold text-gray-800">{ticket.title}</h1>
-            {/* ✅ Show whichever ID field is populated */}
             <p className="text-xs text-gray-400 font-mono mt-0.5">
-              {ticket.ticket_id || ticket.global_ticket_id}
+              {displayTicketId}
             </p>
           </div>
         </div>
@@ -423,7 +423,7 @@ export default function TicketDetails() {
       </div>
 
       <div className="text-center text-xs text-gray-300 mt-3">
-        LNMS Ticket ID: {ticket.ticket_id} · Global ID: {ticket.global_ticket_id}
+        Ticket ID: {displayTicketId}
       </div>
     </div>
   );

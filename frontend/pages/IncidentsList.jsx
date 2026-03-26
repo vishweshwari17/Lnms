@@ -33,6 +33,7 @@ function Incidents() {
         return (
           ticket.device?.toLowerCase().includes(term) ||
           ticket.host?.toLowerCase().includes(term) ||
+          ticket.global_ticket_id?.toLowerCase().includes(term) ||
           ticket.ticket_id?.toLowerCase().includes(term)
         );
       })
@@ -117,7 +118,7 @@ function Incidents() {
           <tbody>
             {paginatedTickets.map((ticket) => (
               <tr
-                key={ticket.ticket_id}
+                key={ticket.ticket_id || ticket.global_ticket_id}
                 className="border-t hover:bg-gray-50"
               >
 
@@ -125,10 +126,10 @@ function Incidents() {
 
                 <td className="p-3 text-blue-600 font-medium">
                   <Link
-                    to={`/tickets/${ticket.ticket_id}`}
+                    to={`/tickets/${ticket.ticket_id || ticket.global_ticket_id}`}
                     className="hover:underline"
                   >
-                    {ticket.ticket_id}
+                    {ticket.ticket_id || ticket.global_ticket_id}
                   </Link>
                 </td>
 
