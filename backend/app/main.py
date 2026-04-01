@@ -7,17 +7,18 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from sqlalchemy.exc import OperationalError, SQLAlchemyError
 
 from app.services.ws_manager import ws_manager
-from app.database import Base, drop_legacy_alarm_trigger, engine, SessionLocal
+from app.database import Base, drop_legacy_alarm_trigger, engine, engine2, SessionLocal
 from app.models.alarms import Alarm
 from app.models.tickets import Ticket
 
 from app.services.lnms_ticket import create_lnms_tickets
+from app.services.spicnms_ticket import create_spicnms_tickets
 from app.routers.tickets import sync_missed_tickets
 
 from app.routers import (
     alarms, tickets, incidents, correlated_alarms,
     major_incidents, sla, admin, audit_logs, highrisk,
-    integration, status_alarms, devices, escalation,
+    integration, devices, escalation,
 )
 
 from fastapi import APIRouter
@@ -43,6 +44,7 @@ app.add_middleware(
 try:
     drop_legacy_alarm_trigger()
     Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine2)
 except OperationalError as exc:
     logger.warning("Database unavailable during startup: %s", exc)
 
@@ -77,7 +79,6 @@ app.include_router(sla.router)
 app.include_router(audit_logs.router)
 app.include_router(highrisk.router)
 app.include_router(integration.router)
-app.include_router(status_alarms.router)
 app.include_router(devices.router)
 app.include_router(escalation.router)
 
@@ -140,7 +141,10 @@ scheduler = BackgroundScheduler()
 def alarm_engine_job():
     print("[ENGINE] -- Cycle start --")
     try:
+        from app.services.spicnms_ticket import sync_manual_spicnms_tickets
         create_lnms_tickets()
+        create_spicnms_tickets()
+        sync_manual_spicnms_tickets()
         asyncio.run(sync_missed_tickets())
         print("[ENGINE] -- Cycle complete --")
     except Exception as e:

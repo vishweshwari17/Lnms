@@ -13,6 +13,7 @@ import AuditLogs from "../pages/AuditLogs";
 import Admin from "../pages/Administration";
 import BreachTracker from "../pages/BreachTracker";
 import TicketsDetail from "../pages/TicketDetails";
+import AlarmDetails from "../pages/AlarmDetails";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
 
           <Route path="/" element={<Dashboard />} />
           <Route path="/alarms" element={<IncomingAlarms />} />
+          <Route path="/alarms/:id" element={<AlarmDetails />} />
           <Route path="/correlated-alarms" element={<CorrelatedAlarms />} />
             <Route path="/tickets" element={<Tickets />} />
 

@@ -1,11 +1,9 @@
 """Exercise LNMS ticket automation against the live LNMS/CNMS services.
 
 What it tests:
-1. alarm inserted via LNMS JSON API -> LNMS ticket auto-created -> CNMS ticket created
-2. alarm inserted directly into snmp_monitor DB -> LNMS ticket auto-created -> CNMS ticket created
-3. CNMS ACK / RESOLVE flows push status, resolution note, and resolved time back into LNMS
-
-This script intentionally creates real test alarms/tickets with a unique marker.
+1. SPIC-NMS Flow: alarm inserted via JSON API (to snmp_monitor db2) -> SPIC ticket created -> CNMS ticket created
+2. LNMS Flow: alarm inserted via raw SQL (to lnms_db db1) -> LNMS ticket created -> CNMS ticket created
+3. CNMS ACK / RESOLVE flows push status, resolution note, and resolved time back into LNMS tickets table
 """
 
 import sys
@@ -20,10 +18,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from app.database import SessionLocal2, drop_legacy_alarm_trigger  # noqa: E402
+from app.database import SessionLocal, SessionLocal2, drop_legacy_alarm_trigger  # noqa: E402
 from app.routers.alarms import create_alarm  # noqa: E402
 from app.schemas import AlarmCreate  # noqa: E402
 from app.services.lnms_ticket import create_lnms_tickets  # noqa: E402
+from app.services.spicnms_ticket import create_spicnms_tickets  # noqa: E402
 
 LNMS_BASE_URL = "http://127.0.0.1:8000"
 CNMS_BASE_URL = "http://127.0.0.1:8001"
@@ -59,6 +58,7 @@ def fetch_cnms_tickets():
 
 
 def create_alarm_via_json(marker: str) -> dict:
+    # This simulates SPIC-NMS flow (since routers currently save alarms to db2)
     db = SessionLocal2()
     try:
         alarm = AlarmCreate(
@@ -81,8 +81,9 @@ def create_alarm_via_json(marker: str) -> dict:
         db.close()
 
 
-def insert_alarm_in_db(marker: str) -> int:
-    db = SessionLocal2()
+def insert_alarm_in_lnms_db(marker: str) -> int:
+    # This simulates LNMS flow (alarms coming into lnms_db / db1)
+    db = SessionLocal()
     try:
         db.execute(
             text(
@@ -107,8 +108,12 @@ def insert_alarm_in_db(marker: str) -> int:
             },
         )
         db.commit()
-        alarm_id = db.execute(text("SELECT LAST_INSERT_ID()")).scalar()
-        return int(alarm_id)
+        from sqlalchemy.orm import Session
+        result = db.execute(
+            text("SELECT alarm_id FROM alarms WHERE parameter_data LIKE :marker ORDER BY alarm_id DESC LIMIT 1"),
+            {"marker": f'%{marker}%'}
+        ).scalar()
+        return int(result)
     except Exception:
         db.rollback()
         raise
@@ -124,8 +129,7 @@ def find_lnms_ticket_for_alarm(alarm_id: int):
     return None
 
 
-def find_cnms_ticket_for_alarm(alarm_id: int):
-    alarm_uid = f"LOCAL-ALM-{alarm_id}"
+def find_cnms_ticket_for_alarm(alarm_uid: str):
     tickets = fetch_cnms_tickets()
     for ticket in tickets:
         if (
@@ -167,9 +171,9 @@ def fetch_verified_resolved_ticket(ticket_id: str, note: str):
     return None
 
 
-def run_case(label: str, alarm_id: int):
+def run_case(label: str, alarm_id: int, processor_func, alarm_uid_prefix: str):
     print(f"\n[{label}] alarm_id={alarm_id}")
-    created = create_lnms_tickets()
+    created = processor_func()
     print(f"[{label}] engine created ticket ids: {created}")
 
     lnms_ticket = wait_for(
@@ -178,15 +182,20 @@ def run_case(label: str, alarm_id: int):
         interval=2,
         label=f"{label} LNMS ticket",
     )
-    print(f"[{label}] LNMS ticket: {lnms_ticket['ticket_id']}")
+    print(f"[{label}] LNMS unified ticket: {lnms_ticket['ticket_id']} with node: {lnms_ticket.get('lnms_node_id')}")
+    
+    # Notice that we expect LNMS to prefix with LOCAL-ALM- followed by ticket_id or alarm_id 
+    # depending on what router does. Actually routers/tickets.py logic uses LOCAL-ALM-{alarm_id}
+    # For SPIC, we expect the same logic `LOCAL-ALM-{alarm_id}` since they all go through `send_ticket_to_cnms`.
+    alarm_uid = f"LOCAL-ALM-{alarm_id}"
 
     cnms_ticket = wait_for(
-        lambda: find_cnms_ticket_for_alarm(alarm_id),
+        lambda: find_cnms_ticket_for_alarm(alarm_uid),
         timeout=40,
         interval=2,
         label=f"{label} CNMS ticket",
     )
-    print(f"[{label}] CNMS ticket id: {cnms_ticket['id']}, status={cnms_ticket['status']}")
+    print(f"[{label}] CNMS ticket id: {cnms_ticket['id']}, status={cnms_ticket['status']}, origing_node={cnms_ticket.get('lnms_node_id', 'unknown')}")
 
     note = f"{label} resolved via CNMS"
     resolve_from_cnms(int(cnms_ticket["id"]), note)
@@ -218,11 +227,13 @@ def main():
     marker = now_marker()
     print(f"marker={marker}")
 
+    # Flow 1: SPIC NMS simulating alarms via API inserting into snmp_monitor
     json_alarm = create_alarm_via_json(marker)
-    json_result = run_case("json", int(json_alarm["alarm_id"]))
+    json_result = run_case("SPIC-NMS flow", int(json_alarm["alarm_id"]), create_spicnms_tickets, "LOCAL-ALM-")
 
-    db_alarm_id = insert_alarm_in_db(marker)
-    db_result = run_case("db", db_alarm_id)
+    # Flow 2: LNMS simulating alarms in lnms_db
+    db_alarm_id = insert_alarm_in_lnms_db(marker)
+    db_result = run_case("LNMS flow", db_alarm_id, create_lnms_tickets, "LOCAL-ALM-")
 
     print("\nSUMMARY")
     for item in (json_result, db_result):

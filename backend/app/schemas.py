@@ -62,8 +62,12 @@ class AlarmCreate(BaseModel):
             return v
         return {}
 
+class AlarmStatusUpdate(BaseModel):
+    status: str
+
 class AlarmResponse(BaseModel):
-    alarm_id: int
+    alarm_id: Union[int, str]
+    source: Optional[str] = "LNMS"
     host_name: str
     device_name: str
     # many of these columns are nullable; make them optional to prevent
@@ -76,6 +80,7 @@ class AlarmResponse(BaseModel):
     problem_time: Optional[datetime] = None
     status: str
     ticket_created: Optional[bool] = False
+    alarm_type: Optional[str] = None
     created_at: Optional[datetime] = None
     resolved_at: Optional[datetime] = None
     model_config = ConfigDict(from_attributes=True)

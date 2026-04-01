@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAlarms } from "../api/api";
+import { getAlarms, updateAlarmStatus } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Alarms() {
@@ -7,25 +7,28 @@ export default function Alarms() {
   const [filteredAlarms, setFilteredAlarms] = useState([]);
   const [search, setSearch] = useState("");
   const [severityFilter, setSeverityFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [rowsPerPage, setRowsPerPage] = useState(50);
   const [page, setPage] = useState(1);
+  const [now, setNow] = useState(Date.now());
 
   const navigate = useNavigate();
-
-  const rowsPerPage = 10;
 
   useEffect(() => {
     fetchAlarms();
 
-    const interval = setInterval(() => {
-      fetchAlarms();
-    }, 30000);
+    const interval = setInterval(fetchAlarms, 30000);
+    const timeInterval = setInterval(() => setNow(Date.now()), 60000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearInterval(timeInterval);
+    };
   }, []);
 
   useEffect(() => {
     filterData();
-  }, [alarms, search, severityFilter]);
+  }, [alarms, search, severityFilter, statusFilter]);
 
   const fetchAlarms = async () => {
     try {
@@ -36,11 +39,39 @@ export default function Alarms() {
     }
   };
 
+  const handleAction = async (id, status) => {
+    try {
+      await updateAlarmStatus(id, status);
+      fetchAlarms();
+    } catch (err) {
+      console.error("Failed to update alarm status", err);
+    }
+  };
+
+  const displayStatus = {
+    Open: "ACTIVE",
+    OPEN: "ACTIVE",
+    Ack: "ACKNOWLEDGED",
+    ACK: "ACKNOWLEDGED",
+    Resolved: "RESOLVED",
+    RESOLVED: "RESOLVED",
+    Closed: "RESOLVED",
+    CLOSED: "RESOLVED",
+  };
+
   const filterData = () => {
     let data = [...alarms];
 
     if (severityFilter !== "All") {
       data = data.filter((a) => a.severity === severityFilter);
+    }
+
+    if (statusFilter !== "All") {
+      data = data.filter(
+        (a) =>
+          displayStatus[a.status]?.toLowerCase() ===
+          statusFilter.toLowerCase()
+      );
     }
 
     if (search) {
@@ -50,6 +81,9 @@ export default function Alarms() {
           a.alarm_name?.toLowerCase().includes(search.toLowerCase())
       );
     }
+
+    // Sort latest first
+    data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
     setFilteredAlarms(data);
     setPage(1);
@@ -62,16 +96,30 @@ export default function Alarms() {
   };
 
   const statusColors = {
+    Open: "bg-red-500",
     OPEN: "bg-red-500",
-    ACK: "bg-purple-500",
+    Ack: "bg-yellow-500 text-yellow-900",
+    ACK: "bg-yellow-500 text-yellow-900",
+    Resolved: "bg-green-500",
     RESOLVED: "bg-green-500",
+    Closed: "bg-gray-500",
     CLOSED: "bg-gray-500",
+  };
+
+  const getDuration = (timeStr) => {
+    if (!timeStr) return "-";
+    const diffMs = now - new Date(timeStr).getTime();
+    if (diffMs < 0) return "0s";
+    const diffMins = Math.floor(diffMs / 60000);
+    if (diffMins < 60) return `${diffMins}m`;
+    const diffHrs = Math.floor(diffMins / 60);
+    if (diffHrs < 24) return `${diffHrs}h ${diffMins % 60}m`;
+    return `${Math.floor(diffHrs / 24)}d ${diffHrs % 24}h`;
   };
 
   const indexOfLast = page * rowsPerPage;
   const indexOfFirst = indexOfLast - rowsPerPage;
   const currentRows = filteredAlarms.slice(indexOfFirst, indexOfLast);
-
   const totalPages = Math.ceil(filteredAlarms.length / rowsPerPage);
 
   const criticalCount = alarms.filter((a) => a.severity === "Critical").length;
@@ -80,145 +128,106 @@ export default function Alarms() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-6">🚨 Network Alarms Dashboard</h1>
 
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        🚨 Network Alarms Dashboard
-      </h1>
-
-      {/* Summary Cards */}
-
+      {/* Summary */}
       <div className="grid grid-cols-4 gap-4 mb-6">
-
-        <div className="bg-white p-4 rounded-xl shadow">
-          <p className="text-gray-500 text-sm">Total Alarms</p>
-          <h2 className="text-2xl font-bold">{alarms.length}</h2>
-        </div>
-
-        <div className="bg-red-100 p-4 rounded-xl shadow">
-          <p className="text-red-600 text-sm">Critical</p>
-          <h2 className="text-2xl font-bold">{criticalCount}</h2>
-        </div>
-
-        <div className="bg-orange-100 p-4 rounded-xl shadow">
-          <p className="text-orange-600 text-sm">Major</p>
-          <h2 className="text-2xl font-bold">{majorCount}</h2>
-        </div>
-
-        <div className="bg-yellow-100 p-4 rounded-xl shadow">
-          <p className="text-yellow-700 text-sm">Minor</p>
-          <h2 className="text-2xl font-bold">{minorCount}</h2>
-        </div>
-
+        <Card title="Total" value={alarms.length} />
+        <Card title="Critical" value={criticalCount} color="red" />
+        <Card title="Major" value={majorCount} color="orange" />
+        <Card title="Minor" value={minorCount} color="yellow" />
       </div>
 
       {/* Filters */}
-
-      <div className="bg-white p-4 rounded-xl shadow mb-6 flex justify-between">
-
+      <div className="bg-white p-4 rounded-xl shadow mb-6 flex flex-wrap gap-4 justify-between">
         <input
           type="text"
-          placeholder="Search device or alarm..."
+          placeholder="Search..."
           className="border p-2 rounded w-1/3"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <select
-          className="border p-2 rounded"
-          value={severityFilter}
-          onChange={(e) => setSeverityFilter(e.target.value)}
-        >
-          <option>All</option>
-          <option>Critical</option>
-          <option>Major</option>
-          <option>Minor</option>
-        </select>
+        <div className="flex gap-3">
+          <select value={severityFilter} onChange={(e) => setSeverityFilter(e.target.value)} className="border p-2 rounded">
+            <option>All</option>
+            <option>Critical</option>
+            <option>Major</option>
+            <option>Minor</option>
+          </select>
 
+          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="border p-2 rounded">
+            <option>All</option>
+            <option>ACTIVE</option>
+            <option>ACKNOWLEDGED</option>
+            <option>RESOLVED</option>
+          </select>
+
+          <select value={rowsPerPage} onChange={(e) => { setRowsPerPage(Number(e.target.value)); setPage(1); }} className="border p-2 rounded">
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={75}>75</option>
+            <option value={100}>100</option>
+          </select>
+
+          <button onClick={() => { setSearch(""); setSeverityFilter("All"); setStatusFilter("All"); }} className="bg-gray-200 px-3 rounded">
+            Clear
+          </button>
+        </div>
       </div>
 
       {/* Table */}
-
-      <div className="bg-white shadow rounded-xl p-6">
-
-        <table className="w-full text-left border-separate border-spacing-y-2">
-
+      <div className="bg-white p-6 rounded-xl shadow">
+        <table className="w-full">
           <thead>
-            <tr className="text-gray-600 text-sm">
-              <th>Alarm ID</th>
-              <th>Device</th>
-              <th>Severity</th>
-              <th>Alarm</th>
-              <th>Status</th>
-              <th>Created</th>
+            <tr className="text-gray-600">
+              <th>ID</th><th>Device</th><th>Severity</th><th>Status</th><th>Duration</th><th>Actions</th>
             </tr>
           </thead>
-
           <tbody>
+            {currentRows.map((a) => {
+              const isResolved = ["Resolved", "Closed", "RESOLVED"].includes(a.status);
+              const dur = getDuration(a.problem_time || a.created_at);
+              const stat = displayStatus[a.status];
 
-            {currentRows.map((alarm) => (
-              <tr
-                key={alarm.alarm_id}
-                onClick={() => navigate(`/alarms/${alarm.alarm_id}`)}
-                className="bg-gray-50 hover:bg-gray-100 cursor-pointer rounded-lg"
-              >
-                <td className="p-3">{alarm.alarm_id}</td>
-
-                <td>{alarm.device_name}</td>
-
-                <td>
-                  <span
-                    className={`px-2 py-1 text-xs text-white rounded ${
-                      severityColors[alarm.severity] || "bg-gray-400"
-                    }`}
-                  >
-                    {alarm.severity}
-                  </span>
-                </td>
-
-                <td>{alarm.alarm_name}</td>
-
-                <td>
-                  <span
-                    className={`px-2 py-1 text-xs text-white rounded ${
-                      statusColors[alarm.status] || "bg-gray-400"
-                    }`}
-                  >
-                    {alarm.status}
-                  </span>
-                </td>
-
-                <td>{alarm.created_at}</td>
-
-              </tr>
-            ))}
-
+              return (
+                <tr key={a.alarm_id} onClick={() => navigate(`/alarms/${a.alarm_id}`)} className="cursor-pointer hover:bg-gray-50">
+                  <td>{a.alarm_id}</td>
+                  <td>{a.device_name}</td>
+                  <td><span className={`${severityColors[a.severity]} text-white px-2 rounded`}>{a.severity}</span></td>
+                  <td><span className={`${statusColors[a.status]} px-2 rounded text-white`}>{stat}</span></td>
+                  <td>{dur}</td>
+                  <td>
+                    <button onClick={(e) => { e.stopPropagation(); handleAction(a.alarm_id, 'Ack') }} disabled={isResolved}>Ack</button>
+                    <button onClick={(e) => { e.stopPropagation(); handleAction(a.alarm_id, 'Resolved') }} disabled={isResolved}>Resolve</button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
-
         </table>
-
       </div>
 
       {/* Pagination */}
+      <div className="flex justify-between mt-4">
+        <p>Showing {indexOfFirst + 1} - {Math.min(indexOfLast, filteredAlarms.length)} of {filteredAlarms.length}</p>
 
-      <div className="flex justify-center mt-6 gap-2">
-
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => setPage(i + 1)}
-            className={`px-4 py-2 rounded ${
-              page === i + 1
-                ? "bg-blue-500 text-white"
-                : "bg-white border"
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-
+        <div className="flex gap-2">
+          <button onClick={() => setPage(p => Math.max(p - 1, 1))}>Prev</button>
+          <span>{page} / {totalPages}</span>
+          <button onClick={() => setPage(p => Math.min(p + 1, totalPages))}>Next</button>
+        </div>
       </div>
-
     </div>
   );
 }
 
+function Card({ title, value, color }) {
+  return (
+    <div className={`p-4 rounded shadow bg-${color ? color + "-100" : "white"}`}>
+      <p>{title}</p>
+      <h2 className="text-xl font-bold">{value}</h2>
+    </div>
+  );
+}

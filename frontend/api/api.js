@@ -26,4 +26,8 @@ export const acknowledgeTicket = (id) =>
 
 export const resolveTicket = (id, payload) =>
   API.put(`/tickets/${id}/resolve`, payload);
+
+export const updateAlarmStatus = (id, status) => 
+  API.put(`/alarms/${id}/status`, { status });
+
 export default API;

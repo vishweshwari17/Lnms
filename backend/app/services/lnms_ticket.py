@@ -49,25 +49,29 @@ def _ticket_payload(alarm):
 
 
 def create_lnms_tickets():
-    db1 = SessionLocal()
-    db2 = SessionLocal2()
+    db1 = SessionLocal()  # lnms_db
     created = []
 
     try:
         existing_alarm_ids = {
             alarm_id
-            for (alarm_id,) in db1.query(Ticket.alarm_id).filter(Ticket.alarm_id.is_not(None)).all()
+            for (alarm_id,) in db1.query(Ticket.alarm_id).filter(
+                Ticket.alarm_id.is_not(None),
+                Ticket.lnms_node_id == "LNMS-LOCAL-01"
+            ).all()
         }
-        alarms = db2.query(Alarm).filter(
+        alarms = db1.query(Alarm).filter(
             func.lower(Alarm.status).in_(SOURCE_OPEN_STATUSES),
         ).all()
 
         for alarm in alarms:
             if alarm.alarm_id in existing_alarm_ids:
-                alarm.ticket_created = True
+                if not alarm.ticket_created:
+                    alarm.ticket_created = True
                 continue
 
             payload = _ticket_payload(alarm)
+            payload["lnms_node_id"] = "LNMS-LOCAL-01"
             ticket = Ticket(**payload)
             db1.add(ticket)
             alarm.ticket_created = True
@@ -75,24 +79,20 @@ def create_lnms_tickets():
             existing_alarm_ids.add(alarm.alarm_id)
 
         db1.commit()
-        db2.commit()
         
         if created:
             from app.routers.tickets import send_ticket_to_cnms
             import asyncio
             for new_ticket in created:
                 try:
-                    # Refresh to get auto-generated fields if any (like ticket_id default if it wasn't pre-filled, though it is)
                     asyncio.run(send_ticket_to_cnms(new_ticket))
                 except Exception as e:
-                    print(f"Failed to auto-forward ticket to CNMS: {e}")
+                    print(f"Failed to auto-forward LNMS ticket to CNMS: {e}")
 
         return [t.ticket_id for t in created]
 
     except Exception:
         db1.rollback()
-        db2.rollback()
         raise
     finally:
         db1.close()
-        db2.close()

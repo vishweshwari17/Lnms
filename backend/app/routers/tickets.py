@@ -53,8 +53,9 @@ def _build_ticket_id():
     return f"TKT-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')}"
 
 
-def _build_alarm_uid(ticket: Ticket) -> str:
-    return f"LOCAL-ALM-{ticket.alarm_id}" if ticket.alarm_id is not None else ticket.ticket_id
+def _build_alarm_uid(ticket) -> str:
+    prefix = "COMPANY-ALM" if getattr(ticket, "lnms_node_id", "") == "LNMS-COMPANY-01" else "LOCAL-ALM"
+    return f"{prefix}-{ticket.alarm_id}" if ticket.alarm_id is not None else ticket.ticket_id
 
 
 def _alarm_id_from_identifier(identifier: str | None):
@@ -128,17 +129,23 @@ def _extract_cnms_tickets(payload) -> list:
 def _get_ticket_by_identifier(db: Session, ticket_id: str | None):
     if not ticket_id:
         return None
+    
+    # If the tag is strictly COMPANY, do not match local LNMS db alarm_id
+    is_company = str(ticket_id).startswith("COMPANY-")
+    
     filters = [
         Ticket.ticket_id == ticket_id,
         Ticket.global_ticket_id == ticket_id,
         Ticket.correlation_id == ticket_id,
         Ticket.cnms_ticket_id == ticket_id,
     ]
-    alarm_id = _alarm_id_from_identifier(ticket_id)
-    if alarm_id is not None:
-        filters.append(Ticket.alarm_id == alarm_id)
+    
+    if not is_company:
+        alarm_id = _alarm_id_from_identifier(ticket_id)
+        if alarm_id is not None:
+            filters.append(Ticket.alarm_id == alarm_id)
 
-    return db.query(Ticket).filter(or_(*filters)).first()
+    return db.query(Ticket).filter(or_(*filters)).order_by(Ticket.created_at.desc()).first()
 
 
 def _update_ticket_sync_state(
@@ -288,11 +295,53 @@ def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
     if status not in VALID_STATUSES:
         raise HTTPException(400, f"Invalid status '{status}'")
 
-    # LNMS looks up by ticket_id OR correlation_id (which stores the CNMS TKT-xxx id)
     ticket = _get_ticket_by_identifier(db, global_ticket_id)
 
     if not ticket:
-        raise HTTPException(404, "Ticket not found in LNMS")
+        if global_ticket_id:
+            try:
+                from app.database import SessionLocal2
+                from sqlalchemy import text
+                db2 = SessionLocal2()
+                try:
+                    spic_status = {
+                        "Resolved": "Closed",
+                        "Closed": "Closed",
+                        "Ack": "Acknowledged",
+                        "Open": "Open"
+                    }.get(_status_for_db(status), "Open")
+                    
+                    alarm_uid_payload = payload.get("alarm_uid")
+                    
+                    res = db2.execute(text("UPDATE tickets SET status=:st, updated_at=NOW() WHERE unique_ticket_id=:uid OR alarm_id=:aid OR unique_ticket_id=:auid OR alarm_id=:aaid"), {
+                        "st": spic_status,
+                        "uid": global_ticket_id,
+                        "aid": _alarm_id_from_identifier(global_ticket_id),
+                        "auid": alarm_uid_payload,
+                        "aaid": _alarm_id_from_identifier(alarm_uid_payload)
+                    })
+                    
+                    spic_alarm_status = "RESOLVED" if status in ("RESOLVED", "CLOSED") else "PROBLEM"
+                    db2.execute(text("""
+                        UPDATE status_alarms s
+                        JOIN tickets t ON s.id = t.alarm_id 
+                        SET s.status = :ast, s.resolved_at = IF(:ast='RESOLVED', NOW(), s.resolved_at)
+                        WHERE t.unique_ticket_id = :uid OR t.alarm_id = :aid
+                    """), {
+                        "ast": spic_alarm_status, 
+                        "uid": global_ticket_id, 
+                        "aid": _alarm_id_from_identifier(global_ticket_id)
+                    })
+
+                    db2.commit()
+                    if res.rowcount > 0:
+                        return {"ok": True, "status": status, "note": "Updated legacy SPIC-NMS ticket"}
+                finally:
+                    db2.close()
+            except Exception as e:
+                print(f"Failed to update legacy SPIC ticket: {e}")
+                
+        raise HTTPException(404, "Ticket not found in LNMS or SPIC-NMS")
 
     ticket.status       = _status_for_db(status)
     ticket.sync_version = (ticket.sync_version or 0) + 1
@@ -316,6 +365,15 @@ def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
             ticket.closed_at = parsed_time
 
     db.commit()
+
+    try:
+        if ticket.alarm_id:
+            from sqlalchemy import text
+            lnms_alarm_status = ticket.status
+            db.execute(text("UPDATE alarms SET status=:st WHERE alarm_id=:aid"), {"st": lnms_alarm_status, "aid": ticket.alarm_id})
+            db.commit()
+    except Exception as e:
+        print(f"Failed to update alarm status: {e}")
 
     # If CNMS included a resolution note, save it as a CNMS message bubble
     if note:
@@ -412,6 +470,15 @@ def update_ticket_status(
 
     db.commit()
     db.refresh(ticket)
+    
+    try:
+        if ticket.alarm_id:
+            from sqlalchemy import text
+            lnms_alarm_status = ticket.status
+            db.execute(text("UPDATE alarms SET status=:st WHERE alarm_id=:aid"), {"st": lnms_alarm_status, "aid": ticket.alarm_id})
+            db.commit()
+    except Exception as e:
+        print(f"Failed to update alarm status: {e}")
 
     # Notify CNMS about the status change (non-blocking)
     asyncio.create_task(push_status_to_cnms(ticket))
@@ -533,7 +600,7 @@ async def send_ticket_to_cnms(ticket):
         url     = f"{CNMS_BASE_URL}/webhook/lnms"
         payload = {
             "msg_type":        "ALARM_NEW",
-            "lnms_node_id":    LNMS_NODE_ID,
+            "lnms_node_id":    ticket.lnms_node_id or LNMS_NODE_ID,
             "alarm_uid":       _build_alarm_uid(ticket),
             "ticket_id":       _build_alarm_uid(ticket),
             "device_name":     ticket.device_name,

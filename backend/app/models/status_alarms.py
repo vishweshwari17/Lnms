@@ -12,12 +12,12 @@ class StatusAlarm(Base):
     device_name = Column(String(255))
 
     timestamp = Column(TIMESTAMP)
-    alarm_type = Column(Enum("ICMP", "SNMP"))
+    alarm_type = Column(String(50))
 
     start_time = Column(TIMESTAMP)
     end_time = Column(TIMESTAMP)
 
-    status = Column(Enum("PROBLEM", "RESOLVED"))
+    status = Column(String(50))
 
     created_at = Column(TIMESTAMP)
     resolved_at = Column(TIMESTAMP)
@@ -27,6 +27,3 @@ class StatusAlarm(Base):
     exported_timestamp = Column(TIMESTAMP)
 
     severity = Column(String(50))
-
-    # ⭐ ADD THIS
-    ticket_created = Column(Boolean, default=False)
