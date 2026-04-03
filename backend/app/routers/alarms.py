@@ -5,9 +5,10 @@ from datetime import datetime
 import logging
 import json
 
-from app.database import get_db
+from app.database import get_lnms_db
 from app.models import Alarm
 from app.schemas import AlarmCreate, AlarmResponse, AlarmStatusUpdate
+from app.services import ticket_service
 
 router = APIRouter(prefix="/alarms", tags=["Alarms"])
 
@@ -41,14 +42,14 @@ def normalize_status(status: str):
     status = status.lower()
 
     mapping = {
-        "open": "Open",
-        "ack": "Ack",
-        "acknowledged": "Ack",
-        "resolved": "Resolved",
-        "closed": "Resolved"
+        "open": "OPEN",
+        "ack": "ACK",
+        "acknowledged": "ACK",
+        "resolved": "RESOLVED",
+        "closed": "CLOSED"
     }
 
-    return mapping.get(status, "Open")
+    return mapping.get(status, "OPEN")
 
 
 def parse_parameter_data(value):
@@ -68,76 +69,74 @@ def parse_parameter_data(value):
 
 
 # =========================================================
-# GET ALL ALARMS
+# GET ALL ALARMS  — lnms_db ONLY
 # =========================================================
 
 @router.get("/", response_model=list[AlarmResponse])
-def get_alarms(db: Session = Depends(get_db)):
+def get_alarms(db_lnms: Session = Depends(get_lnms_db)):
+    """Return alarms from BOTH lnms_db and snmp_monitor."""
+    from app.database import SessionLocal2
+    from app.models.status_alarms import StatusAlarm
+
+    db_spic = SessionLocal2()
     try:
-        logger.info("Fetching alarms from database...")
+        # 1. Fetch from LNMS DB
+        lnms_alarms = db_lnms.query(Alarm).all()
+        for a in lnms_alarms:
+            a.source = "LNMS"
+            a.parameter_data = parse_parameter_data(a.parameter_data)
+            a.severity = normalize_severity(a.severity)
+            a.status = normalize_status(a.status)
+            a.alarm_id = f"LNMS-{a.alarm_id}"
 
-        # 1. Fetch LNMS alarms
-        lnms_alarms_db = db.query(Alarm).order_by(Alarm.alarm_id.desc()).all()
-        final_alarms = []
+        # 2. Fetch from SPIC DB (snmp_monitor)
+        spic_alarms = db_spic.query(StatusAlarm).all()
+        converted_spic = []
+        for s in spic_alarms:
+            converted_spic.append({
+                "alarm_id": f"SPIC-{s.id}",
+                "device_name": s.device_name,
+                "severity": normalize_severity(s.severity),
+                "alarm_name": s.alarm_type or "SPIC Alarm",
+                "status": normalize_status(s.status),
+                "created_at": s.timestamp or s.created_at,
+                "source": "SPIC",
+                "host_name": "Unknown",
+                "ip_address": "N/A"
+            })
 
-        for alarm in lnms_alarms_db:
-            alarm.parameter_data = parse_parameter_data(alarm.parameter_data)
-            alarm.severity = normalize_severity(alarm.severity)
-            alarm.status = normalize_status(alarm.status)
-            alarm.host_name = alarm.host_name or "Unknown"
-            alarm.device_name = alarm.device_name or "Unknown"
-            alarm.ip_address = alarm.ip_address or "N/A"
-            alarm_name_lower = (alarm.alarm_name or "").lower()
-            alarm.alarm_type = "ICMP" if "ping" in alarm_name_lower or "icmp" in alarm_name_lower else "SNMP"
-            alarm.source = "LNMS"
-            alarm.alarm_id = f"LNMS-{alarm.alarm_id}"
-            
-            final_alarms.append(alarm)
+        # Convert LNMS models to dicts/objects with source
+        final_lnms = []
+        for a in lnms_alarms:
+            final_lnms.append({
+                "alarm_id": f"LNMS-{a.alarm_id}",
+                "device_name": a.device_name,
+                "host_name": a.host_name,
+                "ip_address": a.ip_address,
+                "severity": normalize_severity(a.severity),
+                "alarm_name": a.alarm_name,
+                "status": normalize_status(a.status),
+                "parameter_data": parse_parameter_data(a.parameter_data),
+                "created_at": a.created_at,
+                "source": "LNMS",
+                "ticket_created": a.ticket_created
+            })
 
-        # 2. Fetch SPIC-NMS alarms
-        from app.database import SessionLocal2
-        from app.models.status_alarms import StatusAlarm
-        db2 = SessionLocal2()
-        try:
-            spic_alarms_db = db2.query(StatusAlarm).order_by(StatusAlarm.id.desc()).all()
-            for sa in spic_alarms_db:
-                # Build an object mimicking AlarmResponse
-                spic_obj = {
-                    "alarm_id": f"SPIC-{sa.id}",
-                    "source": "SPIC-NMS",
-                    "host_name": sa.device_name or "Unknown",
-                    "device_name": sa.device_name or "Unknown",
-                    "ip_address": "N/A",
-                    "severity": normalize_severity(sa.severity),
-                    "alarm_name": "SPIC Alert",
-                    "description": f"Imported SPIC-NMS Alarm ({sa.alarm_type})",
-                    "parameter_data": {},
-                    "problem_time": sa.start_time or sa.timestamp or sa.created_at,
-                    "status": "Resolved" if sa.status == "RESOLVED" else "Open",
-                    "ticket_created": False,
-                    "alarm_type": sa.alarm_type or "SNMP",
-                    "created_at": sa.created_at or sa.timestamp,
-                    "resolved_at": sa.resolved_at
-                }
-                final_alarms.append(spic_obj)
-        finally:
-            db2.close()
-
-        logger.info(f"Found {len(final_alarms)} alarms total")
-
-        return final_alarms
+        return final_lnms + converted_spic
 
     except Exception as e:
-        logger.error(f"Error fetching alarms: {str(e)}", exc_info=True)
+        logger.error(f"Error fetching unified alarms: {e}")
         raise HTTPException(status_code=500, detail="Failed to fetch alarms")
+    finally:
+        db_spic.close()
 
 
 # =========================================================
-# CREATE ALARM
+# CREATE ALARM  — stores into lnms_db
 # =========================================================
 
 @router.post("/", response_model=AlarmResponse)
-def create_alarm(alarm: AlarmCreate, db: Session = Depends(get_db)):
+def create_alarm(alarm: AlarmCreate, db: Session = Depends(get_lnms_db)):
 
     try:
         if isinstance(alarm.parameter_data, dict):
@@ -163,12 +162,12 @@ def create_alarm(alarm: AlarmCreate, db: Session = Depends(get_db)):
         db.commit()
         db.refresh(db_alarm)
 
-        logger.info(f"Alarm {db_alarm.alarm_id} saved - ticket engine picks up within 30s")
+        logger.info(f"Alarm {db_alarm.alarm_id} saved to lnms_db — ticket engine picks up within 30s")
         return db_alarm
 
     except OperationalError:
         db.rollback()
-        logger.error("Alarm create failed: source database unavailable", exc_info=True)
+        logger.error("Alarm create failed: lnms_db unavailable", exc_info=True)
         raise HTTPException(status_code=503, detail="Alarm database unavailable")
     except Exception as e:
         db.rollback()
@@ -191,43 +190,45 @@ def get_correlated_alarms():
     ]
 
 # =========================================================
-# UPDATE ALARM STATUS (Direct UI action)
+# UPDATE ALARM STATUS (Direct UI action — lnms_db only)
 # =========================================================
 
 @router.put("/{alarm_id}/status")
-def update_alarm_status(alarm_id: str, payload: AlarmStatusUpdate, db: Session = Depends(get_db)):
+async def update_alarm_status_route(alarm_id: str, payload: AlarmStatusUpdate, db: Session = Depends(get_lnms_db)):
+    """Update alarm status in lnms_db. Also called automatically when a ticket status changes."""
     try:
-        new_status = normalize_status(payload.status)
-        is_resolved = new_status in ("Resolved", "Closed")
+        new_status = normalize_status(payload.status).upper()
+        # 1. Determine REAL ID and SOURCE
+        real_id = str(alarm_id).replace("LNMS-", "").replace("SPIC-", "")
+        source = "SPIC" if "SPIC-" in str(alarm_id) else "LNMS"
 
-        if str(alarm_id).startswith("SPIC-"):
-            real_id = int(str(alarm_id).replace("SPIC-", ""))
+        if source == "SPIC":
             from app.database import SessionLocal2
-            from app.models.status_alarms import StatusAlarm
-            db2 = SessionLocal2()
+            db_spic = SessionLocal2()
             try:
-                sa = db2.query(StatusAlarm).filter(StatusAlarm.id == real_id).first()
-                if not sa:
-                    raise HTTPException(status_code=404, detail="SPIC Alarm not found")
-                sa.status = "RESOLVED" if is_resolved else "PROBLEM"
-                if is_resolved:
-                    sa.resolved_at = datetime.utcnow()
-                db2.commit()
+                spic_status = "RESOLVED" if new_status in ["RESOLVED", "CLOSED"] else "ACTIVE" if new_status == "ACK" else "PROBLEM"
+                db_spic.execute(text("UPDATE status_alarms SET status=:st WHERE id=:aid"), {"st": spic_status, "aid": real_id})
+                db_spic.commit()
             finally:
-                db2.close()
-        else:
-            real_id = str(alarm_id).replace("LNMS-", "")
+                db_spic.close()
+        
+        # 2. Update Ticket if exists (which updates LNMS alarm too)
+        from app.models.tickets import Ticket
+        ticket = db.query(Ticket).filter(Ticket.alarm_id == real_id).first()
+        
+        if ticket:
+            await ticket_service.update_ticket_status(db, ticket.ticket_id, new_status, last_updated_by="USER")
+        elif source == "LNMS":
             alarm = db.query(Alarm).filter(Alarm.alarm_id == real_id).first()
             if not alarm:
-                raise HTTPException(status_code=404, detail="LNMS Alarm not found")
-            
+                raise HTTPException(status_code=404, detail=f"Alarm {alarm_id} not found")
             alarm.status = new_status
-            if is_resolved:
+            if new_status in ("RESOLVED", "CLOSED"):
                 alarm.resolved_time = datetime.utcnow()
             db.commit()
-            db.refresh(alarm)
-        
-        return {"message": "Alarm status updated", "status": new_status}
+
+        logger.info(f"Alarm {alarm_id} status updated to '{new_status}'")
+        return {"message": "Alarm status updated", "status": new_status, "source": source}
     except HTTPException:
         raise
     except Exception as e:

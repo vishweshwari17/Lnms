@@ -1,6 +1,2460 @@
-INFO:     Started server process [312749]
+INFO:     Will watch for changes in these directories: ['/home/nms/LNMS_PROJECT/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [182702] using WatchFiles
+INFO:     Started server process [182704]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-ERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8000): address already in use
+INFO:     127.0.0.1:47912 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47982 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48052 - "GET /tickets/ HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48120 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48120 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48120 - "GET /alarms HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48350 - "GET /alarms HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48558 - "GET /alarms HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:48754 - "GET /alarms HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:12:54 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:48972 - "GET /alarms HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:13:24 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:49278 - "GET /alarms HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:13:54 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:49516 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49524 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49632 - "GET /alarms HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:14:24 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:49732 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49786 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: 'source' is an invalid keyword argument for Alarm
+INFO:     127.0.0.1:49786 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:49786 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49856 - "GET /alarms HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:14:54 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:49932 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49978 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49988 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50066 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50108 - "GET /alarms HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:15:24 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:50164 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50202 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50210 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50278 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50342 - "GET /tickets/ HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:15:54 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:50342 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50414 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50422 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50486 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50538 - "GET /tickets/ HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:16:24 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:50538 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50626 - "GET /alarms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50634 - "GET /tickets/ HTTP/1.1" 404 Not Found
+WARNING:  WatchFiles detected changes in 'app/routers/alarms.py'. Reloading...
+INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
+INFO:     Finished server process [182704]
+INFO:     Started server process [186778]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50694 - "GET /tickets/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50794 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:50798 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:50794 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51172 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51176 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51380 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51544 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51380 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51584 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51584 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51544 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51380 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51584 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51678 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51678 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:51904 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51904 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51586 - "GET /api/alarms?source=LNMS HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:51586 - "GET /api/alarms/?source=LNMS HTTP/1.1" 200 OK
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:19:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:51982 - "GET /api/tickets HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52102 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52102 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:20:03 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:52302 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52302 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:20:33 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:21:03 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:21:33 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:22:03 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:22:33 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:23:03 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:23:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:53870 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:24:03 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:53874 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:24:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:54320 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:25:03 IST)" skipped: maximum number of running instances reached (1)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:53870 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:25:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:54684 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:26:03 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:54884 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:26:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:55090 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:27:03 IST)" skipped: maximum number of running instances reached (1)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:53870 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:27:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:55498 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55506 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55498 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:28:03 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:55626 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55626 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:53870 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:28:33 IST)" skipped: maximum number of running instances reached (1)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:53870 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55992 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56012 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56008 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55996 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56004 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56000 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55992 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55996 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56008 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56000 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56012 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56004 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55992 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55996 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55992 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56008 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56000 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56012 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:56004 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55996 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:29:03 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:56224 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56008 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:29:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:56370 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56224 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:30:03 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56362 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56678 - "WebSocket /ws/alarms" [accepted]
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:30:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     connection closed
+INFO:     127.0.0.1:56716 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56366 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:31:03 IST)" skipped: maximum number of running instances reached (1)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56682 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56716 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56716 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:57006 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:31:33 IST)" skipped: maximum number of running instances reached (1)
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56682 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56374 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56716 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56968 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:57006 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:32:03 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56682 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56682 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57606 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:57006 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:32:33 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56682 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56844 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:57606 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:57006 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:57006 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:33:03 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56682 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:58048 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56964 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:57006 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:33:33 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56374 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56682 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58048 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56682 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:34:03 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58138 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56844 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:58506 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:56844 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:34:33 IST)" skipped: maximum number of running instances reached (1)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58372 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58430 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58464 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58506 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:58730 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+WARNING:  WatchFiles detected changes in 'app/database.py'. Reloading...
+INFO:     Shutting down
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:35:03 IST)" skipped: maximum number of running instances reached (1)
+INFO:     Waiting for connections to close. (CTRL+C to force quit)
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58372 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:58464 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Database error on GET /api/tickets/: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56968 - "GET /api/tickets/ HTTP/1.1" 500 Internal Server Error
+Error fetching unified alarms: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/20/3o7r)
+INFO:     127.0.0.1:56964 - "GET /api/alarms/ HTTP/1.1" 500 Internal Server Error
+INFO:     Waiting for background tasks to complete. (CTRL+C to force quit)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:35:33 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:36:03 IST)" skipped: maximum number of running instances reached (1)
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:36:33 IST)" skipped: maximum number of running instances reached (1)
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [186778]
+INFO:     Started server process [195657]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:58942 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:58942 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:58964 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59170 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59350 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59602 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59654 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59358 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59358 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:59654 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59640 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59728 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59798 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60092 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60092 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60196 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:60276 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60358 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60358 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60380 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60430 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:38:36 IST)" skipped: maximum number of running instances reached (1)
+INFO:     127.0.0.1:60498 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60584 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60584 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60092 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60134 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59574 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59966 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60276 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60538 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59702 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60126 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60120 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60498 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60498 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60676 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:39:06 IST)" skipped: maximum number of running instances reached (1)
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60752 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60838 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60838 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60866 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60866 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:60912 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60912 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402090940003720: no running event loop
+/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py:148: RuntimeWarning: coroutine 'send_ticket_to_cnms' was never awaited
+  logger.error(f"Failed to trigger CNMS sync for SPIC {new_ticket.ticket_id}: {e}")
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Failed to trigger CNMS sync for SPIC TKT-20260402090943935264: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402090946106794: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402090950384613: no running event loop
+INFO:     127.0.0.1:60992 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:60992 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32778 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+Failed to trigger CNMS sync for SPIC TKT-20260402090952320856: no running event loop
+INFO:     127.0.0.1:60992 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402090955478608: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091001967926: no running event loop
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-02 14:40:06 IST)" skipped: maximum number of running instances reached (1)
+Failed to trigger CNMS sync for SPIC TKT-20260402091004066240: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091007669604: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091008559052: no running event loop
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:32872 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32924 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32924 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33002 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:33002 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33038 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33038 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091036284696: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091037018671: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091037910998: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091038415109: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091038619010: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091038775517: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091039044455: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091039115241: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091039464110: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091039689293: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091039957627: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091040157031: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091040412038: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091040505074: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091040768837: no running event loop
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:33094 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091040904814: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091041251641: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091041511803: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091041833157: no running event loop
+INFO:     127.0.0.1:33094 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091043049873: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091044257056: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091044560203: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091044628389: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091044906698: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091045123055: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091045440915: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091045891979: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091046104317: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091048990911: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091050100559: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091050371504: no running event loop
+INFO:     127.0.0.1:33148 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091050656524: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091051075139: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091051807845: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091051937879: no running event loop
+INFO:     127.0.0.1:33148 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091052114941: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091055545323: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091055837145: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091056495692: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091057089336: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091058030398: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091058307752: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091058596469: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091058966881: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091059204401: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091059555856: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091059691140: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091059774429: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091059992197: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091100262551: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091100436213: no running event loop
+INFO:     127.0.0.1:33238 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091100560254: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091100849843: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091101038262: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091101301523: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091101837777: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402091102150475: no running event loop
+INFO:     127.0.0.1:33238 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402091102305229: no running event loop
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33310 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33310 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33374 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33374 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33440 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:33440 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33474 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33474 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33532 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33532 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33598 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33598 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33704 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33704 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33780 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33780 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33846 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33846 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33908 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:33908 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33958 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33958 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34020 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34020 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34106 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34114 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:34114 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34106 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34262 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34316 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:34316 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34536 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:34536 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34602 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:34602 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34734 - "OPTIONS /api/alarms/LNMS-LNMS-2/status HTTP/1.1" 200 OK
+Error updating alarm status: no running event loop
+Traceback (most recent call last):
+  File "/home/nms/LNMS_PROJECT/backend/app/routers/alarms.py", line 209, in update_alarm_status_route
+    ticket_service.update_ticket_status(db, ticket.ticket_id, new_status, last_updated_by="USER")
+  File "/home/nms/LNMS_PROJECT/backend/app/services/ticket_service.py", line 55, in update_ticket_status
+    asyncio.create_task(push_status_to_cnms(ticket_id))
+  File "/usr/local/lib/python3.10/asyncio/tasks.py", line 336, in create_task
+    loop = events.get_running_loop()
+RuntimeError: no running event loop
+INFO:     127.0.0.1:34738 - "PUT /api/alarms/LNMS-LNMS-2/status HTTP/1.1" 500 Internal Server Error
+Error updating alarm status: no running event loop
+Traceback (most recent call last):
+  File "/home/nms/LNMS_PROJECT/backend/app/routers/alarms.py", line 209, in update_alarm_status_route
+    ticket_service.update_ticket_status(db, ticket.ticket_id, new_status, last_updated_by="USER")
+  File "/home/nms/LNMS_PROJECT/backend/app/services/ticket_service.py", line 55, in update_ticket_status
+    asyncio.create_task(push_status_to_cnms(ticket_id))
+  File "/usr/local/lib/python3.10/asyncio/tasks.py", line 336, in create_task
+    loop = events.get_running_loop()
+RuntimeError: no running event loop
+INFO:     127.0.0.1:34812 - "PUT /api/alarms/LNMS-LNMS-2/status HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:34812 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/pymysql/converters.py:179: RuntimeWarning: coroutine 'push_status_to_cnms' was never awaited
+  return datetime.datetime(*[int(x) for x in groups])
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+INFO:     127.0.0.1:34812 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35098 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:35098 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35236 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35320 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35320 - "GET /api/tickets/TKT-20260402090859734703 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35320 - "GET /api/tickets/TKT-20260402090859734703 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35320 - "GET /api/tickets/TKT-20260402090859734703 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35320 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35438 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35446 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35446 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35456 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35456 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35528 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35558 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35558 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35586 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35586 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35594 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35594 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35604 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35604 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090950384613 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402090955478608 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402091004066240 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402091101038262 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402091101301523 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402091101837777 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402091102305229 to status ACK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35628 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35628 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35632 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35686 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35758 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402091100262551 to status ACK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35826 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35826 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35838 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35894 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35970 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36044 - "GET /api/tickets/TKT-20260402091100262551 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36044 - "GET /api/tickets/TKT-20260402091100262551 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36044 - "GET /api/tickets/TKT-20260402091100262551 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36044 - "GET /api/tickets/TKT-20260402091100262551 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36044 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36172 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36228 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36228 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36236 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402091100262551 to status RESOLVED
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36366 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36466 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36548 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36642 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36736 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36798 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36858 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36938 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37010 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37078 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37536 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37692 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37692 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37820 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090955478608 to status OPEN
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37952 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38094 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38286 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38360 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:38360 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38390 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38588 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:38588 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38642 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38802 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:38802 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39020 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39020 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39074 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39250 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39250 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39456 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39456 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39500 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39570 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39570 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39570 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39678 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39678 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39798 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39798 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39912 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39912 - "GET /api/alarms/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195657]
+INFO:     Started server process [206651]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:40044 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40168 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40044 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40168 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40326 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40326 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40418 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40418 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40522 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40522 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40608 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40608 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40748 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40748 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40866 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40866 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40986 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:40986 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41040 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41104 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41182 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41254 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41314 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:41370 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41370 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41394 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [206651]
+INFO:     Started server process [208821]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:41460 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41520 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41594 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41676 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41744 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41814 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41814 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41832 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41898 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41952 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42022 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42098 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42164 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42228 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:42228 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42242 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42308 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42372 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42452 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42538 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42626 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42692 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:42692 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42702 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42758 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42830 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42902 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42978 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43052 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43114 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:43114 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43124 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43188 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43282 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43360 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402093307726039: no running event loop
+/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py:148: RuntimeWarning: coroutine 'send_ticket_to_cnms' was never awaited
+  logger.error(f"Failed to trigger CNMS sync for SPIC {new_ticket.ticket_id}: {e}")
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43432 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43512 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43570 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:43570 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43586 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43644 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43716 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43784 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43846 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43892 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:43892 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43928 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44012 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44070 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:44070 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44086 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44176 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44286 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44340 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:44340 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44368 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44452 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44528 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44592 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44658 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44746 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44920 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45018 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45114 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:45114 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45132 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45208 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45282 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45368 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45442 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45508 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45570 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:45570 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45592 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45658 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45728 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45802 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45886 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45966 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46042 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:46042 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46062 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46130 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46204 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46280 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46350 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46416 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46480 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:46480 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46500 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46564 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46632 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46706 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46750 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:46750 - "GET /api/alarms/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [208821]
+INFO:     Started server process [215909]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:46788 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46866 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46876 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46958 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46966 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47042 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47046 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47126 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47130 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [215909]
+INFO:     Started server process [216267]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:47228 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47232 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47312 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47316 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47382 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47398 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47412 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47412 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47502 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47412 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47550 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47572 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47550 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47550 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47678 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [216267]
+INFO:     Started server process [216815]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:47706 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47706 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47780 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47870 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47950 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48038 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47824 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48112 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [216815]
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Started server process [217577]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [217577]
+INFO:     Started server process [217580]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:48190 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48268 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48342 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48410 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48472 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48506 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48566 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48632 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48708 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48802 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48876 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48930 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48962 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49014 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49066 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49142 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49212 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49286 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49328 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49364 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49418 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49498 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49606 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49756 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402094722483598: no running event loop
+/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py:148: RuntimeWarning: coroutine 'send_ticket_to_cnms' was never awaited
+  logger.error(f"Failed to trigger CNMS sync for SPIC {new_ticket.ticket_id}: {e}")
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Failed to trigger CNMS sync for SPIC TKT-20260402094723222759: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402094723436785: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402094723640692: no running event loop
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50212 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090950384613 to status OPEN
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50652 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51132 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51562 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51786 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51786 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51842 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51842 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51842 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51842 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51842 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52026 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:52990 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53090 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:53798 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54546 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54546 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54146 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54792 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54798 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54798 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090943935264 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402090955478608 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402094205470944 to status ACK
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090943935264 to status OPEN
+✅ [LNMS] Retroactively synced TKT-20260402090955478608 to status OPEN
+✅ [LNMS] Retroactively synced TKT-20260402094205470944 to status OPEN
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:55234 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:55638 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56010 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56406 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56904 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56982 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56982 - "GET /api/tickets/TKT-20260402092538140592 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56982 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57038 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:57038 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57038 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57178 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57178 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57178 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57178 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57178 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57178 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57338 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57358 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57358 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57338 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57338 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57338 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57338 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57338 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57338 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57498 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090950384613 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402094723222759 to status ACK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57560 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57560 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57560 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57622 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57622 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57704 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58262 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58306 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58306 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58316 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58316 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58316 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58316 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58316 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090952320856 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402094723436785 to status ACK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58316 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58316 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58456 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58456 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58456 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58456 - "GET /api/tickets/TKT-20260402094723222759 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58456 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58566 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58678 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58746 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58820 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58826 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58908 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090952320856 to status RESOLVED
+✅ [LNMS] Retroactively synced TKT-20260402094723436785 to status RESOLVED
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58968 - "GET /api/tickets/TKT-20260402094723436785 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58968 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59142 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59198 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:59272 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59452 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:59524 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59648 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59718 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:59782 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59884 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60000 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60418 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60850 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402101152451379: no running event loop
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33136 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33524 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33964 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34350 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34804 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35192 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35388 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402101752464941: no running event loop
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35388 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35526 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35598 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35672 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35758 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35826 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402091004066240 to status OPEN
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35910 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36014 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36072 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36142 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36234 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36308 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36378 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36460 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36538 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36602 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36650 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36650 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36688 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36688 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36696 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36794 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402090638352345 to status ACK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36862 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36946 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37126 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37676 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38084 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [217580]
+Process SpawnProcess-11:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/nms/LNMS_PROJECT/backend/app/main.py", line 14, in <module>
+    from app.services.lnms_ticket import create_lnms_tickets
+  File "/home/nms/LNMS_PROJECT/backend/app/services/lnms_ticket.py", line 2, in <module>
+    from app.services.alarm_to_ticket import process_lnms_alarms
+ImportError: cannot import name 'process_lnms_alarms' from 'app.services.alarm_to_ticket' (/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py)
+WARNING:  WatchFiles detected changes in 'app/services/cnms_sync.py'. Reloading...
+Process SpawnProcess-12:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/nms/LNMS_PROJECT/backend/app/main.py", line 14, in <module>
+    from app.services.lnms_ticket import create_lnms_tickets
+  File "/home/nms/LNMS_PROJECT/backend/app/services/lnms_ticket.py", line 2, in <module>
+    from app.services.alarm_to_ticket import process_lnms_alarms
+ImportError: cannot import name 'process_lnms_alarms' from 'app.services.alarm_to_ticket' (/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py)
+WARNING:  WatchFiles detected changes in 'app/main.py'. Reloading...
+Process SpawnProcess-13:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/nms/LNMS_PROJECT/backend/app/main.py", line 14, in <module>
+    from app.services.lnms_ticket import create_lnms_tickets
+  File "/home/nms/LNMS_PROJECT/backend/app/services/lnms_ticket.py", line 2, in <module>
+    from app.services.alarm_to_ticket import process_lnms_alarms
+ImportError: cannot import name 'process_lnms_alarms' from 'app.services.alarm_to_ticket' (/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py)
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py', 'app/main.py', 'app/services/cnms_sync.py'. Reloading...
+INFO:     Started server process [248179]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:39208 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39232 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41348 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41352 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41348 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41352 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41352 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41356 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41360 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41360 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41360 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Failed to trigger CNMS sync for SPIC TKT-20260402103117606986: no running event loop
+/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py:148: RuntimeWarning: coroutine 'send_ticket_to_cnms' was never awaited
+  logger.error(f"Failed to trigger CNMS sync for SPIC {new_ticket.ticket_id}: {e}")
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Failed to trigger CNMS sync for SPIC TKT-20260402103117788127: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103117902985: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103117929472: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103117956028: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103117982292: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118008582: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118036644: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118096571: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118123147: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118149927: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118175807: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118202236: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118228647: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118255444: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118282726: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118308416: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118335908: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118362199: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118387631: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118415170: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118443972: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118467328: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118494826: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118533826: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118601508: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118665029: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118691549: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118717959: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118744240: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118770940: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118797286: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118823713: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118850278: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118876921: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118903346: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118930064: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118955910: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103118982587: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119008704: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119035113: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119061417: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119088232: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119141159: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119167347: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119193944: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119220097: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119246461: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119273919: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119299633: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119325998: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119353508: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119378805: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119404236: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119429534: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119453479: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119479066: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119504302: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119529787: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119554949: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119580189: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119605535: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119630851: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119656815: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119680163: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119705756: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119731052: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119756225: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119781772: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119806975: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119832175: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119857414: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119882810: no running event loop
+Failed to trigger CNMS sync for SPIC TKT-20260402103119906823: no running event loop
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41858 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41858 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41858 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41944 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42002 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42060 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42146 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42208 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42274 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42362 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42428 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42500 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42594 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42662 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42742 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42826 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42878 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43126 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43310 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43310 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43462 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43526 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43606 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43684 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43748 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43820 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43934 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44052 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44166 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44292 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44824 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45268 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45352 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45352 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45372 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45498 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45572 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45666 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45734 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45804 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45838 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45838 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45904 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402103119906823 to status ACK
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46470 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46926 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46926 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47080 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47324 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47324 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47324 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47324 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47324 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47324 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47526 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47526 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47526 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47526 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47526 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:47526 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47526 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:47526 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47526 - "OPTIONS /api/alarms/LNMS-LNMS-2/status HTTP/1.1" 200 OK
+Error updating alarm status: no running event loop
+Traceback (most recent call last):
+  File "/home/nms/LNMS_PROJECT/backend/app/routers/alarms.py", line 209, in update_alarm_status_route
+    ticket_service.update_ticket_status(db, ticket.ticket_id, new_status, last_updated_by="USER")
+  File "/home/nms/LNMS_PROJECT/backend/app/services/ticket_service.py", line 55, in update_ticket_status
+    asyncio.create_task(push_status_to_cnms(ticket_id))
+  File "/usr/local/lib/python3.10/asyncio/tasks.py", line 336, in create_task
+    loop = events.get_running_loop()
+RuntimeError: no running event loop
+INFO:     127.0.0.1:47684 - "PUT /api/alarms/LNMS-LNMS-2/status HTTP/1.1" 500 Internal Server Error
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47888 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:47888 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47996 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47996 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48104 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:48104 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48452 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:48452 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48580 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:48580 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48764 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:48764 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48998 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:48998 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49102 - "OPTIONS /api/alarms/SPIC-80/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49106 - "PUT /api/alarms/SPIC-80/status HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49106 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/TKT-20260402103119906823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49224 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49490 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49554 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49640 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49722 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49786 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49850 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49948 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49948 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50066 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50160 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50236 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [248179]
+INFO:     Started server process [259144]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50308 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50386 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/ticket_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [259144]
+INFO:     Started server process [259209]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50456 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/routers/alarms.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [259209]
+INFO:     Started server process [259373]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50518 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/routers/tickets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [259373]
+WARNING:  WatchFiles detected changes in 'app/main.py'. Reloading...
+WARNING:  WatchFiles detected changes in 'scripts/sync_pending_tickets.py'. Reloading...
+INFO:     Started server process [259894]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50872 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50618 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50872 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50618 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50962 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51050 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51148 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51336 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51976 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'scripts/sync_pending_tickets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [259894]
+INFO:     Started server process [261664]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/sync_pending_tickets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [261664]
+INFO:     Started server process [261885]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:52606 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402103118008582 to status ACK
+✅ [LNMS] Retroactively synced TKT-20260402103119781772 to status ACK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:53884 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54324 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54324 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54416 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54486 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54564 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54624 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54700 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54838 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:55282 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:55760 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56166 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56484 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56558 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56634 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56736 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56894 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56930 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56988 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57070 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57480 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57912 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+❌ [LNMS] Failed to fetch CNMS tickets: 
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58758 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'scripts/sync_pending_tickets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [261885]
+INFO:     Started server process [269673]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:59240 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60134 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+❌ [LNMS] Failed to fetch CNMS tickets: 
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+❌ [LNMS] Failed to fetch CNMS tickets: 
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60580 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+❌ [LNMS] Failed to fetch CNMS tickets: 
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+❌ [LNMS] Failed to fetch CNMS tickets: All connection attempts failed
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33040 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+❌ [LNMS] Failed to fetch CNMS tickets: All connection attempts failed
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:33630 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34106 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34604 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34604 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34716 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:34784 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34784 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:34784 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34898 - "OPTIONS /api/alarms/SPIC-13/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34902 - "PUT /api/alarms/SPIC-13/status HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35050 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:35050 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35300 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:35300 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35558 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:35558 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35768 - "GET /api/alarms HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:35768 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:35918 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35980 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36050 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36142 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36210 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36272 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36350 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36416 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36482 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36568 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36646 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36706 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36770 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:36868 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36942 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37032 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37100 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37162 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37232 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37312 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37380 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37446 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37536 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37594 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37670 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37760 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37836 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37906 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37974 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38032 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38096 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38186 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38252 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38324 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38400 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38460 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38538 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38628 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38700 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38776 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:38850 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38908 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38978 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39058 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39126 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39194 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/routers/tickets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [269673]
+WARNING:  WatchFiles detected changes in 'app/services/cnms_sync.py'. Reloading...
+INFO:     Started server process [281719]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:39268 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39496 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39578 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39624 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39578 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39662 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39728 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39808 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39876 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39954 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40018 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40108 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40180 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40248 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40324 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40400 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40464 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40546 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40616 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40670 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40738 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40814 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40876 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40958 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41040 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41106 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41174 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41260 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41322 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41394 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41468 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41520 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41588 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41664 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41732 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41810 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41892 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41952 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42040 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42132 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42194 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42264 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42340 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42392 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42458 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42542 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42614 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42690 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42774 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42836 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42902 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42980 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43042 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43116 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43186 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43244 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43314 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43398 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43470 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43552 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43620 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43682 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43748 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43832 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43898 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43968 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44032 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44096 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44170 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/routers/tickets.py', 'app/services/cnms_sync.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [281719]
+INFO:     Started server process [289908]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:44272 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44382 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44448 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44516 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44572 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44640 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44710 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44794 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44858 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44928 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45008 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45058 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45058 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45098 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45174 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45260 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45268 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45268 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45328 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45372 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45372 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45404 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45476 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45556 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45618 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45696 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45774 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45848 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45918 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45998 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46068 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46140 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46214 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46282 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46334 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46400 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46460 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46546 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46624 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46704 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46782 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46874 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46924 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47008 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47078 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47132 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47206 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47282 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47362 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47456 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47532 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47596 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47672 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47754 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47808 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47890 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47958 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48016 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48082 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48156 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48214 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48300 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48372 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48442 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48514 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48588 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48654 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48740 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48812 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48882 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:48966 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49050 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49118 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49210 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49300 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49382 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49454 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49530 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49536 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49536 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402103117788127 to status ACK
+INFO:     127.0.0.1:49592 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49666 - "PUT /tickets/update_from_cnms HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49666 - "POST /cnms/update-ticket HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49670 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49750 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+✅ [LNMS] Retroactively synced TKT-20260402103117788127 to status RESOLVED
+INFO:     127.0.0.1:49818 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50098 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50538 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50970 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51416 - "GET /api/tickets/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51862 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/cnms_sync.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [289908]
+INFO:     Started server process [302298]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:52288 - "GET /api/tickets/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/services/cnms_sync.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [302298]
+INFO:     Started server process [302789]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/routers/tickets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [302789]
+Process SpawnProcess-29:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/nms/LNMS_PROJECT/backend/app/main.py", line 16, in <module>
+    from app.routers.tickets import sync_missed_tickets
+ImportError: cannot import name 'sync_missed_tickets' from 'app.routers.tickets' (/home/nms/LNMS_PROJECT/backend/app/routers/tickets.py)
+WARNING:  WatchFiles detected changes in 'app/routers/alarms.py'. Reloading...
+Process SpawnProcess-30:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/nms/LNMS_PROJECT/backend/app/main.py", line 16, in <module>
+    from app.routers.tickets import sync_missed_tickets
+ImportError: cannot import name 'sync_missed_tickets' from 'app.routers.tickets' (/home/nms/LNMS_PROJECT/backend/app/routers/tickets.py)
+WARNING:  WatchFiles detected changes in 'app/routers/alarms.py'. Reloading...
+Process SpawnProcess-31:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/nms/LNMS_PROJECT/backend/venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/nms/LNMS_PROJECT/backend/app/main.py", line 16, in <module>
+    from app.routers.tickets import sync_missed_tickets
+ImportError: cannot import name 'sync_missed_tickets' from 'app.routers.tickets' (/home/nms/LNMS_PROJECT/backend/app/routers/tickets.py)

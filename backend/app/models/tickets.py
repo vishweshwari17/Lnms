@@ -34,8 +34,8 @@ class Ticket(Base):
     # Ticket IDs now use a shared/global TKT-based format instead of UUIDs.
     ticket_id = Column(String(64), primary_key=True, index=True)
 
-    alarm_id = Column(BigInteger)
-    correlation_id = Column(String(64))
+    alarm_id = Column(BigInteger, index=True)
+    correlation_id = Column(String(64), unique=True)
 
     title = Column(String(255))
     device_name = Column(String(100))
@@ -67,6 +67,7 @@ class Ticket(Base):
     lnms_node_id = Column(String(50))
     sync_status = Column(String(20), default="pending")
     cnms_ticket_id = Column(String(50))
+    category = Column(String(50)) # Added for smart classification
     is_deleted = Column(Boolean, default=False)
 
     user_id = Column(Integer, ForeignKey("users.id"))

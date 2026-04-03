@@ -3,14 +3,14 @@ from datetime import datetime
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.database import get_lnms_db
 from app.models import Ticket
 
 router = APIRouter(prefix="/sla", tags=["SLA"])
 
 
 @router.get("/risk")
-def get_sla_risk(db: Session = Depends(get_db)):
+def get_sla_risk(db: Session = Depends(get_lnms_db)):
     tickets = db.query(Ticket).all()
 
     critical = 0

@@ -1,10 +1,10 @@
 // src/pages/Tickets.jsx  (LNMS)
 import { useEffect, useState, useMemo } from "react";
-import { getTickets } from "../api/api";
-import StatusBadge from "../components/StatusBadge";
 import { Link } from "react-router-dom";
+import api, { getTickets } from "../api/api";
+import StatusBadge from "../components/StatusBadge";
 
-const SEVERITY_ORDER = { Critical: 3, Major: 2, Minor: 1 };
+const SEVERITY_ORDER = { Critical: 3, Major: 2, Minor: 1, Warning: 0 };
 const VALID_FILTER_STATUSES = ["All", "OPEN", "ACK", "RESOLVED", "CLOSED"];
 
 export default function Tickets() {
@@ -14,7 +14,7 @@ export default function Tickets() {
   const [search, setSearch] = useState("");
   const [sortSeverity, setSortSeverity] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const ticketsPerPage = 10;
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const formatTime = (time) => {
     if (!time) return "\u2014";
@@ -40,12 +40,12 @@ export default function Tickets() {
     return () => clearInterval(id);
   }, []);
 
-  const openCount     = tickets.filter(t => t.status === "OPEN").length;
-  const ackCount      = tickets.filter(t => t.status === "ACK").length;
+  const openCount = tickets.filter(t => t.status === "OPEN").length;
+  const ackCount = tickets.filter(t => t.status === "ACK").length;
   const resolvedCount = tickets.filter(t => t.status === "RESOLVED").length;
-  const closedCount   = tickets.filter(t => t.status === "CLOSED").length;
-  const syncedCount   = tickets.filter(t => t.sync_status === "synced").length;
-  const pendingCount  = tickets.filter(t => t.sync_status === "pending").length;
+  const closedCount = tickets.filter(t => t.status === "CLOSED").length;
+  const syncedCount = tickets.filter(t => t.sync_status === "synced").length;
+  const pendingCount = tickets.filter(t => t.sync_status === "pending").length;
 
   const filteredTickets = useMemo(() => {
     let data = [...tickets];
@@ -76,200 +76,269 @@ export default function Tickets() {
     );
   }, [filteredTickets, sortSeverity]);
 
-  const totalPages = Math.max(1, Math.ceil(sortedTickets.length / ticketsPerPage));
+  const totalPages = Math.max(1, Math.ceil(sortedTickets.length / rowsPerPage));
   const currentTickets = sortedTickets.slice(
-    (currentPage - 1) * ticketsPerPage,
-    currentPage * ticketsPerPage
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
   );
 
-  useEffect(() => setCurrentPage(1), [filter, search, sortSeverity, severityFilter]);
+  useEffect(() => setCurrentPage(1), [filter, search, sortSeverity, severityFilter, rowsPerPage]);
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-
-      <div className="flex justify-between mb-8">
-        <h1 className="text-2xl font-bold">LNMS Tickets</h1>
-        <div className="flex items-center text-green-600 text-sm">
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2" />
-          Live &bull; Auto refresh
+    <div className="p-8 bg-slate-50 min-h-screen font-sans">
+      <div className="flex justify-between items-center mb-10">
+        <div>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Support Tickets</h1>
+          <p className="text-slate-500 mt-1 uppercase text-[10px] font-black tracking-widest">Unified Helpdesk Dashboard</p>
+        </div>
+        <div className="flex items-center bg-white px-4 py-2 rounded-2xl shadow-sm border border-slate-100">
+          <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse mr-2.5" />
+          <span className="text-slate-600 text-sm font-semibold tracking-tight">Live Auto-Sync</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6 mb-6">
-        <KPI title="Total"        value={tickets.length} />
-        <KPI title="Open"         value={openCount}      color="text-red-600" />
-        <KPI title="ACK"          value={ackCount}        color="text-yellow-600" />
-        <KPI title="Resolved"     value={resolvedCount}   color="text-green-600" />
-        <KPI title="Synced"       value={syncedCount}     color="text-emerald-600" />
-        <KPI title="Pending sync" value={pendingCount}    color="text-orange-600" />
+      <div className="grid fgrid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6 mb-10">
+        <KPI title="Total Tickets" value={tickets.length} color="bg-indigo-50 text-indigo-700 border-indigo-100" />
+        <KPI title="Open" value={openCount} color="bg-red-50 text-red-700 border-red-100" />
+        <KPI title="Acknowledged" value={ackCount} color="bg-amber-50 text-amber-700 border-amber-100" />
+        <KPI title="Resolved" value={resolvedCount} color="bg-emerald-50 text-emerald-700 border-emerald-100" />
+        <KPI title="Synced" value={syncedCount} color="bg-blue-50 text-blue-700 border-blue-100" />
+        <KPI title="Pending" value={pendingCount} color="bg-orange-50 text-orange-700 border-orange-100" />
       </div>
 
-      <div className="flex gap-3 mb-6 flex-wrap">
-        {VALID_FILTER_STATUSES.map(tab => (
-          <button
-            key={tab}
-            onClick={() => setFilter(tab)}
-            className={
-              "px-4 py-2 rounded-xl text-sm " +
-              (filter === tab ? "bg-blue-600 text-white" : "bg-white shadow")
-            }
-          >
-            {tab === "All" ? "All" : tab.charAt(0) + tab.slice(1).toLowerCase()}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex gap-4 mb-6 flex-wrap">
-        <input
-          type="text"
-          placeholder="Search ticket / device / title"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="px-4 py-2 border rounded-xl w-64"
-        />
-        <select
-          value={severityFilter}
-          onChange={e => setSeverityFilter(e.target.value)}
-          className="px-4 py-2 border rounded-xl"
-        >
-          <option value="All">All Severity</option>
-          <option>Critical</option>
-          <option>Major</option>
-          <option>Minor</option>
-        </select>
-      </div>
-
-      <div className="bg-white shadow rounded-2xl p-6 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead className="text-gray-500 border-b">
-            <tr>
-              <th className="text-left py-2">ID</th>
-              <th className="text-left py-2">Title</th>
-              <th className="text-left py-2">Device</th>
-              <th
-                className="text-left py-2 cursor-pointer"
-                onClick={() => setSortSeverity(s => !s)}
+      <div className="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/40 p-8 border border-slate-100 overflow-hidden relative">
+        <div className="flex flex-col lg:flex-row justify-between gap-6 mb-8">
+          <div className="flex gap-2 p-1.5 bg-slate-50 rounded-2xl w-fit">
+            {VALID_FILTER_STATUSES.map(tab => (
+              <button
+                key={tab}
+                onClick={() => setFilter(tab)}
+                className={
+                  "px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 " +
+                  (filter === tab
+                    ? "bg-indigo-600 text-white shadow-xl shadow-indigo-200 scale-105"
+                    : "text-slate-400 hover:text-slate-600 hover:bg-white")
+                }
               >
-                Severity {sortSeverity ? "\u25b2" : "\u2195"}
-              </th>
-              <th className="text-left py-2">Status</th>
-              <th className="text-left py-2">Sync</th>
-              <th className="text-left py-2">Sent to CNMS</th>
-              <th className="text-left py-2">Resolved time</th>
-              <th className="text-left py-2">Resolution note</th>
-              <th className="text-left py-2">Created</th>
-              <th className="text-left py-2">View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentTickets.map(ticket => {
-              const ticketIdentifier = ticket.ticket_id || ticket.global_ticket_id;
+                {tab === "All" ? "All" : tab}
+              </button>
+            ))}
+          </div>
 
-              return (
-                <tr key={ticketIdentifier} className="border-b hover:bg-gray-50">
-                  <td className="py-3 font-mono text-xs">
-                    {ticketIdentifier}
-                  </td>
-                  <td className="py-3">{ticket.title}</td>
-                  <td className="py-3">{ticket.device_name}</td>
-                  <td className="py-3">{ticket.severity_calculated}</td>
-                  <td className="py-3">
-                    <StatusBadge status={ticket.status} />
-                  </td>
-                  <td className="py-3">
-                    <SyncBadge status={ticket.sync_status || "pending"} />
-                  </td>
-                  <td className="py-3">
-                    {ticket.sent_to_cnms_at ? (
-                      <span className="text-green-600">{formatTime(ticket.sent_to_cnms_at)}</span>
-                    ) : (
-                      <span className="text-yellow-600">Pending</span>
-                    )}
-                  </td>
-                  <td className="py-3">{formatTime(ticket.resolved_at)}</td>
-                  <td className="py-3 max-w-xs truncate text-gray-500 text-xs">
-                    {ticket.resolution_note || "\u2014"}
-                  </td>
-                  <td className="py-3 text-xs text-gray-400">{formatTime(ticket.created_at)}</td>
-                  <td className="py-3">
-                    <Link
-                      to={"/tickets/" + ticketIdentifier}
-                      className="px-3 py-1 bg-gray-800 text-white rounded text-xs"
-                    >
-                      View
-                    </Link>
+          <div className="flex gap-4 items-center">
+            <div className="relative group">
+              <input
+                type="text"
+                placeholder="Quick search..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="pl-12 pr-6 py-3 bg-slate-50 border-transparent rounded-[1.25rem] w-80 focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all duration-500 outline-none font-bold text-slate-700 placeholder-slate-300 shadow-inner"
+              />
+              <span className="absolute left-5 top-3.5 opacity-30 group-focus-within:opacity-100 transition-opacity">🔍</span>
+            </div>
+            <select
+              value={severityFilter}
+              onChange={e => setSeverityFilter(e.target.value)}
+              className="px-6 py-3 bg-slate-50 border-transparent rounded-[1.25rem] focus:ring-4 focus:ring-indigo-100 focus:bg-white font-black text-[11px] uppercase tracking-widest text-slate-500 transition-all cursor-pointer outline-none shadow-inner"
+            >
+              <option value="All">All Severity</option>
+              <option>Critical</option>
+              <option>Major</option>
+              <option>Minor</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto rounded-3xl border border-slate-100 shadow-inner bg-slate-50/20">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-indigo-600 text-indigo-50">
+              <tr>
+                <th className="px-8 py-5 text-left font-black text-[10px] uppercase tracking-[0.2em]">ID</th>
+                <th className="px-8 py-5 text-left font-black text-[10px] uppercase tracking-[0.2em]">Ticket Details</th>
+                <th className="px-8 py-5 text-left font-black text-[10px] uppercase tracking-[0.2em]">Device</th>
+                <th
+                  className="px-8 py-5 text-left font-black text-[10px] uppercase tracking-[0.2em] cursor-pointer hover:text-white transition-colors"
+                  onClick={() => setSortSeverity(s => !s)}
+                >
+                  Severity {sortSeverity ? "↓" : "↕"}
+                </th>
+                <th className="px-8 py-5 text-left font-black text-[10px] uppercase tracking-[0.2em]">Status</th>
+                <th className="px-8 py-5 text-left font-black text-[10px] uppercase tracking-[0.2em]">Synchronization</th>
+                <th className="px-8 py-5 text-center font-black text-[10px] uppercase tracking-[0.2em]">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 bg-white">
+              {currentTickets.map(ticket => {
+                const ticketIdentifier = ticket.ticket_id || ticket.global_ticket_id;
+                return (
+                  <tr key={ticketIdentifier} className="hover:bg-slate-50/50 transition-all group">
+                    <td className="px-8 py-6 font-mono text-[10px] text-indigo-500 font-black">
+                      {ticketIdentifier.slice(0, 16)}
+                    </td>
+                    <td className="px-8 py-6">
+                      <div className="font-black text-slate-800 text-base leading-tight group-hover:text-indigo-600 transition-colors">{ticket.title}</div>
+                      <div className="text-[10px] font-bold text-slate-300 mt-1.5 uppercase tracking-wider">{formatTime(ticket.created_at)}</div>
+                    </td>
+                    <td className="px-8 py-6">
+                      <div className="font-bold text-slate-600">{ticket.device_name}</div>
+                      <div className="text-[10px] text-slate-400 font-medium">{ticket.ip_address || "No IP Linked"}</div>
+                    </td>
+                    <td className="px-8 py-6">
+                      <SeverityBadge sev={ticket.severity_calculated} />
+                    </td>
+                    <td className="px-8 py-6">
+                      <StatusBadge status={ticket.status} />
+                    </td>
+                    <td className="px-8 py-6">
+                      <div className="flex flex-col gap-1.5">
+                        <SyncBadge status={ticket.sync_status || "pending"} />
+                        {!ticket.sent_to_cnms_at && (
+                          <span className="text-[9px] font-black text-orange-500 uppercase tracking-tighter ml-1">⏱ PUSH PENDING</span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-8 py-6 text-center">
+                      <Link
+                        to={"/tickets/" + ticketIdentifier}
+                        className="inline-flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 hover:rotate-12 hover:scale-110 transition-all duration-300 shadow-lg shadow-indigo-100"
+                      >
+                        →
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+              {currentTickets.length === 0 && (
+                <tr>
+                  <td colSpan={7} className="text-center py-32">
+                    <div className="text-6xl mb-6 grayscale opacity-20">🎫</div>
+                    <div className="text-xl font-black text-slate-900 tracking-tight">No tickets found</div>
+                    <div className="text-sm text-slate-400 font-bold mt-2">Try adjusting your filters or search terms</div>
                   </td>
                 </tr>
-              );
-            })}
-            {currentTickets.length === 0 && (
-              <tr>
-                <td colSpan={11} className="text-center py-8 text-gray-400">
-                  No tickets found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-3 mt-6">
-          <button
-            onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-          >
-            Prev
-          </button>
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={
-                "px-3 py-1 rounded " +
-                (currentPage === i + 1 ? "bg-blue-600 text-white" : "bg-gray-200")
-              }
-            >
-              {i + 1}
-            </button>
-          ))}
-          <button
-            onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-          >
-            Next
-          </button>
+              )}
+            </tbody>
+          </table>
         </div>
-      )}
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mt-12 px-2">
+          <div className="flex items-center gap-6 bg-slate-50 px-6 py-3 rounded-2xl shadow-inner">
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em]">Page Size</span>
+              <select
+                value={rowsPerPage}
+                onChange={e => {
+                  setRowsPerPage(Number(e.target.value));
+                  setCurrentPage(1);
+                }}
+                className="bg-white border-transparent rounded-xl text-xs font-black px-4 py-1.5 shadow-sm outline-none cursor-pointer focus:ring-2 focus:ring-indigo-500"
+              >
+                {[10, 25, 50, 100].map(n => (
+                  <option key={n} value={n}>{n}</option>
+                ))}
+              </select>
+            </div>
+            <div className="w-px h-6 bg-slate-200" />
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
+              Showing <span className="text-indigo-600 font-black">{(currentPage - 1) * rowsPerPage + 1}</span> - <span className="text-indigo-600 font-black">{Math.min(currentPage * rowsPerPage, sortedTickets.length)}</span> of <span className="text-indigo-600 font-black">{sortedTickets.length}</span>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+              className="w-12 h-12 flex items-center justify-center bg-white border-2 border-slate-100 text-slate-900 rounded-2xl disabled:opacity-20 hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-sm group"
+            >
+              <span className="group-hover:-translate-x-1 transition-transform">←</span>
+            </button>
+
+            <div className="flex gap-2 items-center">
+              {Array.from({ length: totalPages }, (_, i) => {
+                const pageNum = i + 1;
+                if (
+                  pageNum === 1 ||
+                  pageNum === totalPages ||
+                  (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                ) {
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(pageNum)}
+                      className={
+                        "min-w-[48px] h-[48px] flex items-center justify-center text-xs font-black rounded-2xl transition-all duration-300 " +
+                        (currentPage === pageNum
+                          ? "bg-indigo-600 text-white shadow-2xl shadow-indigo-200 scale-110 -translate-y-1"
+                          : "bg-white border-2 border-slate-50 text-slate-400 hover:border-slate-200 hover:text-slate-600")
+                      }
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                } else if (
+                  pageNum === currentPage - 2 ||
+                  pageNum === currentPage + 2
+                ) {
+                  return <span key={i} className="text-slate-200 font-black mx-1">···</span>;
+                }
+                return null;
+              })}
+            </div>
+
+            <button
+              onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="w-12 h-12 flex items-center justify-center bg-white border-2 border-slate-100 text-slate-900 rounded-2xl disabled:opacity-20 hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-sm group"
+            >
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 function KPI({ title, value, color }) {
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
-      <p className="text-xs text-gray-400">{title}</p>
-      <p className={"text-xl font-bold " + (color || "")}>{value}</p>
+    <div className={`p-8 rounded-[2rem] border-2 transition-all duration-500 hover:translate-y-[-5px] cursor-default group relative overflow-hidden ${color}`}>
+      <div className="absolute top-[-20%] right-[-10%] w-32 h-32 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000" />
+      <p className="text-[9px] font-black uppercase tracking-[0.25em] mb-3 opacity-60 group-hover:opacity-100 transition-opacity">{title}</p>
+      <p className="text-4xl font-black tracking-tighter leading-none group-hover:scale-110 transition-transform origin-left">{value.toLocaleString()}</p>
     </div>
+  );
+}
+
+function SeverityBadge({ sev }) {
+  const styles = {
+    Critical: "bg-red-500 text-white shadow-red-200",
+    Major: "bg-orange-500 text-white shadow-orange-200",
+    Minor: "bg-amber-500 text-white shadow-amber-200",
+    Warning: "bg-blue-500 text-white shadow-blue-200",
+  };
+  const s = styles[sev] || "bg-slate-400 text-white shadow-slate-200";
+  return (
+    <span className={`px-4 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-[0.15em] shadow-lg ${s} transition-all duration-300 hover:scale-105 hover:brightness-110`}>
+      {sev || "—"}
+    </span>
   );
 }
 
 function SyncBadge({ status }) {
   const styles = {
-    synced:      "bg-emerald-100 text-emerald-700",
-    pending:     "bg-amber-100 text-amber-700",
-    out_of_sync: "bg-orange-100 text-orange-700",
-    conflict:    "bg-red-100 text-red-700",
+    synced: "bg-emerald-500",
+    pending: "bg-amber-500",
+    out_of_sync: "bg-rose-500",
+    conflict: "bg-purple-600",
   };
   const labels = {
-    synced: "Synced", pending: "Pending", out_of_sync: "Out of sync", conflict: "Conflict",
+    synced: "Synced", pending: "Waiting", out_of_sync: "Drift", conflict: "Sync Err",
   };
-  const key = status in styles ? status : "pending";
+  const key = status?.toLowerCase() in styles ? status.toLowerCase() : "pending";
   return (
-    <span className={"px-3 py-1 rounded-full text-xs font-semibold " + styles[key]}>
-      {labels[key]}
-    </span>
+    <div className="flex items-center gap-2">
+      <div className={`w-1.5 h-1.5 rounded-full ${styles[key]} animate-pulse`} />
+      <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{labels[key]}</span>
+    </div>
   );
 }

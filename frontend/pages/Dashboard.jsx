@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../api/api";
+import api, { getTickets, getAlarms, getCorrelated } from "../api/api";
 import LiveAlarmStream from "../components/LiveStream";
 import NetworkHealth from "../components/NetworkHealth";
 import SLARisk from "../components/SLARisk";
@@ -131,18 +131,21 @@ export default function Dashboard() {
 
   const fetchDashboard = async () => {
     try {
-      const [ticketsRes, alarmsRes] = await Promise.all([
-        api.get("/tickets/"),
-        api.get("/alarms/")
+      const [ticketsRes, alarmsRes, correlatedRes] = await Promise.all([
+        getTickets(),
+        getAlarms(),
+        getCorrelated()
       ]);
       const tickets = Array.isArray(ticketsRes.data) ? ticketsRes.data : (ticketsRes.data?.tickets ?? []);
       const alarms  = Array.isArray(alarmsRes.data)  ? alarmsRes.data  : (alarmsRes.data?.alarms  ?? []);
+      const correlated = Array.isArray(correlatedRes.data) ? correlatedRes.data : [];
 
       setStats({
         devices:  new Set(alarms.map(a => a.device_name)).size,
-        alarms:   alarms.filter(a => a.status === "Open").length,
-        tickets:  tickets.filter(t => t.status === "Open").length,
-        critical: tickets.filter(t => t.severity_original === "Critical" && t.status === "Open").length,
+        alarms:   alarms.filter(a => ["OPEN"].includes(a.status?.toUpperCase())).length,
+        tickets:  tickets.filter(t => ["OPEN", "ACK"].includes(t.status?.toUpperCase())).length,
+        correlated: correlated.length,
+        critical: tickets.filter(t => t.severity_original === "Critical" && ["OPEN"].includes(t.status?.toUpperCase())).length,
       });
 
       setRecentTickets(
@@ -178,10 +181,10 @@ export default function Dashboard() {
     textAlign: "left",
     fontSize: 11,
     fontWeight: 700,
-    color: "#94a3b8",
+    color: "#e0e7ff",
     textTransform: "uppercase",
     letterSpacing: "0.07em",
-    borderBottom: "2px solid #f1f5f9",
+    borderBottom: "2px solid #4338ca",
     whiteSpace: "nowrap",
   };
 
@@ -229,10 +232,11 @@ export default function Dashboard() {
         </div>
 
         {/* ── Stat Cards ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 16, marginBottom: 24 }}>
           <StatCard label="Total Devices"   value={stats.devices}  accent="#3b82f6" icon="🖥️"  delay={0}    />
           <StatCard label="Open Alarms"     value={stats.alarms}   accent="#ef4444" icon="🔔"  delay={0.07} />
           <StatCard label="Open Tickets"    value={stats.tickets}  accent="#f59e0b" icon="🎫"  delay={0.14} />
+          <StatCard label="Correlated"      value={stats.correlated || 0} accent="#10b981" icon="🖇️" delay={0.18} />
           <StatCard label="Critical Alerts" value={stats.critical} accent="#8b5cf6" icon="⚠️" delay={0.21} />
         </div>
 
@@ -293,7 +297,7 @@ export default function Dashboard() {
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                   <thead>
-                    <tr style={{ background: "#f8fafc" }}>
+                    <tr style={{ background: "#4f46e5" }}>
                       <th style={th}>Ticket ID</th>
                       <th style={th}>Device</th>
                       <th style={th}>Title</th>

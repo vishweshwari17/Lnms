@@ -20,7 +20,7 @@ from sqlalchemy.orm import Session
 import asyncio
 import httpx
 
-from app.database import get_lnms_db, SessionLocal
+from app.database import get_lnms_db, SessionLocal, SessionLocal2
 from app.models import Ticket
 from app.models.ticket_messages import TicketMessage
 from app.schemas import (
@@ -29,6 +29,7 @@ from app.schemas import (
     TicketStatusUpdate,
     MessageCreate,
 )
+from app.services import ticket_service, cnms_sync
 
 router = APIRouter(prefix="/tickets", tags=["Tickets"])
 
@@ -241,10 +242,9 @@ def get_all_tickets(db: Session = Depends(get_lnms_db)):
 # [LNMS] CREATE TICKET  →  forward to CNMS
 # ============================================================
 @router.post("/", response_model=TicketResponse)
-def create_ticket(ticket: TicketCreate, db: Session = Depends(get_lnms_db)):
+async def create_ticket(ticket: TicketCreate, db: Session = Depends(get_lnms_db)):
     """
     LNMS creates a new ticket and fires it off to CNMS asynchronously.
-    Status is always initialised as OPEN (uppercase).
     """
     new_ticket = Ticket(
         **ticket.model_dump(),
@@ -255,15 +255,15 @@ def create_ticket(ticket: TicketCreate, db: Session = Depends(get_lnms_db)):
         sync_version=1,
         sync_status="pending",
         lnms_node_id=LNMS_NODE_ID,
-        status=_status_for_db("OPEN"),
+        status="OPEN",
     )
     new_ticket.global_ticket_id = new_ticket.ticket_id
     db.add(new_ticket)
     db.commit()
     db.refresh(new_ticket)
 
-    # Send to CNMS in the background (non-blocking)
-    asyncio.create_task(send_ticket_to_cnms(new_ticket))
+    # Push to CNMS
+    asyncio.create_task(cnms_sync.send_ticket_to_cnms(new_ticket.ticket_id))
 
     return new_ticket
 
@@ -274,7 +274,7 @@ def create_ticket(ticket: TicketCreate, db: Session = Depends(get_lnms_db)):
 #   CNMS POSTs here: POST /tickets/ticket-status
 # ============================================================
 @router.post("/ticket-status")           # ← STATIC — must be above /{ticket_id}
-def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
+async def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
     """
     Called BY CNMS to push a status change (ACK / RESOLVED / CLOSED)
     into the LNMS database so both sides stay in sync.
@@ -288,9 +288,8 @@ def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
         or payload.get("cnms_ticket_id")
         or payload.get("alarm_uid")
     )
-    status           = _normalize_status(payload.get("status"))
-    note             = payload.get("resolution_note") or payload.get("resolution_notes") or payload.get("note") or ""
-    resolved_at      = payload.get("resolved_at")
+    status = _normalize_status(payload.get("status"))
+    note = payload.get("resolution_note") or payload.get("resolution_notes") or payload.get("note") or ""
 
     if status not in VALID_STATUSES:
         raise HTTPException(400, f"Invalid status '{status}'")
@@ -298,84 +297,36 @@ def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
     ticket = _get_ticket_by_identifier(db, global_ticket_id)
 
     if not ticket:
+        # Fallback for SPIC alarms if not found in LNMS Tickets
         if global_ticket_id:
             try:
                 from app.database import SessionLocal2
-                from sqlalchemy import text
-                db2 = SessionLocal2()
+                db_spic = SessionLocal2()
                 try:
-                    spic_status = {
-                        "Resolved": "Closed",
-                        "Closed": "Closed",
-                        "Ack": "Acknowledged",
-                        "Open": "Open"
-                    }.get(_status_for_db(status), "Open")
-                    
-                    alarm_uid_payload = payload.get("alarm_uid")
-                    
-                    res = db2.execute(text("UPDATE tickets SET status=:st, updated_at=NOW() WHERE unique_ticket_id=:uid OR alarm_id=:aid OR unique_ticket_id=:auid OR alarm_id=:aaid"), {
+                    spic_status = "RESOLVED" if status in ["RESOLVED", "CLOSED"] else "ACTIVE" if status == "ACK" else "PROBLEM"
+                    db_spic.execute(text("UPDATE status_alarms SET status=:st WHERE id=:aid OR device_name=:dn"), {
                         "st": spic_status,
-                        "uid": global_ticket_id,
                         "aid": _alarm_id_from_identifier(global_ticket_id),
-                        "auid": alarm_uid_payload,
-                        "aaid": _alarm_id_from_identifier(alarm_uid_payload)
+                        "dn": global_ticket_id
                     })
-                    
-                    spic_alarm_status = "RESOLVED" if status in ("RESOLVED", "CLOSED") else "PROBLEM"
-                    db2.execute(text("""
-                        UPDATE status_alarms s
-                        JOIN tickets t ON s.id = t.alarm_id 
-                        SET s.status = :ast, s.resolved_at = IF(:ast='RESOLVED', NOW(), s.resolved_at)
-                        WHERE t.unique_ticket_id = :uid OR t.alarm_id = :aid
-                    """), {
-                        "ast": spic_alarm_status, 
-                        "uid": global_ticket_id, 
-                        "aid": _alarm_id_from_identifier(global_ticket_id)
-                    })
-
-                    db2.commit()
-                    if res.rowcount > 0:
-                        return {"ok": True, "status": status, "note": "Updated legacy SPIC-NMS ticket"}
+                    db_spic.commit()
                 finally:
-                    db2.close()
+                    db_spic.close()
             except Exception as e:
-                print(f"Failed to update legacy SPIC ticket: {e}")
-                
-        raise HTTPException(404, "Ticket not found in LNMS or SPIC-NMS")
+                logger.error(f"Failed to update legacy SPIC alarm: {e}")
+        
+        raise HTTPException(404, "Ticket not found")
 
-    ticket.status       = _status_for_db(status)
-    ticket.sync_version = (ticket.sync_version or 0) + 1
-    ticket.last_updated_by = payload.get("last_updated_by") or "CNMS"
-    ticket.sync_status = "synced"
-    ticket.last_synced_at = datetime.utcnow()
-    ticket.updated_at = datetime.utcnow()
-    if global_ticket_id and not ticket.global_ticket_id:
-        ticket.global_ticket_id = global_ticket_id
-    if payload.get("cnms_ticket_id"):
-        ticket.cnms_ticket_id = payload.get("cnms_ticket_id")
+    # Use ticket_service for consistent update
+    await ticket_service.update_ticket_status(
+        db, 
+        ticket.ticket_id, 
+        status, 
+        resolution_note=note, 
+        last_updated_by="CNMS"
+    )
 
-    if status == "ACK":
-        ticket.acknowledged_at = datetime.utcnow()
-
-    elif status in ("RESOLVED", "CLOSED"):
-        parsed_time = _parse_dt(resolved_at) or datetime.utcnow()
-        ticket.resolved_at    = parsed_time
-        ticket.resolution_note = note
-        if status == "CLOSED":
-            ticket.closed_at = parsed_time
-
-    db.commit()
-
-    try:
-        if ticket.alarm_id:
-            from sqlalchemy import text
-            lnms_alarm_status = ticket.status
-            db.execute(text("UPDATE alarms SET status=:st WHERE alarm_id=:aid"), {"st": lnms_alarm_status, "aid": ticket.alarm_id})
-            db.commit()
-    except Exception as e:
-        print(f"Failed to update alarm status: {e}")
-
-    # If CNMS included a resolution note, save it as a CNMS message bubble
+    # Save CNMS message if note provided
     if note:
         msg = TicketMessage(
             ticket_id  = ticket.ticket_id,
@@ -390,8 +341,8 @@ def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
 
 
 @router.api_route("/update_from_cnms", methods=["PUT", "POST"])
-def update_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
-    return receive_status_from_cnms(payload, db)
+async def update_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
+    return await receive_status_from_cnms(payload, db)
 
 
 # ============================================================
@@ -435,54 +386,24 @@ def receive_message_from_cnms(payload: dict, db: Session = Depends(get_lnms_db))
 # [LNMS] UPDATE TICKET STATUS  (LNMS operator changes status)
 #   Then pushes the change to CNMS
 # ============================================================
-@router.put("/{ticket_id}")              # ← DYNAMIC — must be below all static routes
-def update_ticket_status(
+@router.put("/{ticket_id}")
+async def update_local_ticket_status(
     ticket_id: str,
     data: TicketStatusUpdate,
     db: Session = Depends(get_lnms_db),
 ):
     """
     LNMS operator updates ticket status.
-    After saving locally, sends the change to CNMS asynchronously.
     """
-    ticket = _get_ticket_by_identifier(db, ticket_id)
+    ticket = await ticket_service.update_ticket_status(
+        db, 
+        ticket_id, 
+        data.status, 
+        resolution_note=data.resolution_notes, 
+        last_updated_by="LNMS"
+    )
     if not ticket:
-        raise HTTPException(404, "Ticket not found in LNMS")
-
-    new_status = (data.status or "").upper()
-    if new_status not in VALID_STATUSES:
-        raise HTTPException(400, f"Invalid status '{new_status}'")
-
-    ticket.status          = _status_for_db(new_status)
-    ticket.last_updated_by = "LNMS"
-    ticket.sync_version    = (ticket.sync_version or 0) + 1
-    ticket.updated_at      = datetime.utcnow()
-    ticket.sync_status     = "pending"
-
-    if new_status == "ACK":
-        ticket.acknowledged_at = datetime.utcnow()
-    elif new_status == "RESOLVED":
-        ticket.resolved_at = datetime.utcnow()
-        ticket.resolution_note = data.resolution_notes or ticket.resolution_note
-    elif new_status == "CLOSED":
-        ticket.closed_at = datetime.utcnow()
-        ticket.resolution_note = data.resolution_notes or ticket.resolution_note
-
-    db.commit()
-    db.refresh(ticket)
-    
-    try:
-        if ticket.alarm_id:
-            from sqlalchemy import text
-            lnms_alarm_status = ticket.status
-            db.execute(text("UPDATE alarms SET status=:st WHERE alarm_id=:aid"), {"st": lnms_alarm_status, "aid": ticket.alarm_id})
-            db.commit()
-    except Exception as e:
-        print(f"Failed to update alarm status: {e}")
-
-    # Notify CNMS about the status change (non-blocking)
-    asyncio.create_task(push_status_to_cnms(ticket))
-
+        raise HTTPException(404, "Ticket not found")
     return {"message": "Ticket updated", "ticket": ticket}
 
 
@@ -547,7 +468,7 @@ def get_messages(ticket_id: str, db: Session = Depends(get_lnms_db)):
 #   After saving locally, forwards the message to CNMS
 # ============================================================
 @router.post("/{ticket_id}/messages")    # ← DYNAMIC
-def add_message(
+async def add_message(
     ticket_id: str,
     message: MessageCreate,
     db: Session = Depends(get_lnms_db),
@@ -575,214 +496,12 @@ def add_message(
 
     # Forward this LNMS message to CNMS (non-blocking)
     asyncio.create_task(
-        push_message_to_cnms(
-            global_ticket_id = ticket.ticket_id,
-            sender           = message.sender,
-            message_text     = message.message,
-            created_at       = new_msg.created_at.isoformat(),
+        cnms_sync.push_message_to_cnms(
+            ticket_id = ticket.ticket_id,
+            sender    = message.sender,
+            message   = message.message,
         )
     )
 
     return new_msg
 
-
-# ============================================================
-# ASYNC HELPERS  ─  LNMS → CNMS outbound calls
-# ============================================================
-
-async def send_ticket_to_cnms(ticket):
-    """
-    [LNMS → CNMS]
-    Called after a new ticket is created in LNMS.
-    Sends full ticket payload to CNMS webhook so CNMS can create its own record.
-    """
-    try:
-        url     = f"{CNMS_BASE_URL}/webhook/lnms"
-        payload = {
-            "msg_type":        "ALARM_NEW",
-            "lnms_node_id":    ticket.lnms_node_id or LNMS_NODE_ID,
-            "alarm_uid":       _build_alarm_uid(ticket),
-            "ticket_id":       _build_alarm_uid(ticket),
-            "device_name":     ticket.device_name,
-            "alarm_type":      ticket.title,
-            "title":           ticket.title,
-            "severity":        ticket.severity_calculated,
-            "status":          _normalize_status(ticket.status),
-            "description":     ticket.resolution_note or "",
-            "created_at":      ticket.created_at.isoformat(),
-            "last_updated_by": "LNMS",
-            "sync_version":    ticket.sync_version or 1,
-        }
-        async with httpx.AsyncClient(follow_redirects=True) as client:
-            response = await client.post(url, json=payload, headers=_cnms_headers(), timeout=10)
-            response.raise_for_status()
-        match = await _find_cnms_ticket(ticket)
-        if match:
-            _cache_cnms_ticket_id(ticket.ticket_id, match.get("id"))
-        _update_ticket_sync_state(ticket.ticket_id, sync_status="synced", sent_to_cnms=True, synced_now=True)
-        print(f"✅ [LNMS→CNMS] Ticket {ticket.ticket_id} sent to CNMS")
-    except Exception as e:
-        try:
-            _update_ticket_sync_state(ticket.ticket_id, sync_status="pending")
-        except Exception:
-            pass
-        print(f"❌ [LNMS→CNMS] Failed to send ticket: {e}")
-
-
-async def push_status_to_cnms(ticket):
-    """
-    [LNMS → CNMS]
-    Called after LNMS updates a ticket status.
-    Notifies CNMS so its copy stays in sync.
-    """
-    try:
-        cnms_ticket = await _find_cnms_ticket(ticket)
-        if not cnms_ticket:
-            raise RuntimeError(f"CNMS ticket not found for {ticket.ticket_id}")
-
-        cnms_id = cnms_ticket.get("id")
-        _cache_cnms_ticket_id(ticket.ticket_id, cnms_id)
-
-        status = _normalize_status(ticket.status)
-        if status == "ACK":
-            method = "PUT"
-            url = f"{CNMS_BASE_URL}/tickets/{cnms_id}/ack"
-            kwargs = {}
-        elif status in {"RESOLVED", "CLOSED"}:
-            method = "PUT"
-            url = f"{CNMS_BASE_URL}/tickets/{cnms_id}/resolve"
-            kwargs = {
-                "json": {
-                    "resolution_note": getattr(ticket, "resolution_note", None) or "Resolved from LNMS",
-                }
-            }
-        else:
-            _update_ticket_sync_state(ticket.ticket_id, sync_status="synced", synced_now=True)
-            return
-
-        async with httpx.AsyncClient(follow_redirects=True) as client:
-            response = await client.request(method, url, timeout=10, **kwargs)
-            response.raise_for_status()
-        _update_ticket_sync_state(ticket.ticket_id, sync_status="synced", synced_now=True)
-        print(f"✅ [LNMS→CNMS] Status '{ticket.status}' synced for {ticket.ticket_id}")
-    except Exception as e:
-        try:
-            _update_ticket_sync_state(ticket.ticket_id, sync_status="pending")
-        except Exception:
-            pass
-        print(f"❌ [LNMS→CNMS] Status sync failed: {e}")
-
-
-async def push_message_to_cnms(global_ticket_id, sender, message_text, created_at):
-    """
-    [LNMS → CNMS]
-    Called after an LNMS operator sends a chat message.
-    Forwards it to CNMS so CNMS shows it as an incoming LNMS message (white bubble, left side).
-    """
-    try:
-        db = SessionLocal()
-        try:
-            ticket = _get_ticket_by_identifier(db, global_ticket_id)
-            if not ticket:
-                raise RuntimeError(f"Ticket not found for message sync: {global_ticket_id}")
-            cnms_ticket = await _find_cnms_ticket(ticket)
-            if not cnms_ticket:
-                raise RuntimeError(f"CNMS ticket not found for {ticket.ticket_id}")
-            cnms_id = cnms_ticket.get("id")
-            _cache_cnms_ticket_id(ticket.ticket_id, cnms_id)
-        finally:
-            db.close()
-
-        payload = {
-            "sender": sender,
-            "message": message_text,
-            "created_at": created_at,
-        }
-        async with httpx.AsyncClient(follow_redirects=True) as client:
-            response = await client.post(f"{CNMS_BASE_URL}/tickets/{cnms_id}/comment", json=payload, timeout=10)
-            response.raise_for_status()
-        _update_ticket_sync_state(global_ticket_id, sync_status="synced", synced_now=True)
-        print(f"✅ [LNMS→CNMS] Message forwarded to CNMS")
-    except Exception as e:
-        try:
-            _update_ticket_sync_state(global_ticket_id, sync_status="pending")
-        except Exception:
-            pass
-        print(f"❌ [LNMS→CNMS] Message forward failed: {e}")
-
-async def sync_missed_tickets():
-    """
-    [LNMS] Periodically fetch missed ticket statuses from CNMS.
-    Updates LNMS tickets that were modified in CNMS while LNMS was offline.
-    """
-    from app.database import SessionLocal
-    db = SessionLocal()
-    try:
-        # Fetch all CNMS tickets once to reduce overhead
-        async with httpx.AsyncClient() as client:
-            try:
-                res = await client.get(f"{CNMS_BASE_URL}/tickets", follow_redirects=True, timeout=10)
-                if res.status_code != 200:
-                    return
-                cnms_tickets = _extract_cnms_tickets(res.json())
-            except Exception as e:
-                print(f"❌ [LNMS] Failed to fetch CNMS tickets: {e}")
-                return
-
-        # Fetch status for open tickets or ACKed tickets
-        open_tickets = db.query(Ticket).filter(~Ticket.status.in_(("Resolved", "Closed"))).all()
-        
-        for ticket in open_tickets:
-            try:
-                # Find corresponding ticket in CNMS
-                match = None
-                for ct in cnms_tickets:
-                    au = str(ct.get("alarm_uid", ""))
-                    # CNMS may include the LNMS ticket identifier inside alarm_uid.
-                    if ticket.ticket_id in au or (ticket.alarm_id and str(ticket.alarm_id) in au):
-                        match = ct
-                        break
-                
-                if not match:
-                    continue
-                    
-                cnms_status = _normalize_status(match.get("status"))
-                cnms_global_id = match.get("global_ticket_id")
-                
-                # Match ticket id in LNMS and CNMS!
-                if cnms_global_id:
-                    if not ticket.global_ticket_id:
-                        ticket.global_ticket_id = cnms_global_id
-                    if not ticket.correlation_id:
-                        ticket.correlation_id = cnms_global_id
-                if match.get("cnms_ticket_id"):
-                    ticket.cnms_ticket_id = match.get("cnms_ticket_id")
-                
-                if cnms_status and cnms_status != _normalize_status(ticket.status) and cnms_status in VALID_STATUSES:
-                    ticket.status = _status_for_db(cnms_status)
-                    ticket.sync_version = (ticket.sync_version or 0) + 1
-                    ticket.last_updated_by = match.get("last_updated_by") or "CNMS"
-                    ticket.sync_status = "synced"
-                    ticket.last_synced_at = datetime.utcnow()
-                    ticket.updated_at = datetime.utcnow()
-                    
-                    if cnms_status == "ACK":
-                        ticket.acknowledged_at = datetime.utcnow()
-                    elif cnms_status in ("RESOLVED", "CLOSED"):
-                        resolved_at_str = match.get("resolved_at")
-                        parsed_time = _parse_dt(resolved_at_str) or datetime.utcnow()
-                        ticket.resolved_at = parsed_time
-                        ticket.resolution_note = match.get("resolution_note", match.get("resolution_notes", ""))
-                        if cnms_status == "CLOSED":
-                            ticket.closed_at = parsed_time
-                    
-                    print(f"✅ [LNMS] Retroactively synced {ticket.ticket_id} to status {cnms_status}")
-                
-            except Exception as e:
-                print(f"❌ [LNMS] Failed to retroactively sync ticket {ticket.ticket_id}: {e}")
-                
-        db.commit()
-    except Exception as e:
-        print(f"❌ [LNMS] Sync job failed: {e}")
-    finally:
-        db.close()

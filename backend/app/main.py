@@ -13,12 +13,12 @@ from app.models.tickets import Ticket
 
 from app.services.lnms_ticket import create_lnms_tickets
 from app.services.spicnms_ticket import create_spicnms_tickets
-from app.routers.tickets import sync_missed_tickets
+from app.services.cnms_sync import sync_missed_tickets
 
 from app.routers import (
     alarms, tickets, incidents, correlated_alarms,
     major_incidents, sla, admin, audit_logs, highrisk,
-    integration, devices, escalation,
+    integration, devices, escalation, chatbot
 )
 
 from fastapi import APIRouter
@@ -69,18 +69,19 @@ async def sqlalchemy_error_handler(request: Request, exc: SQLAlchemyError):
     )
 
 # ── Routers ──────────────────────────────────────────────────────────────────
-app.include_router(admin.router)
-app.include_router(alarms.router)
-app.include_router(tickets.router)
-app.include_router(incidents.router)
-app.include_router(correlated_alarms.router)
-app.include_router(major_incidents.router)
-app.include_router(sla.router)
-app.include_router(audit_logs.router)
-app.include_router(highrisk.router)
-app.include_router(integration.router)
-app.include_router(devices.router)
-app.include_router(escalation.router)
+app.include_router(admin.router, prefix="/api")
+app.include_router(alarms.router, prefix="/api")
+app.include_router(tickets.router, prefix="/api")
+app.include_router(incidents.router, prefix="/api")
+app.include_router(correlated_alarms.router, prefix="/api")
+app.include_router(major_incidents.router, prefix="/api")
+app.include_router(sla.router, prefix="/api")
+app.include_router(audit_logs.router, prefix="/api")
+app.include_router(highrisk.router, prefix="/api")
+app.include_router(integration.router, prefix="/api")
+app.include_router(devices.router, prefix="/api")
+app.include_router(escalation.router, prefix="/api")
+app.include_router(chatbot.router, prefix="/api")
 
 # ── Dashboard stats router ───────────────────────────────────────────────────
 dashboard_router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
@@ -92,7 +93,8 @@ def get_dashboard_stats():
         return {
             "total_alarms":  db.query(Alarm).count(),
             "total_tickets": db.query(Ticket).count(),
-            "open_tickets":  db.query(Ticket).filter(Ticket.status != "Closed").count(),
+            "open_tickets":  db.query(Ticket).filter(Ticket.status.in_(["OPEN", "ACK", "Open", "Ack"])).count(),
+            "resolved_tickets": db.query(Ticket).filter(Ticket.status.in_(["RESOLVED", "CLOSED", "Resolved", "Closed"])).count(),
         }
     finally:
         db.close()
@@ -111,19 +113,32 @@ clients = []
 async def websocket_alarms(websocket: WebSocket):
     await websocket.accept()
     clients.append(websocket)
+    db = SessionLocal()
     try:
         while True:
-            await asyncio.sleep(2)
-            await websocket.send_json({
-                "device_name": "Cisco-ASR1001",
-                "severity":    "Critical",
-                "alarm_name":  "Interface Down",
-                "problem_time": None,
-                "created_at":   None,
-            })
+            # Send latest alarm counts and a few recent alarms
+            total = db.query(Alarm).count()
+            recent = db.query(Alarm).order_by(Alarm.alarm_id.desc()).limit(5).all()
+            
+            data = {
+                "total": total,
+                "recent": [
+                    {
+                        "device_name": a.device_name,
+                        "severity": a.severity,
+                        "alarm_name": a.alarm_name,
+                        "status": a.status,
+                        "created_at": a.created_at.isoformat() if a.created_at else None
+                    } for a in recent
+                ]
+            }
+            await websocket.send_json(data)
+            await asyncio.sleep(10)
     except Exception:
         if websocket in clients:
             clients.remove(websocket)
+    finally:
+        db.close()
 
 # ── WebSocket: general ws_manager ────────────────────────────────────────────
 @app.websocket("/ws")
@@ -141,11 +156,13 @@ scheduler = BackgroundScheduler()
 def alarm_engine_job():
     print("[ENGINE] -- Cycle start --")
     try:
-        from app.services.spicnms_ticket import sync_manual_spicnms_tickets
-        create_lnms_tickets()
-        create_spicnms_tickets()
-        sync_manual_spicnms_tickets()
-        asyncio.run(sync_missed_tickets())
+        from app.services import alarm_to_ticket
+        
+        async def _run_async_jobs():
+            await alarm_to_ticket.process_all_alarms()
+            await sync_missed_tickets()
+
+        asyncio.run(_run_async_jobs())
         print("[ENGINE] -- Cycle complete --")
     except Exception as e:
         print(f"[ENGINE] Job failed: {e}")

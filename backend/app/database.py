@@ -14,6 +14,8 @@ DATABASE_URL2 = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/snmp_m
 
 engine = create_engine(
     DATABASE_URL,
+    pool_size=100,
+    max_overflow=200,
     pool_pre_ping=True,
     pool_recycle=3600,
     connect_args={"connect_timeout": 5},
@@ -21,6 +23,8 @@ engine = create_engine(
 
 engine2 = create_engine(
     DATABASE_URL2,
+    pool_size=100,
+    max_overflow=200,
     pool_pre_ping=True,
     pool_recycle=3600,
     connect_args={"connect_timeout": 5},

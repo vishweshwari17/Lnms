@@ -8,15 +8,24 @@ export default function Alarms() {
   const [search, setSearch] = useState("");
   const [severityFilter, setSeverityFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
-  const [rowsPerPage, setRowsPerPage] = useState(50);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
   const [page, setPage] = useState(1);
   const [now, setNow] = useState(Date.now());
 
   const navigate = useNavigate();
 
+  // ✅ Normalize status
+  const normalizeStatus = (status) => {
+    if (!status) return "OPEN";
+    const s = status.toUpperCase();
+    if (["OPEN", "ACTIVE"].includes(s)) return "OPEN";
+    if (["ACK", "ACKNOWLEDGED"].includes(s)) return "ACK";
+    if (["RESOLVED", "CLOSED"].includes(s)) return "RESOLVED";
+    return "OPEN";
+  };
+
   useEffect(() => {
     fetchAlarms();
-
     const interval = setInterval(fetchAlarms, 30000);
     const timeInterval = setInterval(() => setNow(Date.now()), 60000);
 
@@ -33,9 +42,24 @@ export default function Alarms() {
   const fetchAlarms = async () => {
     try {
       const res = await getAlarms();
-      setAlarms(res.data);
+
+      // ✅ Deduplicate
+      const unique = {};
+      res.data.forEach(a => {
+        const key = a.raw_id || a.alarm_id;
+        if (!unique[key]) unique[key] = a;
+      });
+
+      const newData = Object.values(unique);
+
+      // ✅ Prevent unnecessary rerender
+      setAlarms(prev => {
+        if (JSON.stringify(prev) === JSON.stringify(newData)) return prev;
+        return newData;
+      });
+
     } catch (err) {
-      console.error("Error fetching alarms", err);
+      console.error(err);
     }
   };
 
@@ -44,190 +68,184 @@ export default function Alarms() {
       await updateAlarmStatus(id, status);
       fetchAlarms();
     } catch (err) {
-      console.error("Failed to update alarm status", err);
+      console.error(err);
     }
-  };
-
-  const displayStatus = {
-    Open: "ACTIVE",
-    OPEN: "ACTIVE",
-    Ack: "ACKNOWLEDGED",
-    ACK: "ACKNOWLEDGED",
-    Resolved: "RESOLVED",
-    RESOLVED: "RESOLVED",
-    Closed: "RESOLVED",
-    CLOSED: "RESOLVED",
   };
 
   const filterData = () => {
     let data = [...alarms];
 
     if (severityFilter !== "All") {
-      data = data.filter((a) => a.severity === severityFilter);
+      data = data.filter(a => a.severity === severityFilter);
     }
 
     if (statusFilter !== "All") {
-      data = data.filter(
-        (a) =>
-          displayStatus[a.status]?.toLowerCase() ===
-          statusFilter.toLowerCase()
+      data = data.filter(a =>
+        normalizeStatus(a.status) === statusFilter
       );
     }
 
     if (search) {
-      data = data.filter(
-        (a) =>
-          a.device_name?.toLowerCase().includes(search.toLowerCase()) ||
-          a.alarm_name?.toLowerCase().includes(search.toLowerCase())
+      data = data.filter(a =>
+        a.device_name?.toLowerCase().includes(search.toLowerCase()) ||
+        a.alarm_name?.toLowerCase().includes(search.toLowerCase())
       );
     }
-
-    // Sort latest first
-    data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
     setFilteredAlarms(data);
     setPage(1);
   };
 
-  const severityColors = {
-    Critical: "bg-red-500",
-    Major: "bg-orange-500",
-    Minor: "bg-yellow-400",
-  };
-
-  const statusColors = {
-    Open: "bg-red-500",
-    OPEN: "bg-red-500",
-    Ack: "bg-yellow-500 text-yellow-900",
-    ACK: "bg-yellow-500 text-yellow-900",
-    Resolved: "bg-green-500",
-    RESOLVED: "bg-green-500",
-    Closed: "bg-gray-500",
-    CLOSED: "bg-gray-500",
-  };
-
   const getDuration = (timeStr) => {
     if (!timeStr) return "-";
-    const diffMs = now - new Date(timeStr).getTime();
-    if (diffMs < 0) return "0s";
-    const diffMins = Math.floor(diffMs / 60000);
-    if (diffMins < 60) return `${diffMins}m`;
-    const diffHrs = Math.floor(diffMins / 60);
-    if (diffHrs < 24) return `${diffHrs}h ${diffMins % 60}m`;
-    return `${Math.floor(diffHrs / 24)}d ${diffHrs % 24}h`;
+    const diff = now - new Date(timeStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 60) return `${mins}m`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ${mins % 60}m`;
+    return `${Math.floor(hrs / 24)}d ${hrs % 24}h`;
   };
 
-  const indexOfLast = page * rowsPerPage;
-  const indexOfFirst = indexOfLast - rowsPerPage;
-  const currentRows = filteredAlarms.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(filteredAlarms.length / rowsPerPage);
+  const badge = (text, color) => (
+    <span className={`px-3 py-1 text-xs font-semibold rounded-full ${color}`}>
+      {text}
+    </span>
+  );
 
-  const criticalCount = alarms.filter((a) => a.severity === "Critical").length;
-  const majorCount = alarms.filter((a) => a.severity === "Major").length;
-  const minorCount = alarms.filter((a) => a.severity === "Minor").length;
+  const indexOfLast = page * rowsPerPage;
+  const currentRows = filteredAlarms.slice(indexOfLast - rowsPerPage, indexOfLast);
+  const totalPages = Math.ceil(filteredAlarms.length / rowsPerPage);
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">🚨 Network Alarms Dashboard</h1>
 
-      {/* Summary */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
-        <Card title="Total" value={alarms.length} />
-        <Card title="Critical" value={criticalCount} color="red" />
-        <Card title="Major" value={majorCount} color="orange" />
-        <Card title="Minor" value={minorCount} color="yellow" />
+      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
+        🚨 <span>Network Alarms Dashboard</span>
+      </h1>
+
+      <div className="grid grid-cols-4 gap-5 mb-6">
+        <Card title="Total Alarms" value={alarms.length} />
+        <Card title="Critical" value={alarms.filter(a => a.severity === "Critical").length} red />
+        <Card title="Major" value={alarms.filter(a => a.severity === "Major").length} orange />
+        <Card title="Minor" value={alarms.filter(a => a.severity === "Minor").length} yellow />
       </div>
 
-      {/* Filters */}
-      <div className="bg-white p-4 rounded-xl shadow mb-6 flex flex-wrap gap-4 justify-between">
+      <div className="bg-white p-4 rounded-xl shadow mb-6 flex flex-wrap gap-3 items-center justify-between">
+
         <input
-          type="text"
-          placeholder="Search..."
-          className="border p-2 rounded w-1/3"
+          className="border px-3 py-2 rounded w-64"
+          placeholder="Search device or alarm..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
         <div className="flex gap-3">
-          <select value={severityFilter} onChange={(e) => setSeverityFilter(e.target.value)} className="border p-2 rounded">
-            <option>All</option>
+
+          <select onChange={(e) => setSeverityFilter(e.target.value)} className="border px-3 py-2 rounded">
+            <option value="All">All Severity</option>
             <option>Critical</option>
             <option>Major</option>
             <option>Minor</option>
           </select>
 
-          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="border p-2 rounded">
-            <option>All</option>
-            <option>ACTIVE</option>
-            <option>ACKNOWLEDGED</option>
-            <option>RESOLVED</option>
+          <select onChange={(e) => setStatusFilter(e.target.value)} className="border px-3 py-2 rounded">
+            <option value="All">All Status</option>
+            <option value="OPEN">ACTIVE</option>
+            <option value="ACK">ACK</option>
+            <option value="RESOLVED">RESOLVED</option>
           </select>
 
-          <select value={rowsPerPage} onChange={(e) => { setRowsPerPage(Number(e.target.value)); setPage(1); }} className="border p-2 rounded">
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={75}>75</option>
-            <option value={100}>100</option>
+          <select value={rowsPerPage} onChange={(e) => setRowsPerPage(Number(e.target.value))} className="border px-3 py-2 rounded">
+            {[10, 25, 50, 100].map(n => (<option key={n}>{n} / page</option>))}
           </select>
 
-          <button onClick={() => { setSearch(""); setSeverityFilter("All"); setStatusFilter("All"); }} className="bg-gray-200 px-3 rounded">
-            Clear
+          <button onClick={() => { setSearch(""); setSeverityFilter("All"); setStatusFilter("All") }} className="bg-gray-200 px-4 py-2 rounded">
+            Reset
           </button>
+
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-white p-6 rounded-xl shadow">
-        <table className="w-full">
-          <thead>
-            <tr className="text-gray-600">
-              <th>ID</th><th>Device</th><th>Severity</th><th>Status</th><th>Duration</th><th>Actions</th>
+      <div className="bg-white rounded-xl shadow overflow-hidden">
+
+        <table className="w-full text-sm">
+          <thead className="bg-gray-50 text-gray-600 text-xs uppercase">
+            <tr>
+              <th className="p-3 text-left">ID</th>
+              <th>Source</th>
+              <th>Device</th>
+              <th>Type</th>
+              <th>Severity</th>
+              <th>Alarm</th>
+              <th>Status</th>
+              <th>Duration</th>
+              <th className="text-center">Actions</th>
             </tr>
           </thead>
+
           <tbody>
-            {currentRows.map((a) => {
-              const isResolved = ["Resolved", "Closed", "RESOLVED"].includes(a.status);
-              const dur = getDuration(a.problem_time || a.created_at);
-              const stat = displayStatus[a.status];
+            {currentRows.map(a => {
+              const status = normalizeStatus(a.status);
 
               return (
-                <tr key={a.alarm_id} onClick={() => navigate(`/alarms/${a.alarm_id}`)} className="cursor-pointer hover:bg-gray-50">
-                  <td>{a.alarm_id}</td>
-                  <td>{a.device_name}</td>
-                  <td><span className={`${severityColors[a.severity]} text-white px-2 rounded`}>{a.severity}</span></td>
-                  <td><span className={`${statusColors[a.status]} px-2 rounded text-white`}>{stat}</span></td>
-                  <td>{dur}</td>
+                <tr
+                  key={a.raw_id || a.alarm_id}
+                  className="border-t hover:bg-gray-50 cursor-pointer"
+                  onClick={() => navigate(`/alarms/${a.alarm_id}`)}
+                >
+                  <td className="p-3 font-medium">{a.alarm_id}</td>
+                  <td>{a.source || "LNMS"}</td>
+                  <td className="font-semibold">{a.device_name}</td>
+                  <td>{a.alarm_type}</td>
+
                   <td>
-                    <button onClick={(e) => { e.stopPropagation(); handleAction(a.alarm_id, 'Ack') }} disabled={isResolved}>Ack</button>
-                    <button onClick={(e) => { e.stopPropagation(); handleAction(a.alarm_id, 'Resolved') }} disabled={isResolved}>Resolve</button>
+                    {a.severity === "Critical" && badge("Critical", "bg-red-100 text-red-600")}
+                    {a.severity === "Major" && badge("Major", "bg-orange-100 text-orange-600")}
+                    {a.severity === "Minor" && badge("Minor", "bg-yellow-100 text-yellow-700")}
                   </td>
+
+                  <td>{a.alarm_name}</td>
+
+                  <td>
+                    {status === "RESOLVED"
+                      ? badge("Resolved", "bg-green-100 text-green-600")
+                      : status === "ACK"
+                        ? badge("Acknowledged", "bg-yellow-100 text-yellow-700")
+                        : badge("Active", "bg-red-100 text-red-600")}
+                  </td>
+
+                  <td>{getDuration(a.problem_time || a.created_at)}</td>
+
+                  <td className="text-center">
+                    <div className="flex justify-center gap-2">
+
+                      <button onClick={(e) => { e.stopPropagation(); handleAction(a.alarm_id, "Ack") }} className="px-3 py-1 text-xs bg-yellow-400 rounded">
+                        Ack
+                      </button>
+
+                      <button onClick={(e) => { e.stopPropagation(); handleAction(a.alarm_id, "Resolved") }} className="px-3 py-1 text-xs bg-green-500 text-white rounded">
+                        Resolve
+                      </button>
+
+                    </div>
+                  </td>
+
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
-
-      {/* Pagination */}
-      <div className="flex justify-between mt-4">
-        <p>Showing {indexOfFirst + 1} - {Math.min(indexOfLast, filteredAlarms.length)} of {filteredAlarms.length}</p>
-
-        <div className="flex gap-2">
-          <button onClick={() => setPage(p => Math.max(p - 1, 1))}>Prev</button>
-          <span>{page} / {totalPages}</span>
-          <button onClick={() => setPage(p => Math.min(p + 1, totalPages))}>Next</button>
-        </div>
-      </div>
     </div>
   );
 }
 
-function Card({ title, value, color }) {
+function Card({ title, value, red, orange, yellow }) {
+  const bg = red ? "bg-red-100" : orange ? "bg-orange-100" : yellow ? "bg-yellow-100" : "bg-white";
   return (
-    <div className={`p-4 rounded shadow bg-${color ? color + "-100" : "white"}`}>
-      <p>{title}</p>
-      <h2 className="text-xl font-bold">{value}</h2>
+    <div className={`p-4 rounded-xl shadow ${bg}`}>
+      <p className="text-sm text-gray-600">{title}</p>
+      <h2 className="text-2xl font-bold">{value}</h2>
     </div>
   );
 }

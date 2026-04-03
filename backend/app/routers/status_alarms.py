@@ -3,29 +3,25 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.alarms import Alarm
-from app.services.status_alarms_service import process_status_alarms
+from app.services import alarm_to_ticket
 
 router = APIRouter(prefix="/status-alarms", tags=["Status Alarms"])
-
 
 @router.get("/")
 def get_status_alarms(db: Session = Depends(get_db)):
     try:
-        alarms = db.query(Alarm).filter(
-            Alarm.status == "Open",
-            Alarm.severity.in_(["Critical", "Major"]),
-            (Alarm.ticket_created == 0) | (Alarm.ticket_created == None),
-        ).order_by(Alarm.alarm_id.asc()).all()
-
+        from app.models.status_alarms import StatusAlarm
+        alarms = db.query(StatusAlarm).filter(
+            func.lower(StatusAlarm.status).in_(["problem", "active"])
+        ).all()
         return alarms
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch status alarms: {e}")
 
-
 @router.post("/process")
 def process_status_alarm_tickets():
     try:
-        process_status_alarms()
-        return {"message": "Status alarm processing completed"}
+        alarm_to_ticket.process_all_alarms()
+        return {"message": "Alarm to Ticket processing completed"}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Status alarm processing failed: {e}")
+        raise HTTPException(status_code=500, detail=f"Processing failed: {e}")
