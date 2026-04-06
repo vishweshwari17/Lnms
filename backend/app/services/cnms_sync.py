@@ -2,19 +2,27 @@ import httpx
 import logging
 import asyncio
 from datetime import datetime
-from app.database import SessionLocal
+from app.database import SessionLocal, SessionLocal2
 from app.models.tickets import Ticket
+from app.models.status_tickets import StatusTicket
 
 logger = logging.getLogger("lnms.cnms_sync")
 
 CNMS_BASE_URL = "http://127.0.0.1:8001"
-CNMS_WEBHOOK_SECRET = "supersecret123"
+CNMS_WEBHOOK_SECRET = "cnms-secret-2026"
 
 def _headers():
     return {"X-LNMS-Secret": CNMS_WEBHOOK_SECRET}
 
+def _build_spic_uid(ticket) -> str:
+    # For SPIC, we use SPIC-ALM-{{alarm_id}}
+    if ticket.alarm_id is not None:
+        return f"SPIC-ALM-{ticket.alarm_id}"
+    return ticket.unique_ticket_id
+
 def _build_alarm_uid(ticket) -> str:
-    prefix = "COMPANY-ALM" if getattr(ticket, "lnms_node_id", "") == "LNMS-COMPANY-01" else "LOCAL-ALM"
+    node_id = getattr(ticket, "lnms_node_id", "")
+    prefix = "COMPANY-ALM" if node_id in ["local-company-01", "LNMS-COMPANY-01"] else "LOCAL-ALM"
     if ticket.alarm_id is not None:
         return f"{prefix}-{ticket.alarm_id}"
     return ticket.ticket_id
@@ -48,7 +56,7 @@ async def send_ticket_to_cnms(ticket_id: str):
         alarm_uid = _build_alarm_uid(ticket)
         payload = {
             "msg_type": "ALARM_NEW",
-            "lnms_node_id": ticket.lnms_node_id or "LNMS-LOCAL-01",
+            "lnms_node_id": ticket.lnms_node_id or "local-company-01",
             "alarm_uid": alarm_uid,
             "ticket_id": alarm_uid,
             "device_name": ticket.device_name,
@@ -90,6 +98,93 @@ async def send_ticket_to_cnms(ticket_id: str):
             db.commit()
         except:
             pass
+    finally:
+        db.close()
+
+async def send_status_ticket_to_cnms(unique_ticket_id: str):
+    """Sends a new SPIC ticket to CNMS."""
+    db = SessionLocal2()
+    try:
+        ticket = db.query(StatusTicket).filter(StatusTicket.unique_ticket_id == unique_ticket_id).first()
+        if not ticket:
+            logger.error(f"SPIC Ticket {unique_ticket_id} not found for CNMS sync")
+            return
+
+        alarm_uid = _build_spic_uid(ticket)
+        payload = {
+            "msg_type": "ALARM_NEW",
+            "lnms_node_id": "lnms-spic-01",
+            "alarm_uid": alarm_uid,
+            "ticket_id": alarm_uid,
+            "device_name": ticket.device_name,
+            "title": ticket.title,
+            "severity": (ticket.severity or "Major").upper(),
+            "status": "OPEN",
+            "description": ticket.description or f"SPIC Ticket created for {ticket.title}",
+            "created_at": ticket.created_at.isoformat() if ticket.created_at else datetime.utcnow().isoformat(),
+            "last_updated_by": "SPIC-NMS",
+            "sync_version": 1
+        }
+
+        async with httpx.AsyncClient(timeout=10) as client:
+            response = await client.post(
+                f"{CNMS_BASE_URL}/webhook/lnms", 
+                json=payload, 
+                headers=_headers()
+            )
+            response.raise_for_status()
+            
+            # Update local ticket state
+            ticket.sent_to_central = 1
+            ticket.sent_at = datetime.utcnow()
+            
+            db.commit()
+            logger.info(f"Successfully synced SPIC ticket {unique_ticket_id} to CNMS as {alarm_uid}")
+
+    except Exception as e:
+        logger.error(f"Failed to sync SPIC ticket {unique_ticket_id} to CNMS: {e}")
+    finally:
+        db.close()
+
+
+async def push_spic_status_to_cnms(unique_ticket_id: str):
+    """Pushes a status update for a SPIC ticket to CNMS."""
+    db = SessionLocal2()
+    try:
+        ticket = db.query(StatusTicket).filter(StatusTicket.unique_ticket_id == unique_ticket_id).first()
+        if not ticket:
+            return
+
+        status = (ticket.status or "").upper()
+        cnms_status = "OPEN"
+        if "ACK" in status: cnms_status = "ACK"
+        elif "CLOSE" in status or "RESOLVE" in status: cnms_status = "RESOLVED"
+
+        alarm_uid = _build_spic_uid(ticket)
+        
+        payload = {
+            "msg_type": "ALARM_RESOLVED" if cnms_status == "RESOLVED" else "ALARM_UPDATE",
+            "lnms_node_id": "lnms-spic-01",
+            "alarm_uid": alarm_uid,
+            "ticket_id": unique_ticket_id,
+            "status": cnms_status,
+            "resolution_note": ticket.resolution or "Resolved from SPIC-NMS",
+            "last_updated_by": "SPIC-NMS"
+        }
+
+        async with httpx.AsyncClient(timeout=10) as client:
+            url = f"{CNMS_BASE_URL}/webhook/lnms"
+            res = await client.post(url, json=payload, headers=_headers())
+            res.raise_for_status()
+            
+            # Update local sync state
+            ticket.sent_to_central = 1
+            ticket.sent_at = datetime.utcnow()
+            db.commit()
+            logger.info(f"Successfully pushed SPIC status '{cnms_status}' for {unique_ticket_id} to CNMS via webhook")
+
+    except Exception as e:
+        logger.error(f"Failed to push SPIC status for {unique_ticket_id} to CNMS: {e}")
     finally:
         db.close()
 

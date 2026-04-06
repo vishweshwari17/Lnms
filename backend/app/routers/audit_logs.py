@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.database import get_lnms_db
 from sqlalchemy import text
 
 router = APIRouter(prefix="/audit", tags=["Audit"])
 
 
 @router.get("")
-def get_audit_logs(db: Session = Depends(get_db)):
+def get_audit_logs(db: Session = Depends(get_lnms_db)):
 
     query = text("""
         SELECT log_id,user_name,action,entity_type,entity_id,created_at

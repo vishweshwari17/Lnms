@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment, useMemo } from "react";
-import axios from "axios";
+import api from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 const CorrelatedAlarms = () => {
@@ -19,9 +19,7 @@ const CorrelatedAlarms = () => {
 
   const fetchCorrelatedAlarms = async () => {
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/correlated-alarms/"
-      );
+      const response = await api.get("correlated-alarms/");
       setData(response.data || []);
     } catch (error) {
       console.error("Error fetching correlated alarms:", error);

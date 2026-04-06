@@ -15,9 +15,12 @@ import BreachTracker from "../pages/BreachTracker";
 import TicketsDetail from "../pages/TicketDetails";
 import AlarmDetails from "../pages/AlarmDetails";
 
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <BrowserRouter>
+      <Toaster position="top-right" reverseOrder={false} />
 
       <Routes>
 

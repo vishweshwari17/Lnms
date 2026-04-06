@@ -4,9 +4,9 @@ const API = axios.create({
   baseURL: "http://localhost:8000/api/"
 });
 
-export const getAlarms = () => API.get("alarms/");
+export const getAlarms = (params = {}) => API.get("alarms/", { params });
 export const getCorrelated = () => API.get("correlated-alarms/");
-export const getTickets = () => API.get("tickets/");
+export const getTickets = (params = {}) => API.get("tickets/", { params });
 export const getTicket = (id) => API.get(`tickets/${id}`);
 export const updateTicketStatus = (id, status) => API.put(`tickets/${id}`, { status });
 export const addComment = (ticketId, message, sender = "USER") => {

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 
 function AuditLogs() {
   const [logs, setLogs] = useState([]);
@@ -9,8 +8,12 @@ function AuditLogs() {
   }, []);
 
   const fetchLogs = async () => {
-    const res = await axios.get("http://127.0.0.1:8000/audit");
-    setLogs(res.data);
+    try {
+      const res = await api.get("audit/");
+      setLogs(res.data);
+    } catch (error) {
+      console.error("Error fetching audit logs:", error);
+    }
   };
 
   return (

@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.database import get_lnms_db
 from app.models import Ticket
 from datetime import datetime
 
 router = APIRouter(prefix="/major-incidents", tags=["Major Incidents"])
 
 @router.get("/")
-def get_major_incidents(db: Session = Depends(get_db)):
+def get_major_incidents(db: Session = Depends(get_lnms_db)):
 
     incidents = db.query(Ticket).filter(
         Ticket.severity_calculated == "Critical",

@@ -72,44 +72,37 @@ def parse_parameter_data(value):
 # GET ALL ALARMS  — lnms_db ONLY
 # =========================================================
 
-@router.get("/", response_model=list[AlarmResponse])
-def get_alarms(db_lnms: Session = Depends(get_lnms_db)):
-    """Return alarms from BOTH lnms_db and snmp_monitor."""
-    from app.database import SessionLocal2
-    from app.models.status_alarms import StatusAlarm
-
-    db_spic = SessionLocal2()
+@router.get("/", response_model=dict)
+def get_alarms(
+    db_lnms: Session = Depends(get_lnms_db),
+    start_date: str = None,
+    end_date: str = None,
+    page: int = 1,
+    limit: int = 25
+):
+    """Return alarms ONLY from lnms_db with filtering and pagination."""
     try:
         # 1. Fetch from LNMS DB
-        lnms_alarms = db_lnms.query(Alarm).all()
+        lnms_query = db_lnms.query(Alarm)
+        if start_date:
+            lnms_query = lnms_query.filter(Alarm.created_at >= start_date)
+        if end_date:
+            lnms_query = lnms_query.filter(Alarm.created_at <= end_date)
+        
+        total = lnms_query.count()
+        lnms_alarms = lnms_query.order_by(Alarm.created_at.desc()).offset((page - 1) * limit).limit(limit).all()
+        
+        # Format
+        formatted_alarms = []
+        
         for a in lnms_alarms:
-            a.source = "LNMS"
-            a.parameter_data = parse_parameter_data(a.parameter_data)
-            a.severity = normalize_severity(a.severity)
-            a.status = normalize_status(a.status)
-            a.alarm_id = f"LNMS-{a.alarm_id}"
-
-        # 2. Fetch from SPIC DB (snmp_monitor)
-        spic_alarms = db_spic.query(StatusAlarm).all()
-        converted_spic = []
-        for s in spic_alarms:
-            converted_spic.append({
-                "alarm_id": f"SPIC-{s.id}",
-                "device_name": s.device_name,
-                "severity": normalize_severity(s.severity),
-                "alarm_name": s.alarm_type or "SPIC Alarm",
-                "status": normalize_status(s.status),
-                "created_at": s.timestamp or s.created_at,
-                "source": "SPIC",
-                "host_name": "Unknown",
-                "ip_address": "N/A"
-            })
-
-        # Convert LNMS models to dicts/objects with source
-        final_lnms = []
-        for a in lnms_alarms:
-            final_lnms.append({
+            # Check if ticket exists to provide ticket_id
+            from app.models.tickets import Ticket
+            ticket = db_lnms.query(Ticket).filter(Ticket.alarm_id == a.alarm_id).first()
+            
+            formatted_alarms.append({
                 "alarm_id": f"LNMS-{a.alarm_id}",
+                "real_id": a.alarm_id,
                 "device_name": a.device_name,
                 "host_name": a.host_name,
                 "ip_address": a.ip_address,
@@ -119,16 +112,21 @@ def get_alarms(db_lnms: Session = Depends(get_lnms_db)):
                 "parameter_data": parse_parameter_data(a.parameter_data),
                 "created_at": a.created_at,
                 "source": "LNMS",
-                "ticket_created": a.ticket_created
+                "ticket_created": a.ticket_created,
+                "ticket_id": ticket.ticket_id if ticket else None
             })
 
-        return final_lnms + converted_spic
+        return {
+            "total": total,
+            "page": page,
+            "limit": limit,
+            "total_pages": (total + limit - 1) // limit,
+            "alarms": formatted_alarms
+        }
 
     except Exception as e:
-        logger.error(f"Error fetching unified alarms: {e}")
+        logger.error(f"Error fetching LNMS alarms: {e}")
         raise HTTPException(status_code=500, detail="Failed to fetch alarms")
-    finally:
-        db_spic.close()
 
 
 # =========================================================

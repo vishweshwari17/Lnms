@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from datetime import datetime
-from app.database import get_db
+from app.database import get_lnms_db
 from app.models import Device, AuditLog
 from app.schemas import DeviceCreate, DeviceResponse
 
@@ -10,14 +10,14 @@ router = APIRouter(prefix="/devices", tags=["Devices"])
 
 # GET ALL DEVICES
 @router.get("/", response_model=list[DeviceResponse])
-def get_devices(db: Session = Depends(get_db)):
+def get_devices(db: Session = Depends(get_lnms_db)):
     devices = db.query(Device).all()
     return devices
 
 
 # CREATE DEVICE
 @router.post("/")
-def create_device(device: DeviceCreate, db: Session = Depends(get_db)):
+def create_device(device: DeviceCreate, db: Session = Depends(get_lnms_db)):
 
     new_device = Device(
         hostname=device.hostname,

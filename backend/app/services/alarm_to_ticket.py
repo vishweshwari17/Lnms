@@ -1,10 +1,12 @@
 import logging
+import asyncio
 from datetime import datetime
-from sqlalchemy import text, func
+from sqlalchemy import text, func, cast, Integer
 from app.database import SessionLocal, SessionLocal2
 from app.models.alarms import Alarm
 from app.models.tickets import Ticket
 from app.models.status_alarms import StatusAlarm
+from app.models.status_tickets import StatusTicket
 
 logger = logging.getLogger("lnms.alarm_to_ticket")
 
@@ -15,7 +17,7 @@ PRIORITY_MAP = {
     "Warning": "P4",
 }
 
-LNMS_NODE_ID = "LNMS-LOCAL-01"
+LNMS_NODE_ID = "local-company-01"
 
 def _build_ticket_id():
     return f"TKT-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')}"
@@ -59,25 +61,26 @@ async def sync_resolutions_from_sources():
                 )
 
         # 2. Sync SPIC-NMS Alarm Resolutions
-        open_spic_tickets = db_lnms.query(Ticket).filter(
-            Ticket.status.in_(["Open", "Ack"]),
-            Ticket.lnms_node_id == "LNMS-SPIC-01",
-            Ticket.alarm_id != None
+        from app.models.status_tickets import StatusTicket
+        open_spic_tickets = db_spic.query(StatusTicket).filter(
+            StatusTicket.status.in_(["Open", "Acknowledged"]),
+            StatusTicket.alarm_id != None
         ).all()
 
+        from app.services.cnms_sync import push_spic_status_to_cnms
+
         for ticket in open_spic_tickets:
-            # StatusAlarm in db_spic
-            from app.models.status_alarms import StatusAlarm
             alarm = db_spic.query(StatusAlarm).filter(StatusAlarm.id == ticket.alarm_id).first()
             if alarm and alarm.status.upper() == "RESOLVED":
-                logger.info(f"Auto-resolving ticket {ticket.ticket_id} as SPIC alarm {alarm.id} was resolved")
-                await update_ticket_status(
-                    db_lnms, 
-                    ticket.ticket_id, 
-                    "RESOLVED", 
-                    resolution_note="Resolved by SPIC-NMS (Source Alarm)", 
-                    last_updated_by="SPIC-NMS"
-                )
+                logger.info(f"Auto-resolving SPIC ticket {ticket.unique_ticket_id} as alarm {alarm.id} was resolved")
+                # Update local SPIC ticket
+                ticket.status = "Closed"
+                ticket.resolution = "Resolved by SPIC-NMS (Source Alarm)"
+                ticket.updated_at = datetime.utcnow()
+                db_spic.commit()
+                
+                # Push to CNMS
+                await push_spic_status_to_cnms(ticket.unique_ticket_id)
 
     except Exception as e:
         logger.error(f"Error syncing resolutions: {e}")
@@ -90,7 +93,7 @@ async def process_lnms_alarms():
     try:
         # Fetch open alarms that haven't been ticketed
         alarms = db.query(Alarm).filter(
-            func.lower(Alarm.status).in_(["open", "ack"]),
+            func.lower(Alarm.status).in_(["open", "ack", "active"]),
             (Alarm.ticket_created == 0) | (Alarm.ticket_created == None)
         ).all()
 
@@ -170,63 +173,70 @@ async def process_spic_alarms():
         for alarm in alarms:
             correlation_id = _build_correlation_id(alarm.id, "SPIC")
             
-            # Check if ticket already exists in LNMS db
-            existing = db_lnms.query(Ticket).filter(
-                Ticket.correlation_id == correlation_id
+            # Check if ticket already exists in SPIC db instead of LNMS db
+            existing = db_spic.query(StatusTicket).filter(
+                StatusTicket.alarm_id == alarm.id
             ).first()
 
             if existing:
                 continue
 
-            # Create Ticket in LNMS db
+            # Calculate next unique_ticket_id (TKTxxxxxxx)
+            # Find the max numeric part of existing 'TKT...' unique IDs
+            try:
+                max_serial_str = db_spic.query(func.max(func.substring(StatusTicket.unique_ticket_id, 4))).filter(StatusTicket.unique_ticket_id.like('TKT%')).scalar()
+                max_serial = int(max_serial_str) if max_serial_str and str(max_serial_str).isdigit() else 0
+                if max_serial < 20260000: # Reset or handle legacy
+                    max_serial = 20260000
+            except Exception:
+                max_serial = 20260000
+            
+            new_serial = max_serial + 1
+            unique_id = f"TKT{new_serial}"[0:11] # Ensure 11 chars
+
+            # Create Ticket in SPIC db (snmp_monitor.tickets)
             severity = alarm.severity or "Minor"
-            tid = _build_ticket_id()
-            new_ticket = Ticket(
-                ticket_id = tid,
+            
+            # Map severity to SPIC Enum ('Major','Minor','Warning')
+            spic_sev = severity if severity in ['Major', 'Minor', 'Warning'] else 'Major'
+
+            new_ticket = StatusTicket(
+                unique_ticket_id = unique_id,
                 alarm_id = alarm.id,
-                correlation_id = correlation_id,
                 title = alarm.alarm_type or "SPIC Alarm",
                 device_name = alarm.device_name,
-                severity_original = severity,
-                severity_calculated = severity,
+                ip_address = getattr(alarm, 'ip_address', 'N/A'),
+                severity = spic_sev,
+                description = f"SPIC Alarm: {alarm.alarm_type}. Automatic ticket from LNMS sync.",
                 status = "Open",
-                lnms_node_id = "LNMS-SPIC-01", # Different node ID for SPIC
                 created_at = datetime.utcnow(),
                 updated_at = datetime.utcnow(),
-                sync_status = "pending",
-                last_updated_by = "SYSTEM",
-                global_ticket_id = tid
+                node_id = 1,
+                ticket_serial_4d = 1
             )
             
-            # AI classification & Priority prediction
-            from app.services.ai_service import classify_ticket, predict_priority
-            from app.services.notification_service import send_mobile_notification
+            db_spic.add(new_ticket)
             
-            new_ticket.category = classify_ticket(new_ticket.title, "")
-            new_ticket.priority_level = predict_priority(new_ticket.lnms_node_id or "SPIC", new_ticket.severity_calculated)
-
-            db_lnms.add(new_ticket)
-            
-            # Mark processed in SPIC DB
+            # Mark processed in SPIC DB (status_alarms)
             alarm.exported_to_central = 1
             alarm.exported_timestamp = datetime.utcnow()
-            db_lnms.commit()
+            
+            db_spic.commit()
 
-            # Mobile notifications for critical items
-            if new_ticket.priority_level in ["P1", "P2"]:
-                asyncio.create_task(send_mobile_notification(new_ticket.ticket_id, new_ticket.title, new_ticket.priority_level))
-
-            # Send to CNMS
-            from app.services.cnms_sync import send_ticket_to_cnms
+            # Trigger CNMS Sync
+            from app.services.cnms_sync import send_status_ticket_to_cnms
             try:
-                await send_ticket_to_cnms(new_ticket.ticket_id)
+                await send_status_ticket_to_cnms(unique_id)
             except Exception as e:
-                logger.error(f"Failed to trigger CNMS sync for SPIC {new_ticket.ticket_id}: {e}")
+                logger.error(f"Failed to trigger CNMS sync for SPIC {unique_id}: {e}")
 
-            logger.info(f"Created ticket {new_ticket.ticket_id} for SPIC alarm {alarm.id}")
+            logger.info(f"Created SPIC ticket {unique_id} in snmp_monitor for alarm {alarm.id}")
+
     except Exception as e:
         db_lnms.rollback()
         logger.error(f"Error processing SPIC alarms: {e}")
     finally:
         db_lnms.close()
         db_spic.close()
+
+

@@ -232,10 +232,31 @@ async def _find_cnms_ticket(ticket: Ticket):
 # [LNMS] GET ALL TICKETS
 # ============================================================
 @router.get("/")
-def get_all_tickets(db: Session = Depends(get_lnms_db)):
-    """Return every ticket stored in the LNMS database."""
-    tickets = db.query(Ticket).order_by(Ticket.created_at.desc()).all()
-    return {"tickets": [_serialize_ticket(ticket) for ticket in tickets]}
+def get_all_tickets(
+    db: Session = Depends(get_lnms_db),
+    start_date: str = None,
+    end_date: str = None,
+    page: int = 1,
+    limit: int = 25
+):
+    """Return every ticket stored in the LNMS database with filtering and pagination."""
+    query = db.query(Ticket)
+    
+    if start_date:
+        query = query.filter(Ticket.created_at >= start_date)
+    if end_date:
+        query = query.filter(Ticket.created_at <= end_date)
+        
+    total = query.count()
+    tickets = query.order_by(Ticket.created_at.desc()).offset((page - 1) * limit).limit(limit).all()
+    
+    return {
+        "total": total,
+        "page": page,
+        "limit": limit,
+        "total_pages": (total + limit - 1) // limit,
+        "tickets": [_serialize_ticket(ticket) for ticket in tickets]
+    }
 
 
 # ============================================================

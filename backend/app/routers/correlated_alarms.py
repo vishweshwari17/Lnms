@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from app.database import get_db
+from app.database import get_lnms_db
 from app.models.alarms import Alarm
 
 router = APIRouter(prefix="/correlated-alarms", tags=["Correlated Alarms"])
 
 @router.get("/")
-def get_correlated_alarms(db: Session = Depends(get_db)):
+def get_correlated_alarms(db: Session = Depends(get_lnms_db)):
     # Find all OPEN/ACK alarms, grouped by device_name
     results = db.query(
         Alarm.device_name,

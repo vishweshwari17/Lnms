@@ -1,20 +1,32 @@
 // src/pages/Tickets.jsx  (LNMS)
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import api, { getTickets } from "../api/api";
 import StatusBadge from "../components/StatusBadge";
+import { Calendar, Search, Filter, RefreshCcw, ChevronLeft, ChevronRight, Ticket as TicketIcon, Bell } from "lucide-react";
+import toast from "react-hot-toast";
 
 const SEVERITY_ORDER = { Critical: 3, Major: 2, Minor: 1, Warning: 0 };
 const VALID_FILTER_STATUSES = ["All", "OPEN", "ACK", "RESOLVED", "CLOSED"];
 
 export default function Tickets() {
   const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
+
   const [filter, setFilter] = useState("All");
   const [severityFilter, setSeverityFilter] = useState("All");
   const [search, setSearch] = useState("");
   const [sortSeverity, setSortSeverity] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const prevTicketIds = useRef(new Set());
+  const isFirstLoad = useRef(true);
 
   const formatTime = (time) => {
     if (!time) return "\u2014";
@@ -25,20 +37,66 @@ export default function Tickets() {
     });
   };
 
-  const fetchTickets = async () => {
+  const fetchTickets = useCallback(async () => {
+    setLoading(true);
     try {
-      const res = await getTickets();
-      if (res?.data?.tickets) setTickets([...res.data.tickets]);
+      const params = {
+        page: currentPage,
+        limit: rowsPerPage,
+        start_date: startDate || undefined,
+        end_date: endDate || undefined,
+      };
+      const res = await getTickets(params);
+      if (res?.data) {
+        const data = res.data;
+        setTickets(data.tickets);
+        setTotal(data.total);
+        setTotalPages(data.total_pages);
+
+        // Check for new tickets
+        if (!isFirstLoad.current) {
+          const newTickets = data.tickets.filter(t => !prevTicketIds.current.has(t.ticket_id));
+          if (newTickets.length > 0) {
+            newTickets.forEach(t => {
+              toast.custom((toastObj) => (
+                <div className={`${toastObj.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-2xl rounded-[1.5rem] pointer-events-auto flex ring-1 ring-black ring-opacity-5 border-l-8 border-indigo-500`}>
+                  <div className="flex-1 w-0 p-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0 pt-0.5 text-indigo-500">
+                        <Bell size={24} />
+                      </div>
+                      <div className="ml-3 flex-1">
+                        <p className="text-xs font-black text-slate-400 uppercase tracking-widest">New Ticket Generated</p>
+                        <p className="mt-1 text-sm font-bold text-slate-900">{t.title}</p>
+                        <p className="mt-1 text-xs text-slate-500 font-medium">{t.device_name} — {t.severity_calculated}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex border-l border-gray-200">
+                    <button onClick={() => toast.dismiss(toastObj.id)} className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-black text-indigo-600 hover:text-indigo-500 focus:outline-none">Close</button>
+                  </div>
+                </div>
+              ), { duration: 6000 });
+            });
+          }
+        }
+        
+        // Update refs
+        prevTicketIds.current = new Set(data.tickets.map(t => t.ticket_id));
+        isFirstLoad.current = false;
+      }
     } catch (err) {
       console.error("Ticket fetch error:", err);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [currentPage, rowsPerPage, startDate, endDate]);
 
   useEffect(() => {
     fetchTickets();
-    const id = setInterval(fetchTickets, 10000);
+    const id = setInterval(fetchTickets, 30000);
     return () => clearInterval(id);
-  }, []);
+  }, [fetchTickets]);
 
   const openCount = tickets.filter(t => t.status === "OPEN").length;
   const ackCount = tickets.filter(t => t.status === "ACK").length;
@@ -76,14 +134,6 @@ export default function Tickets() {
     );
   }, [filteredTickets, sortSeverity]);
 
-  const totalPages = Math.max(1, Math.ceil(sortedTickets.length / rowsPerPage));
-  const currentTickets = sortedTickets.slice(
-    (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
-  );
-
-  useEffect(() => setCurrentPage(1), [filter, search, sortSeverity, severityFilter, rowsPerPage]);
-
   return (
     <div className="p-8 bg-slate-50 min-h-screen font-sans">
       <div className="flex justify-between items-center mb-10">
@@ -91,14 +141,22 @@ export default function Tickets() {
           <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Support Tickets</h1>
           <p className="text-slate-500 mt-1 uppercase text-[10px] font-black tracking-widest">Unified Helpdesk Dashboard</p>
         </div>
-        <div className="flex items-center bg-white px-4 py-2 rounded-2xl shadow-sm border border-slate-100">
-          <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse mr-2.5" />
-          <span className="text-slate-600 text-sm font-semibold tracking-tight">Live Auto-Sync</span>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => fetchTickets()}
+            className="p-2 bg-white rounded-xl shadow-sm border border-slate-100 text-slate-500 hover:text-indigo-600 transition-colors"
+          >
+            <RefreshCcw size={20} className={loading ? "animate-spin" : ""} />
+          </button>
+          <div className="flex items-center bg-white px-4 py-2 rounded-2xl shadow-sm border border-slate-100">
+            <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse mr-2.5" />
+            <span className="text-slate-600 text-sm font-semibold tracking-tight">Live Auto-Sync</span>
+          </div>
         </div>
       </div>
 
       <div className="grid fgrid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6 mb-10">
-        <KPI title="Total Tickets" value={tickets.length} color="bg-indigo-50 text-indigo-700 border-indigo-100" />
+        <KPI title="Total Tickets" value={total} color="bg-indigo-50 text-indigo-700 border-indigo-100" />
         <KPI title="Open" value={openCount} color="bg-red-50 text-red-700 border-red-100" />
         <KPI title="Acknowledged" value={ackCount} color="bg-amber-50 text-amber-700 border-amber-100" />
         <KPI title="Resolved" value={resolvedCount} color="bg-emerald-50 text-emerald-700 border-emerald-100" />
@@ -108,7 +166,7 @@ export default function Tickets() {
 
       <div className="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/40 p-8 border border-slate-100 overflow-hidden relative">
         <div className="flex flex-col lg:flex-row justify-between gap-6 mb-8">
-          <div className="flex gap-2 p-1.5 bg-slate-50 rounded-2xl w-fit">
+          <div className="flex flex-wrap gap-2 p-1.5 bg-slate-50 rounded-2xl w-fit">
             {VALID_FILTER_STATUSES.map(tab => (
               <button
                 key={tab}
@@ -125,7 +183,30 @@ export default function Tickets() {
             ))}
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-wrap gap-4 items-center">
+            {/* Date Filters */}
+            <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-2xl shadow-inner border border-slate-100">
+               <div className="relative flex items-center">
+                 <Calendar className="absolute left-3 text-slate-400" size={14} />
+                 <input 
+                   type="date"
+                   value={startDate}
+                   onChange={(e) => { setStartDate(e.target.value); setCurrentPage(1); }}
+                   className="pl-9 pr-3 py-2 bg-transparent border-none text-[11px] font-black uppercase tracking-widest text-slate-600 focus:ring-0 outline-none cursor-pointer"
+                 />
+               </div>
+               <span className="text-slate-300 font-bold">to</span>
+               <div className="relative flex items-center">
+                 <Calendar className="absolute left-3 text-slate-400" size={14} />
+                 <input 
+                   type="date"
+                   value={endDate}
+                   onChange={(e) => { setEndDate(e.target.value); setCurrentPage(1); }}
+                   className="pl-9 pr-3 py-2 bg-transparent border-none text-[11px] font-black uppercase tracking-widest text-slate-600 focus:ring-0 outline-none cursor-pointer"
+                 />
+               </div>
+            </div>
+
             <div className="relative group">
               <input
                 type="text"
@@ -134,8 +215,9 @@ export default function Tickets() {
                 onChange={e => setSearch(e.target.value)}
                 className="pl-12 pr-6 py-3 bg-slate-50 border-transparent rounded-[1.25rem] w-80 focus:ring-4 focus:ring-indigo-100 focus:bg-white transition-all duration-500 outline-none font-bold text-slate-700 placeholder-slate-300 shadow-inner"
               />
-              <span className="absolute left-5 top-3.5 opacity-30 group-focus-within:opacity-100 transition-opacity">🔍</span>
+              <span className="absolute left-5 top-3.5 opacity-30 group-focus-within:opacity-100 transition-opacity"><Search size={18} /></span>
             </div>
+            
             <select
               value={severityFilter}
               onChange={e => setSeverityFilter(e.target.value)}
@@ -168,7 +250,14 @@ export default function Tickets() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
-              {currentTickets.map(ticket => {
+              {loading ? (
+                <tr>
+                  <td colSpan={7} className="text-center py-32">
+                    <RefreshCcw className="animate-spin text-indigo-600 mx-auto mb-4" size={40} />
+                    <p className="font-bold text-slate-400 uppercase tracking-widest text-xs">Loading tickets...</p>
+                  </td>
+                </tr>
+              ) : sortedTickets.map(ticket => {
                 const ticketIdentifier = ticket.ticket_id || ticket.global_ticket_id;
                 return (
                   <tr key={ticketIdentifier} className="hover:bg-slate-50/50 transition-all group">
@@ -208,10 +297,10 @@ export default function Tickets() {
                   </tr>
                 );
               })}
-              {currentTickets.length === 0 && (
+              {!loading && sortedTickets.length === 0 && (
                 <tr>
                   <td colSpan={7} className="text-center py-32">
-                    <div className="text-6xl mb-6 grayscale opacity-20">🎫</div>
+                    <div className="text-6xl mb-6 grayscale opacity-20"><TicketIcon size={64} className="mx-auto" /></div>
                     <div className="text-xl font-black text-slate-900 tracking-tight">No tickets found</div>
                     <div className="text-sm text-slate-400 font-bold mt-2">Try adjusting your filters or search terms</div>
                   </td>
@@ -240,7 +329,7 @@ export default function Tickets() {
             </div>
             <div className="w-px h-6 bg-slate-200" />
             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
-              Showing <span className="text-indigo-600 font-black">{(currentPage - 1) * rowsPerPage + 1}</span> - <span className="text-indigo-600 font-black">{Math.min(currentPage * rowsPerPage, sortedTickets.length)}</span> of <span className="text-indigo-600 font-black">{sortedTickets.length}</span>
+              Showing <span className="text-indigo-600 font-black">{(currentPage - 1) * rowsPerPage + 1}</span> - <span className="text-indigo-600 font-black">{Math.min(currentPage * rowsPerPage, total)}</span> of <span className="text-indigo-600 font-black">{total}</span>
             </span>
           </div>
 
@@ -250,7 +339,7 @@ export default function Tickets() {
               disabled={currentPage === 1}
               className="w-12 h-12 flex items-center justify-center bg-white border-2 border-slate-100 text-slate-900 rounded-2xl disabled:opacity-20 hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-sm group"
             >
-              <span className="group-hover:-translate-x-1 transition-transform">←</span>
+              <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
             </button>
 
             <div className="flex gap-2 items-center">
@@ -290,7 +379,7 @@ export default function Tickets() {
               disabled={currentPage === totalPages}
               className="w-12 h-12 flex items-center justify-center bg-white border-2 border-slate-100 text-slate-900 rounded-2xl disabled:opacity-20 hover:border-indigo-600 hover:text-indigo-600 transition-all shadow-sm group"
             >
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

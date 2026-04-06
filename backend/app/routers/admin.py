@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from app.database import get_db
+from app.database import get_lnms_db
 from app.models.users import User
 from app.models.devices import Device
 from app.schemas import UserCreate, DeviceCreate
@@ -13,7 +13,7 @@ router = APIRouter(prefix="/admin", tags=["Administration"])
 # ---------------- USERS ----------------
 
 @router.get("/users")
-def get_users(db: Session = Depends(get_db)):
+def get_users(db: Session = Depends(get_lnms_db)):
     users = db.query(User).all()
     return [
         {
@@ -26,7 +26,7 @@ def get_users(db: Session = Depends(get_db)):
     ]
 
 @router.post("/users")
-def create_user(data: UserCreate, db: Session = Depends(get_db)):
+def create_user(data: UserCreate, db: Session = Depends(get_lnms_db)):
     # Check both email AND username for duplicates
     existing = db.query(User).filter(
         (User.email == data.email) | (User.username == data.username)
@@ -55,7 +55,7 @@ def create_user(data: UserCreate, db: Session = Depends(get_db)):
         }
     }
 @router.put("/users/{user_id}")
-def update_user(user_id: int, data: UserCreate, db: Session = Depends(get_db)):
+def update_user(user_id: int, data: UserCreate, db: Session = Depends(get_lnms_db)):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -66,7 +66,7 @@ def update_user(user_id: int, data: UserCreate, db: Session = Depends(get_db)):
     return {"message": "User updated successfully"}
 
 @router.delete("/users/{user_id}")
-def delete_user(user_id: int, db: Session = Depends(get_db)):
+def delete_user(user_id: int, db: Session = Depends(get_lnms_db)):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -78,7 +78,7 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
 # ---------------- DEVICES ----------------
 
 @router.get("/devices")
-def get_devices(db: Session = Depends(get_db)):
+def get_devices(db: Session = Depends(get_lnms_db)):
     devices = db.query(Device).all()
     return [
         {
@@ -94,7 +94,7 @@ def get_devices(db: Session = Depends(get_db)):
     ]
 
 @router.post("/devices")
-def create_device(data: DeviceCreate, db: Session = Depends(get_db)):
+def create_device(data: DeviceCreate, db: Session = Depends(get_lnms_db)):
     existing = db.query(Device).filter(Device.ip_address == data.ip_address).first()
     if existing:
         raise HTTPException(status_code=400, detail="Device with this IP already exists")
@@ -123,7 +123,7 @@ def create_device(data: DeviceCreate, db: Session = Depends(get_db)):
     }
 
 @router.put("/devices/{device_id}")
-def update_device(device_id: int, data: DeviceCreate, db: Session = Depends(get_db)):
+def update_device(device_id: int, data: DeviceCreate, db: Session = Depends(get_lnms_db)):
     device = db.query(Device).filter(Device.id == device_id).first()
     if not device:
         raise HTTPException(status_code=404, detail="Device not found")
@@ -136,7 +136,7 @@ def update_device(device_id: int, data: DeviceCreate, db: Session = Depends(get_
     return {"message": "Device updated successfully"}
 
 @router.delete("/devices/{device_id}")
-def delete_device(device_id: int, db: Session = Depends(get_db)):
+def delete_device(device_id: int, db: Session = Depends(get_lnms_db)):
     device = db.query(Device).filter(Device.id == device_id).first()
     if not device:
         raise HTTPException(status_code=404, detail="Device not found")
