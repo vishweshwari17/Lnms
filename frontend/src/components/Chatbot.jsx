@@ -3,7 +3,8 @@ import { MessageSquare, Send, X, Bot, Zap, Plus, AlertCircle } from "lucide-reac
 import axios from "axios";
 import "./Chatbot.css";
 
-const API_BASE = "http://localhost:8000/api";
+const hostname = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+const API_BASE = `http://${hostname}:8000/api`;
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);

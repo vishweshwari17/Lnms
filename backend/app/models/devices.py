@@ -12,4 +12,5 @@ class Device(Base):
     location = Column(String(100))
     status = Column(String(20))
     device_name = Column(String(50))
+    vendor = Column(String(50), default="Nivetti")
     created_at = Column(DateTime)

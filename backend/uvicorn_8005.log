@@ -1,0 +1,28 @@
+INFO:     Will watch for changes in these directories: ['/home/nms/LNMS_PROJECT/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8005 (Press CTRL+C to quit)
+INFO:     Started reloader process [84187] using WatchFiles
+INFO:     Started server process [84357]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+WARNING:  WatchFiles detected changes in 'app/models/devices.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [84357]
+WARNING:  WatchFiles detected changes in 'app/schemas.py'. Reloading...
+INFO:     Started server process [94040]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [94040]
+WARNING:  WatchFiles detected changes in 'app/routers/devices.py'. Reloading...
+INFO:     Started server process [95349]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

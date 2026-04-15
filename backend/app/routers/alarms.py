@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import OperationalError
 from datetime import datetime
@@ -7,6 +8,7 @@ import json
 
 from app.database import get_lnms_db
 from app.models import Alarm
+from app.models.audit_logs import AuditLog
 from app.schemas import AlarmCreate, AlarmResponse, AlarmStatusUpdate
 from app.services import ticket_service
 
@@ -77,13 +79,24 @@ def get_alarms(
     db_lnms: Session = Depends(get_lnms_db),
     start_date: str = None,
     end_date: str = None,
+    device_id: int = None,
+    device_name: str = None,
     page: int = 1,
     limit: int = 25
 ):
-    """Return alarms ONLY from lnms_db with filtering and pagination."""
+    """Return alarms with filtering and pagination."""
     try:
-        # 1. Fetch from LNMS DB
         lnms_query = db_lnms.query(Alarm)
+        
+        if device_id:
+            from app.models.devices import Device
+            device = db_lnms.query(Device).filter(Device.id == device_id).first()
+            if device:
+                lnms_query = lnms_query.filter(Alarm.ip_address == device.ip_address)
+        
+        if device_name:
+            lnms_query = lnms_query.filter(Alarm.device_name.ilike(f"%{device_name}%"))
+
         if start_date:
             lnms_query = lnms_query.filter(Alarm.created_at >= start_date)
         if end_date:
@@ -224,6 +237,16 @@ async def update_alarm_status_route(alarm_id: str, payload: AlarmStatusUpdate, d
             if new_status in ("RESOLVED", "CLOSED"):
                 alarm.resolved_time = datetime.utcnow()
             db.commit()
+
+        # Audit Logger
+        audit = AuditLog(
+            user_name="System/Admin",
+            action=f"Changed Alarm Status to {new_status}",
+            entity_type="Alarm",
+            entity_id=int(real_id) if real_id.isdigit() else 0
+        )
+        db.add(audit)
+        db.commit()
 
         logger.info(f"Alarm {alarm_id} status updated to '{new_status}'")
         return {"message": "Alarm status updated", "status": new_status, "source": source}

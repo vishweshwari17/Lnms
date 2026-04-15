@@ -1,0 +1,2010 @@
+INFO:     Will watch for changes in these directories: ['/home/nms/LNMS_PROJECT/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [94966] using WatchFiles
+INFO:     Started server process [94968]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37064 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37350 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37440 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37524 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37588 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37656 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37656 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37656 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37724 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:37656 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37732 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37728 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:37790 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:37790 - "GET /api/devices/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:37940 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:37940 - "GET /api/devices/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:39528 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39528 - "GET /api/devices/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40680 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:40676 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40688 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40684 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:40684 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40872 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40872 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40872 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41086 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:41086 - "GET /api/devices/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41268 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41268 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41436 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:41888 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42318 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:42790 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43268 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:43552 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44044 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44402 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:44406 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44410 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44410 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:44520 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44558 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44566 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44562 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44708 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44716 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44712 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44882 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44890 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44886 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:44994 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:44998 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45006 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45002 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45036 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:45166 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:45494 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45804 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45800 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45812 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45808 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:45912 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:45946 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45942 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45938 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46102 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46110 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46106 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46262 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46270 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46266 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:46400 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     connection closed
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46464 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:46862 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:47340 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47350 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:47354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47362 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47358 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:47508 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47512 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47520 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47516 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:47630 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47778 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:47822 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:47924 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48124 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:48124 - "GET /api/devices/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:48306 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:48758 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:49204 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49354 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49350 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49362 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49358 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:49514 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49358 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49362 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49350 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49668 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49676 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49672 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:49690 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49820 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49812 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49816 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50058 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50072 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50068 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50072 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:50152 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50510 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:50604 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:50962 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:51016 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:51450 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51702 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:51706 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51714 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51710 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51880 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51888 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51884 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:51930 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:52050 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52058 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52054 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52204 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52212 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52208 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:52346 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52346 - "GET /api/devices/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:52424 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:52600 - "GET /api/devices?search=L HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52600 - "GET /api/devices?search=La HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52600 - "GET /api/devices/?search=La HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52624 - "GET /api/devices/?search=L HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52624 - "GET /api/devices?search=Lap HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52624 - "GET /api/devices/?search=Lap HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52624 - "GET /api/devices?search=Lapt HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52624 - "GET /api/devices/?search=Lapt HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52600 - "GET /api/devices?search=Lapto HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52600 - "GET /api/devices/?search=Lapto HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52600 - "GET /api/devices?search=Laptop HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:52600 - "GET /api/devices/?search=Laptop HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:52872 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52940 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:52936 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52948 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52944 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53080 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53088 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53084 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53254 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53272 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:53272 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53268 - "GET /api/alarms/ HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:53382 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:53426 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53574 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53722 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:53828 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53876 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54026 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54176 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:54290 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54340 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54476 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54634 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:54744 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:54794 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54922 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55084 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:55232 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55372 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55530 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:55688 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55834 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55850 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55986 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+INFO:     127.0.0.1:56130 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56274 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+Failed to push SPIC status for TKT20260176 to CNMS: 
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56428 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56576 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56692 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56704 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56842 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:56982 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57136 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57320 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57472 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57630 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57642 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57784 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:57898 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58080 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58220 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58368 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58518 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58530 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58670 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:58810 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58902 - "GET /api/tickets/?page=1&limit=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58956 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59090 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:59242 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59392 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59024 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59510 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:59580 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59580 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59604 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59700 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59848 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:59978 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59626 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60076 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60086 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60178 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60178 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60222 - "GET /api/incidents/?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60178 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60178 - "GET /api/tickets/TKT-20260407083942089171 HTTP/1.1" 200 OK
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     127.0.0.1:60368 - "GET /api/incidents/?limit=100 HTTP/CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to push SPIC status for TKT20260177 to CNMS: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to sync SPIC ticket TKT20260178 to CNMS: All connection attempts failed
+/home/nms/LNMS_PROJECT/backend/app/services/alarm_to_ticket.py:242: RuntimeWarning: coroutine 'IncidentService.process_alarm' was never awaited
+  IncidentService.process_alarm(db_lnms, alarm)
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to push SPIC status for TKT20260178 to CNMS: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to sync SPIC ticket TKT20260179 to CNMS: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to sync SPIC ticket TKT20260180 to CNMS: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to push SPIC status for TKT20260180 to CNMS: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+Failed to sync SPIC ticket TKT20260181 to CNMS: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Shutting down
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-10 14:44:10 IST)" skipped: maximum number of running instances reached (1)
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [94947]
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Started server process [191372]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [191372]
+INFO:     Started server process [191380]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/alarm_to_ticket.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [191380]
+INFO:     Started server process [195107]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195107]
+INFO:     Started server process [195131]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/incident_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195131]
+INFO:     Started server process [195628]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195628]
+INFO:     Started server process [195935]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195935]
+INFO:     Started server process [195949]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195949]
+INFO:     Started server process [195971]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/e2e_test_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [195971]
+INFO:     Started server process [196019]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/incident_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [196019]
+INFO:     Started server process [197047]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/services/incident_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [197047]
+INFO:     Started server process [198755]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/simulate_cnms_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [198755]
+INFO:     Started server process [199292]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/simulate_cnms_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [199292]
+INFO:     Started server process [199645]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/simulate_cnms_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [199645]
+INFO:     Started server process [200006]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'scripts/simulate_cnms_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [200006]
+INFO:     Started server process [200465]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Error syncing resolutions: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'tickets'")
+[SQL: UPDATE snmp_monitor.tickets SET status=%(status)s, resolution=%(resolution)s, updated_at=%(updated_at)s WHERE snmp_monitor.tickets.ticket_id = %(snmp_monitor_tickets_ticket_id)s]
+[parameters: {'status': 'Closed', 'resolution': 'Resolved by SPIC-NMS', 'updated_at': datetime.datetime(2026, 4, 10, 9, 43, 24, 693987), 'snmp_monitor_tickets_ticket_id': 1053}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Error processing SPIC alarms: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'status_alarms'")
+[SQL: UPDATE snmp_monitor.status_alarms SET exported_to_central=%(exported_to_central)s, exported_timestamp=%(exported_timestamp)s WHERE snmp_monitor.status_alarms.id = %(snmp_monitor_status_alarms_id)s]
+[parameters: {'exported_to_central': 1, 'exported_timestamp': datetime.datetime(2026, 4, 10, 10, 14, 24, 516281), 'snmp_monitor_status_alarms_id': 1072}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Error processing LNMS alarms: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'alarms'")
+[SQL: UPDATE alarms SET ticket_created=%(ticket_created)s WHERE alarms.alarm_id = %(alarms_alarm_id)s]
+[parameters: {'ticket_created': 1, 'alarms_alarm_id': 85}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+Error syncing resolutions: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'tickets'")
+[SQL: UPDATE snmp_monitor.tickets SET status=%(status)s, resolution=%(resolution)s, updated_at=%(updated_at)s WHERE snmp_monitor.tickets.ticket_id = %(snmp_monitor_tickets_ticket_id)s]
+[parameters: {'status': 'Closed', 'resolution': 'Resolved by SPIC-NMS', 'updated_at': datetime.datetime(2026, 4, 10, 10, 43, 24, 590841), 'snmp_monitor_tickets_ticket_id': 1061}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Error processing SPIC alarms: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'status_alarms'")
+[SQL: UPDATE snmp_monitor.status_alarms SET exported_to_central=%(exported_to_central)s, exported_timestamp=%(exported_timestamp)s WHERE snmp_monitor.status_alarms.id = %(snmp_monitor_status_alarms_id)s]
+[parameters: {'exported_to_central': 1, 'exported_timestamp': datetime.datetime(2026, 4, 10, 10, 43, 54, 459858), 'snmp_monitor_status_alarms_id': 1073}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Error syncing resolutions: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'tickets'")
+[SQL: UPDATE snmp_monitor.tickets SET status=%(status)s, resolution=%(resolution)s, updated_at=%(updated_at)s WHERE snmp_monitor.tickets.ticket_id = %(snmp_monitor_tickets_ticket_id)s]
+[parameters: {'status': 'Closed', 'resolution': 'Resolved by SPIC-NMS', 'updated_at': datetime.datetime(2026, 4, 10, 11, 13, 24, 698355), 'snmp_monitor_tickets_ticket_id': 1062}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Error syncing resolutions: (pymysql.err.OperationalError) (1020, "Record has changed since last read in table 'tickets'")
+[SQL: UPDATE snmp_monitor.tickets SET status=%(status)s, resolution=%(resolution)s, updated_at=%(updated_at)s WHERE snmp_monitor.tickets.ticket_id = %(snmp_monitor_tickets_ticket_id)s]
+[parameters: {'status': 'Closed', 'resolution': 'Resolved by SPIC-NMS', 'updated_at': datetime.datetime(2026, 4, 10, 11, 43, 24, 715862), 'snmp_monitor_tickets_ticket_id': 1063}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Failed to sync SPIC ticket TKT20260194 to CNMS: 
+Execution of job "alarm_engine_job (trigger: interval[0:00:30], next run at: 2026-04-10 17:14:54 IST)" skipped: maximum number of running instances reached (1)
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Sync missed tickets failed: 
+Sync missed tickets failed: 
+CNMS unavailable at http://127.0.0.1:8001: All connection attempts failed

@@ -1,19 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 
-import Dashboard from "../pages/Dashboard";
-import IncomingAlarms from "../pages/IncomingAlarms";
-import CorrelatedAlarms from "../pages/CorrelatedAlarms";
-import Tickets from "../pages/Tickets";
-import IncidentDashboard from "../pages/IncidentDashboard";
-import IncidentsList from "../pages/IncidentsList";
-import SLARisk from "../pages/SLARisk";
-import Devices from "../pages/Devices";
-import AuditLogs from "../pages/AuditLogs";
-import Admin from "../pages/Administration";
-import BreachTracker from "../pages/BreachTracker";
-import TicketsDetail from "../pages/TicketDetails";
-import AlarmDetails from "../pages/AlarmDetails";
+import Dashboard from "./pages/Dashboard";
+import IncomingAlarms from "./pages/IncomingAlarms";
+import CorrelatedAlarms from "./pages/CorrelatedAlarms";
+import Tickets from "./pages/Tickets";
+
+import IncidentsList from "./pages/IncidentsList";
+import IncidentDetails from "./pages/IncidentDetails";
+import Devices from "./pages/Devices";
+import DeviceDetails from "./pages/DeviceDetails";
+import TicketsDetail from "./pages/TicketDetails";
+import AlarmDetails from "./pages/AlarmDetails";
+import LiveStream from "./pages/LiveStream";
+import AuditLogs from "./pages/AuditLogs";
+import Administration from "./pages/Administration";
+
+
 
 import { Toaster } from "react-hot-toast";
 
@@ -30,20 +33,26 @@ function App() {
           <Route path="/alarms" element={<IncomingAlarms />} />
           <Route path="/alarms/:id" element={<AlarmDetails />} />
           <Route path="/correlated-alarms" element={<CorrelatedAlarms />} />
-            <Route path="/tickets" element={<Tickets />} />
+          <Route path="/tickets" element={<Tickets />} />
 
-            <Route
-              path="/tickets/:id"
-              element={<TicketsDetail />}
-            />
-          <Route path="/incident-dashboard" element={<IncidentDashboard />} />
+          <Route
+            path="/tickets/:id"
+            element={<TicketsDetail />}
+          />
           <Route path="/incidents" element={<IncidentsList />} />
-          <Route path="/sla-risk" element={<SLARisk />} />
+          <Route path="/incidents/:id" element={<IncidentDetails />} />
           <Route path="/devices" element={<Devices />} />
+          <Route path="/inventory" element={<Devices />} />
+          <Route path="/devices/:id" element={<DeviceDetails />} />
+          <Route path="/live-stream" element={<LiveStream />} />
           <Route path="/audit" element={<AuditLogs />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/breach-tracker" element={<BreachTracker />} />
- 
+          <Route path="/admin" element={<Administration />} />
+
+          <Route path="/diagnostics" element={<Dashboard />} />
+
+
+          {/* Catch-all redirect */}
+          <Route path="*" element={<Dashboard />} />
         </Route>
 
       </Routes>

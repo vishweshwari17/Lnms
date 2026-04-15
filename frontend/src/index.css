@@ -1,4 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* V4.0 STEALTH TOKENS - LIGHT THEME READY */
+  --blue-primary: #2563eb;
+  --blue-header: #1e40af;
+  --blue-sidebar-dark: #1e3a8a;
+  --blue-sidebar-light: #1e40af;
+  --blue-accent: #3b82f6;
+  --electric-blue: #60a5fa;
+  /* PROFESSIONAL BLUE GRADIENTS */
+  --blue-grad-sidebar: linear-gradient(180deg, #0f172a 0%, #1e3a8a 100%);
+  --blue-grad-header: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%);
+  
+  /* REFINED THEME COLORS (NO PURE BLACK) */
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-primary: #1e3a8a; 
+  --text-secondary: #64748b;
+  --border-subtle: #cbd5e1;
+  --border-stealth: rgba(0, 0, 0, 0.05);
+
+  /* SPACING SYSTEM */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+  letter-spacing: 0.1px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+  overflow-x: hidden;
+}
+
+/* Typography System */
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: #0f172a;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.table-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.body-text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.label-badge {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.small-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Spacing System */
+.card {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card-sm {
+  padding: 12px;
+}
+
+.card-lg {
+  padding: 20px;
+}
+
+.grid-system {
+  display: grid;
+  gap: 16px;
+}
+
+.section-spacing {
+  margin-bottom: 16px;
+}
+
+/* Table Design */
+.table-row {
+  padding: 10px 12px;
+}
+
+.table-cell {
+  padding: 8px 12px;
+}
+
+/* Layout Parts */
+.app-header {
+  background: rgba(2, 6, 23, 0.8) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  z-index: 30;
+  position: sticky;
+  top: 0;
+}
+
+.premium-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 5px solid #3b82f6;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.05);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.creative-hover {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.creative-hover:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 25px 30px -10px rgba(30, 58, 138, 0.15);
+  padding: 1.75rem; /* The "padding-shift" effect */
+  border-left-width: 8px;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: white;
+  border-color: rgba(37, 99, 235, 0.2);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.command-container {
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    var(--bg-main);
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+.app-sidebar {
+  background: 
+    linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 27, 75, 1) 100%),
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+  color: rgba(255, 255, 255, 0.65);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 10px 0 50px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+}
+
+.sidebar-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 6px 14px;
+  border-radius: 14px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: white;
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.active-item {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.05) 100%);
+  color: #3b82f6 !important;
+  font-weight: 700;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+}
+
+.active-item::before {
+  content: '';
+  position: absolute;
+  left: -14px; /* Align with sidebar padding */
+  top: 25%;
+  height: 50%;
+  width: 4px;
+  background: #3b82f6;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 12px #3b82f6;
+}
+
+.sidebar-section-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 32px 30px 12px;
+}
+
+.sub-item-container {
+  margin-left: 28px;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  padding-left: 12px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.premium-glow {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
+}

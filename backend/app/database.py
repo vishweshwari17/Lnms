@@ -9,8 +9,9 @@ DB_PASS = "user_123"
 DB_HOST = "127.0.0.1"
 DB_PORT = "7776"
 
-DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/lnms_db"
-DATABASE_URL2 = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/snmp_monitor"
+UNIX_SOCKET = "/var/lib/mysql/mysql.sock"
+DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASS}@localhost/lnms_db?unix_socket={UNIX_SOCKET}"
+DATABASE_URL2 = f"mysql+pymysql://{DB_USER}:{DB_PASS}@localhost/snmp_monitor?unix_socket={UNIX_SOCKET}"
 
 engine = create_engine(
     DATABASE_URL,

@@ -63,5 +63,30 @@ async def update_ticket_status(db, ticket_id, new_status, resolution_note=None, 
     # Mobile notifications for critical items
     if ticket.priority_level in ["P1", "P2"]:
         asyncio.create_task(send_mobile_notification(ticket_id, ticket.title, ticket.priority_level))
+        
+    # ----------------------------------------------------
+    # Automated Chat Message for Status Change (LNMS triggered)
+    # ----------------------------------------------------
+    if last_updated_by != "CNMS":
+        try:
+            from app.models.ticket_messages import TicketMessage
+            from app.services.cnms_sync import push_message_to_cnms
+            
+            message_text = f"Status updated to {status}"
+            if status in ["RESOLVED", "CLOSED"] and resolution_note:
+                message_text += f" - Resolution: {resolution_note}"
+                
+            msg = TicketMessage(
+                ticket_id=ticket.ticket_id,
+                sender="LNMS",
+                message=message_text,
+                created_at=datetime.utcnow()
+            )
+            db.add(msg)
+            db.commit()
+            
+            asyncio.create_task(push_message_to_cnms(ticket_id, "LNMS", message_text))
+        except Exception as e:
+            logger.error(f"Failed to auto-generate ticket message for {ticket_id}: {e}")
     
     return ticket

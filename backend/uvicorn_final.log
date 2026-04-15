@@ -1,0 +1,1748 @@
+INFO:     Started server process [107124]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://192.78.10.111:8000 (Press CTRL+C to quit)
+INFO:     192.78.10.101:50814 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:50956 - "GET /api/devices/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:51392 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:51950 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:52502 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:52692 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:52692 - "GET /api/devices/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:53018 - "POST /api/devices/sync HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53018 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53018 - "GET /api/devices/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53072 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:53246 - "GET /api/devices?search=r HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53248 - "GET /api/devices?search=ro HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53250 - "GET /api/devices?search=rou HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53252 - "GET /api/devices?search=rout HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53254 - "GET /api/devices?search=route HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53256 - "GET /api/devices?search=router HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53246 - "GET /api/devices/?search=r HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53250 - "GET /api/devices/?search=rou HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53248 - "GET /api/devices/?search=ro HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53256 - "GET /api/devices/?search=rout HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53254 - "GET /api/devices/?search=route HTTP/1.1" 200 OK
+INFO:     192.78.10.101:53252 - "GET /api/devices/?search=router HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:53670 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+INFO:     192.78.10.101:53676 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:53676 - "GET /api/devices/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:54246 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:54826 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:54896 - "GET /api/devices?type=Router HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:54896 - "GET /api/devices/?type=Router HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55030 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55032 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55034 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:55150 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55154 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55152 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55254 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55258 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55256 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55354 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55358 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55356 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55450 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:55480 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55484 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55482 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55574 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55578 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55576 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55664 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55668 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55666 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:55788 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55792 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55790 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55904 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55902 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55900 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55996 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56000 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:55998 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56086 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56090 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56088 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56092 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:56192 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56196 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56194 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56278 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56282 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56280 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56382 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56386 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56384 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:56384 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:56672 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:56718 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:56976 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57210 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:57254 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57472 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57472 - "GET /api/devices/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:57674 - "GET /api/devices?search=r HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57674 - "GET /api/devices/?search=r HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57674 - "GET /api/devices?search=ro HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57674 - "GET /api/devices?search=rou HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57676 - "GET /api/devices/?search=ro HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57676 - "GET /api/devices?search=rout HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57676 - "GET /api/devices/?search=rou HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57676 - "GET /api/devices?search=route HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57676 - "GET /api/devices/?search=rout HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57676 - "GET /api/devices?search=router HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:57674 - "GET /api/devices/?search=route HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57674 - "GET /api/devices/?search=router HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57826 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57828 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:57832 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57830 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57838 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:57936 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57940 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:57938 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58018 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58022 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58020 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58114 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58118 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58116 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:58222 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58226 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58224 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.78.10.101:58310 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58312 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58316 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58314 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58412 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58416 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58414 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58434 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58526 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58522 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58524 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58620 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58624 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58622 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58718 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58722 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58720 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58842 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58846 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58844 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58932 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58936 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:58934 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:58934 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59040 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59044 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59042 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59070 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+INFO:     connection closed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:59042 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59198 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59230 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59244 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:59320 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59364 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59444 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59470 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+INFO:     192.78.10.101:59522 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59528 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59524 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59526 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59614 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59618 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59620 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+INFO:     192.78.10.101:59616 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59694 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59690 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59692 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59692 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59774 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59778 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:59776 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+INFO:     connection closed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:59776 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:59776 - "GET /api/devices/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:59962 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60026 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+INFO:     192.78.10.101:60108 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60106 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60112 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60110 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60174 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60178 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60176 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60176 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     192.78.10.101:60176 - "GET /api/devices HTTP/1.1" 307 Temporary Redirect
+INFO:     192.78.10.101:60176 - "GET /api/devices/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+INFO:     192.78.10.101:60328 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60330 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60334 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60332 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60414 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60418 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60416 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60416 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60506 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60510 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60508 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60530 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60606 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60610 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60608 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60680 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60684 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60682 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60682 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60756 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60760 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60758 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60866 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60870 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60868 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60934 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60938 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:60936 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:60936 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:32776 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32772 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32774 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:32800 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:32868 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32872 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32870 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:32924 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:32930 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32934 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32932 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:32932 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:32988 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33000 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33004 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33002 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33124 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33128 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33126 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33144 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33196 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33200 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33198 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33198 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33320 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+INFO:     192.78.10.101:33322 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33326 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33324 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33434 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33438 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33436 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33506 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33510 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33508 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33508 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33576 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33576 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+INFO:     192.78.10.101:33590 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33594 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33592 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33698 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33702 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33700 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33720 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33770 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33774 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33772 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33772 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33838 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:33842 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:33840 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+INFO:     192.78.10.101:33878 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34308 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34404 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34440 - "WebSocket /ws/alarms" [accepted]
+INFO:     connection open
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34404 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34438 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34436 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34514 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34518 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34516 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34586 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34590 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34588 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34634 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34634 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34670 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34668 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34734 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34738 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34736 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34780 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:34812 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34816 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34814 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34864 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34864 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34890 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34888 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:34976 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34974 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:34972 - "GET /api/tickets/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:35058 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35062 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35060 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35118 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35118 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35142 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35140 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35238 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35242 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35240 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35288 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:35318 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35322 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35320 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35382 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35382 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35400 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35398 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35478 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35482 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35480 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:35546 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35550 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35548 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35604 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35604 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35628 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35626 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35714 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35718 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35716 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35758 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:35786 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35790 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35788 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35840 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35840 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35866 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35864 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:35940 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35944 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:35942 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:36012 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36016 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36014 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36070 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36070 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36090 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36088 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36198 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36202 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36200 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36236 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:36282 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36286 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36284 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36338 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36338 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36360 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36358 - "GET /api/alarms/ HTTP/1.1" 200 OK
+INFO:     connection closed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36446 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36450 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36448 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:36518 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36522 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36520 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36572 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36572 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36590 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36588 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36668 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36672 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36670 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36708 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:36750 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36754 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36752 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36806 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36806 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36828 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36826 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36890 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36894 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36892 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+INFO:     192.78.10.101:36928 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36932 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36930 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:36964 - "GET /api/alarms/?page=1&limit=25 HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36964 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36970 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:36968 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:37020 - "GET /api/tickets/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:37024 - "GET /api/correlated-alarms/ HTTP/1.1" 200 OK
+INFO:     192.78.10.101:37022 - "GET /api/alarms/ HTTP/1.1" 200 OK
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:37042 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:37238 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:37464 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:37644 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:37922 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:38332 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:38778 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:39222 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:39676 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:40126 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:40568 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:40998 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:41458 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:41894 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:42314 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:42758 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:43172 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:43624 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed
+Sync missed tickets failed: All connection attempts failed
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+[ENGINE] -- Cycle start --
+[ENGINE] -- Cycle complete --
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+Error in query loop: name 'text' is not defined
+INFO:     192.78.10.101:44072 - "GET /api_combined_notifications.php HTTP/1.1" 404 Not Found
+Sync missed tickets failed: All connection attempts failed

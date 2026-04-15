@@ -21,18 +21,76 @@ class TicketCreate(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+class IncidentCreate(BaseModel):
+    title: str
+    description: Optional[str] = None
+    device_id: Optional[int] = None
+    device: str
+    host: str
+    ip_address: Optional[str] = None
+    device_type: Optional[str] = None
+    location: Optional[str] = None
+    severity: str
+    priority: Optional[str] = "Medium"
+    correlation_key: Optional[str] = None
+
+class IncidentUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    status: Optional[str] = None
+    severity: Optional[str] = None
+    priority: Optional[str] = None
+    acknowledged: Optional[bool] = None
+    assigned_to: Optional[str] = None
+    team: Optional[str] = None
+    notes: Optional[str] = None
+
 class IncidentResponse(BaseModel):
     id: int
-    ticket_id: str
-    host: str
-    device: str
-    severity: str
-    status: str
-    assigned_to: Optional[str] = None
-    created_time: datetime
-    sla_deadline: Optional[datetime] = None
+    ticket_id: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
+    
+    device_id: Optional[int] = None
+    device: Optional[str] = None
+    host: Optional[str] = None
+    ip_address: Optional[str] = None
+    device_type: Optional[str] = None
+    location: Optional[str] = None
+
+    related_alarm_ids: Optional[list[int]] = []
     occurrence_count: int
+    primary_alarm_type: Optional[str] = None
+
+    severity: str
+    priority: Optional[str] = None
+    status: str
+    acknowledged: bool
+    acknowledged_by: Optional[str] = None
+    ack_time: Optional[datetime] = None
+
+    created_time: datetime
+    updated_at: datetime
+    first_occurrence: Optional[datetime] = None
+    last_occurrence: Optional[datetime] = None
+    resolved_at: Optional[datetime] = None
+
+    correlation_key: Optional[str] = None
+    root_cause: Optional[str] = None
+    symptoms: Optional[str] = None
+
+    assigned_to: Optional[str] = None
+    team: Optional[str] = None
+    
+    cnms_incident_id: Optional[str] = None
+    sync_status: str
+    
+    tags: Optional[list[str]] = []
+    notes: Optional[str] = None
+    auto_created: bool
+
     risk_score: int
+    sla_deadline: Optional[datetime] = None
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -132,6 +190,7 @@ class DeviceCreate(BaseModel):
     ip_address: str
     device_type: str
     location: str
+    vendor: Optional[str] = "Nivetti"
 
 class DeviceResponse(BaseModel):
     id: int
@@ -141,8 +200,13 @@ class DeviceResponse(BaseModel):
     device_type: Optional[str] = None
     location: Optional[str] = None
     status: Optional[str] = None
+    vendor: Optional[str] = "Nivetti"
     created_at: Optional[datetime] = None
     model_config = ConfigDict(from_attributes=True)
+
+class DeviceListResponse(BaseModel):
+    count: int
+    devices: list[DeviceResponse]
 
 class TicketMessageCreate(BaseModel):
     ticket_id: str

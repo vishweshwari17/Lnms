@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from apscheduler.schedulers.background import BackgroundScheduler
 from sqlalchemy.exc import OperationalError, SQLAlchemyError
+from sqlalchemy import text
 
 from app.services.ws_manager import ws_manager
 from app.database import Base, drop_legacy_alarm_trigger, engine, engine2, SessionLocal
@@ -17,8 +18,10 @@ from app.services.cnms_sync import sync_missed_tickets
 
 from app.routers import (
     alarms, tickets, incidents, correlated_alarms,
-    major_incidents, sla, admin, audit_logs, highrisk,
-    integration, devices, escalation, chatbot
+    major_incidents, sla, audit_logs, highrisk,
+    integration, devices, escalation, chatbot,
+    diagnostics, neighbors, metrics, admin
+
 )
 
 from fastapi import APIRouter
@@ -29,12 +32,7 @@ logger = logging.getLogger("lnms.backend")
 # ── CORS — must be registered before any routers ────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
-    ],
+    allow_origins=["*"],  # Allow all origins to resolve connectivity issues across hostnames
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,7 +67,6 @@ async def sqlalchemy_error_handler(request: Request, exc: SQLAlchemyError):
     )
 
 # ── Routers ──────────────────────────────────────────────────────────────────
-app.include_router(admin.router, prefix="/api")
 app.include_router(alarms.router, prefix="/api")
 app.include_router(tickets.router, prefix="/api")
 app.include_router(incidents.router, prefix="/api")
@@ -82,6 +79,11 @@ app.include_router(integration.router, prefix="/api")
 app.include_router(devices.router, prefix="/api")
 app.include_router(escalation.router, prefix="/api")
 app.include_router(chatbot.router, prefix="/api")
+app.include_router(diagnostics.router, prefix="/api")
+app.include_router(neighbors.router, prefix="/api")
+app.include_router(metrics.router, prefix="/api")
+app.include_router(admin.router, prefix="/api")
+
 
 # ── Dashboard stats router ───────────────────────────────────────────────────
 dashboard_router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
@@ -109,36 +111,55 @@ def health():
 # ── WebSocket: live alarm feed ────────────────────────────────────────────────
 clients = []
 
+from fastapi import WebSocketDisconnect
+
 @app.websocket("/ws/alarms")
 async def websocket_alarms(websocket: WebSocket):
     await websocket.accept()
     clients.append(websocket)
-    db = SessionLocal()
     try:
         while True:
-            # Send latest alarm counts and a few recent alarms
-            total = db.query(Alarm).count()
-            recent = db.query(Alarm).order_by(Alarm.alarm_id.desc()).limit(5).all()
-            
-            data = {
-                "total": total,
-                "recent": [
-                    {
-                        "device_name": a.device_name,
-                        "severity": a.severity,
-                        "alarm_name": a.alarm_name,
-                        "status": a.status,
-                        "created_at": a.created_at.isoformat() if a.created_at else None
-                    } for a in recent
-                ]
-            }
-            await websocket.send_json(data)
+            db = SessionLocal()
+            try:
+                from sqlalchemy import text
+                result = db.execute(text("""
+                    SELECT * FROM alarms 
+                    WHERE status IN ('active', 'new', 'OPEN', 'PENDING') 
+                    ORDER BY created_at DESC 
+                    LIMIT 10
+                """))
+                rows = result.fetchall()
+                
+                alarms_list = []
+                for alarm in rows:
+                    alarms_list.append({
+                        "id": alarm[0],
+                        "alarm_id": alarm[1],
+                        "device_name": alarm[2],
+                        "host_name": alarm[3],
+                        "severity": alarm[5],
+                        "alarm_name": alarm[6],
+                        "status": alarm[7],
+                        "created_at": str(alarm[9])
+                    })
+                
+                data = {"type": "ALARM_UPDATE", "alarms": alarms_list}
+                await websocket.send_json(data)
+            except (WebSocketDisconnect, RuntimeError):
+                break
+            except Exception as e:
+                logger.error(f"Error in alarm websocket query: {e}")
+            finally:
+                db.close()
+                
             await asyncio.sleep(10)
-    except Exception:
+    finally:
         if websocket in clients:
             clients.remove(websocket)
-    finally:
-        db.close()
+        try:
+            await websocket.close()
+        except:
+            pass
 
 # ── WebSocket: general ws_manager ────────────────────────────────────────────
 @app.websocket("/ws")

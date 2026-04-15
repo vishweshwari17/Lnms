@@ -15,7 +15,7 @@
 import os
 from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import or_
+from sqlalchemy import or_, text
 from sqlalchemy.orm import Session
 import asyncio
 import httpx
@@ -23,6 +23,7 @@ import httpx
 from app.database import get_lnms_db, SessionLocal, SessionLocal2
 from app.models import Ticket
 from app.models.ticket_messages import TicketMessage
+from app.models.audit_logs import AuditLog
 from app.schemas import (
     TicketCreate,
     TicketResponse,
@@ -36,7 +37,7 @@ router = APIRouter(prefix="/tickets", tags=["Tickets"])
 # ── Change these to match this LNMS node and the real CNMS server ──
 CNMS_BASE_URL = "http://127.0.0.1:8001"
 LNMS_NODE_ID = "LNMS-LOCAL-01"
-CNMS_WEBHOOK_SECRET = os.getenv("CNMS_WEBHOOK_SECRET", "supersecret123")
+CNMS_WEBHOOK_SECRET = "cnms-secret-2026"
 # Example for company node: LNMS_NODE_ID = "COMPANY-SERVER"
 # ───────────────────────────────────────────────────────────────
 
@@ -104,10 +105,28 @@ def _parse_dt(value):
 
 
 def _serialize_ticket(ticket: Ticket) -> dict:
-    result = {c.name: getattr(ticket, c.name) for c in ticket.__table__.columns}
-    result["status"] = _normalize_status(ticket.status)
-    result["global_ticket_id"] = ticket.global_ticket_id or ticket.ticket_id
-    result["resolution_notes"] = ticket.resolution_note
+    # Handle both Ticket (LNMS) and StatusTicket (SPIC)
+    if hasattr(ticket, "__table__"):
+        result = {c.name: getattr(ticket, c.name) for c in ticket.__table__.columns}
+    else:
+        # Fallback for dict-like or other objects if any
+        result = dict(ticket) if isinstance(ticket, dict) else {}
+
+    # Standardize field names for the frontend
+    # LNMS use ticket_id, SPIC use unique_ticket_id
+    tid = getattr(ticket, "ticket_id", None)
+    if hasattr(ticket, "unique_ticket_id"):
+        tid = ticket.unique_ticket_id
+    
+    result["ticket_id"] = tid
+    result["status"] = _normalize_status(getattr(ticket, "status", "OPEN"))
+    result["global_ticket_id"] = getattr(ticket, "global_ticket_id", tid)
+    result["resolution_notes"] = getattr(ticket, "resolution_note", getattr(ticket, "resolution", ""))
+    
+    # Ensure severity is present
+    if "severity" not in result:
+        result["severity"] = getattr(ticket, "severity_calculated", getattr(ticket, "severity", "Minor"))
+        
     return result
 
 
@@ -131,7 +150,7 @@ def _get_ticket_by_identifier(db: Session, ticket_id: str | None):
     if not ticket_id:
         return None
     
-    # If the tag is strictly COMPANY, do not match local LNMS db alarm_id
+    # 1. Search in LNMS DB
     is_company = str(ticket_id).startswith("COMPANY-")
     
     filters = [
@@ -146,7 +165,33 @@ def _get_ticket_by_identifier(db: Session, ticket_id: str | None):
         if alarm_id is not None:
             filters.append(Ticket.alarm_id == alarm_id)
 
-    return db.query(Ticket).filter(or_(*filters)).order_by(Ticket.created_at.desc()).first()
+    ticket = db.query(Ticket).filter(or_(*filters)).order_by(Ticket.created_at.desc()).first()
+    if ticket:
+        return ticket
+
+    # 2. Fallback to SPIC DB (snmp_monitor)
+    try:
+        from app.models.status_tickets import StatusTicket
+        db_spic = SessionLocal2()
+        try:
+            # Map SPIC fields to common names for the detail page
+            st = db_spic.query(StatusTicket).filter(
+                or_(
+                    StatusTicket.unique_ticket_id == ticket_id,
+                    StatusTicket.alarm_id == _alarm_id_from_identifier(ticket_id)
+                )
+            ).first()
+            
+            if st:
+                # Wrap it in a compatible object or dict
+                # For simplicity, we convert it to a Ticket-like object or dict
+                return st
+        finally:
+            db_spic.close()
+    except Exception:
+        pass
+
+    return None
 
 
 def _update_ticket_sync_state(
@@ -361,8 +406,12 @@ async def receive_status_from_cnms(payload: dict, db: Session = Depends(get_lnms
     return {"ok": True, "status": status}
 
 
-@router.api_route("/update_from_cnms", methods=["PUT", "POST"])
-async def update_from_cnms(payload: dict, db: Session = Depends(get_lnms_db)):
+@router.put("/update_from_cnms")
+async def update_from_cnms_put(payload: dict, db: Session = Depends(get_lnms_db)):
+    return await receive_status_from_cnms(payload, db)
+
+@router.post("/update_from_cnms")
+async def update_from_cnms_post(payload: dict, db: Session = Depends(get_lnms_db)):
     return await receive_status_from_cnms(payload, db)
 
 
@@ -425,6 +474,16 @@ async def update_local_ticket_status(
     )
     if not ticket:
         raise HTTPException(404, "Ticket not found")
+        
+    audit = AuditLog(
+        user_name="Admin",
+        action=f"Changed Ticket Status to {data.status}",
+        entity_type="Ticket",
+        entity_id=ticket.id if hasattr(ticket, 'id') else 0
+    )
+    db.add(audit)
+    db.commit()
+    
     return {"message": "Ticket updated", "ticket": ticket}
 
 
@@ -442,9 +501,14 @@ def get_ticket(ticket_id: str, db: Session = Depends(get_lnms_db)):
         raise HTTPException(404, "Ticket not found in LNMS")
 
     # Fetch all chat messages ordered oldest → newest
+    # Use the standardized ID (ticket_id for LNMS, unique_ticket_id for SPIC)
+    tid = getattr(ticket, "ticket_id", None)
+    if hasattr(ticket, "unique_ticket_id"):
+        tid = ticket.unique_ticket_id
+
     messages = (
         db.query(TicketMessage)
-        .filter(TicketMessage.ticket_id == ticket.ticket_id)
+        .filter(TicketMessage.ticket_id == tid)
         .order_by(TicketMessage.created_at.asc())
         .all()
     )
@@ -502,23 +566,34 @@ async def add_message(
     if not ticket:
         raise HTTPException(404, "Ticket not found in LNMS")
 
+    # Use standardized ID for the message table
+    tid = getattr(ticket, "ticket_id", None)
+    if hasattr(ticket, "unique_ticket_id"):
+        tid = ticket.unique_ticket_id
+
     new_msg = TicketMessage(
-        ticket_id  = ticket.ticket_id,
+        ticket_id  = tid,
         sender     = message.sender,
         message    = message.message,
         created_at = datetime.utcnow(),
     )
     db.add(new_msg)
-    ticket.last_updated_by = message.sender
-    ticket.updated_at = datetime.utcnow()
-    ticket.sync_status = "pending"
+    
+    # Update last updated state if possible
+    if hasattr(ticket, "last_updated_by"):
+        ticket.last_updated_by = message.sender
+    if hasattr(ticket, "updated_at"):
+        ticket.updated_at = datetime.utcnow()
+    if hasattr(ticket, "sync_status"):
+        ticket.sync_status = "pending"
+    
     db.commit()
     db.refresh(new_msg)
 
     # Forward this LNMS message to CNMS (non-blocking)
     asyncio.create_task(
         cnms_sync.push_message_to_cnms(
-            ticket_id = ticket.ticket_id,
+            ticket_id = tid,
             sender    = message.sender,
             message   = message.message,
         )

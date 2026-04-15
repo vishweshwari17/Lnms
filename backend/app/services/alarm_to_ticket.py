@@ -75,7 +75,7 @@ async def sync_resolutions_from_sources():
                 logger.info(f"Auto-resolving SPIC ticket {ticket.unique_ticket_id} as alarm {alarm.id} was resolved")
                 # Update local SPIC ticket
                 ticket.status = "Closed"
-                ticket.resolution = "Resolved by SPIC-NMS (Source Alarm)"
+                ticket.resolution = "Resolved by SPIC-NMS"
                 ticket.updated_at = datetime.utcnow()
                 db_spic.commit()
                 
@@ -155,6 +155,11 @@ async def process_lnms_alarms():
                 logger.error(f"Failed to trigger CNMS sync for {new_ticket.ticket_id}: {e}")
 
             logger.info(f"Created ticket {new_ticket.ticket_id} for LNMS alarm {alarm.alarm_id}")
+
+            # --- INCIDENT CORRELATION ---
+            from app.services.incident_service import IncidentService
+            await IncidentService.process_alarm(db, alarm)
+
     except Exception as e:
         db.rollback()
         logger.error(f"Error processing LNMS alarms: {e}")
@@ -231,6 +236,10 @@ async def process_spic_alarms():
                 logger.error(f"Failed to trigger CNMS sync for SPIC {unique_id}: {e}")
 
             logger.info(f"Created SPIC ticket {unique_id} in snmp_monitor for alarm {alarm.id}")
+
+            # --- INCIDENT CORRELATION ---
+            from app.services.incident_service import IncidentService
+            await IncidentService.process_alarm(db_lnms, alarm)
 
     except Exception as e:
         db_lnms.rollback()
