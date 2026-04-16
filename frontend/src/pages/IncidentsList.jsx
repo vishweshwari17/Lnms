@@ -9,7 +9,8 @@ import {
   FaArrowRight,
   FaDesktop,
   FaInfoCircle,
-  FaTimes
+  FaTimes,
+  FaExclamationTriangle
 } from "react-icons/fa";
 import { 
   getIncidents, 
@@ -161,7 +162,7 @@ export default function IncidentDashboard() {
                  ) : incidents.length === 0 ? (
                     <tr><td colSpan="7" className="py-24 text-center text-slate-300 font-black uppercase tracking-widest">No Incidents Reported</td></tr>
                  ) : incidents.map((inc) => (
-                    <tr key={inc.id} className="hover:bg-blue-50/50 transition-all group cursor-pointer" onClick={() => openDetail(inc)}>
+                    <tr key={inc.id} className="transition-all group cursor-pointer" onClick={() => openDetail(inc)}>
                        <td className="px-10 py-6">
                           <div className="text-blue-600 font-black text-xs uppercase tracking-tighter">{inc.ticket_id || `#${inc.id}`}</div>
                        </td>
@@ -255,24 +256,25 @@ export default function IncidentDashboard() {
 }
 
 function SummaryCard({ label, value, icon, color }) {
-  const colors = {
-     blue: "bg-blue-600 shadow-blue-100",
-     rose: "bg-rose-500 shadow-rose-100",
-     amber: "bg-amber-500 shadow-amber-100"
+  const gradientMap = {
+     blue: "var(--grad-blue)",
+     rose: "var(--grad-red)",
+     amber: "var(--grad-orange)"
   };
   
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/30 border border-slate-50 flex items-center justify-between group hover:translate-y-[-5px] transition-all duration-300">
+    <div className={`p-8 rounded-[16px] shadow-lg flex items-center justify-between group hover:translate-y-[-5px] transition-all duration-300 text-white`} style={{ background: gradientMap[color] || gradientMap.blue }}>
        <div>
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{label}</p>
-          <p className="text-4xl font-black text-slate-900 tracking-tighter">{value}</p>
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 opacity-80">{label}</p>
+          <p className="text-4xl font-black tracking-tighter">{value}</p>
        </div>
-       <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center text-white shadow-2xl ${colors[color]} group-hover:scale-110 transition-transform`}>
+       <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center bg-white/20 backdrop-blur-md shadow-2xl group-hover:scale-110 transition-transform`}>
           {icon}
        </div>
     </div>
   );
 }
+
 
 function FilterSelect({ label, value, onChange, options }) {
   return (
@@ -281,7 +283,7 @@ function FilterSelect({ label, value, onChange, options }) {
        <select 
           value={value} 
           onChange={(e) => onChange(e.target.value)}
-          className="bg-transparent border-none p-0 text-[11px] font-black text-slate-600 focus:ring-0 uppercase cursor-pointer"
+          className="bg-transparent border-none p-0 text-[11px] font-black text-slate-900 focus:ring-0 uppercase cursor-pointer"
        >
           {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
        </select>

@@ -1,12 +1,9 @@
-// src/pages/Tickets.jsx  (LNMS)
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import api, { getTickets, acknowledgeTicket, resolveTicket } from "../api/api";
-import StatusBadge from "../components/StatusBadge";
 import { 
   Plus, 
   Search, 
-  Filter, 
   RefreshCcw, 
   ChevronLeft, 
   ChevronRight, 
@@ -14,12 +11,16 @@ import {
   Bell, 
   CheckCircle, 
   Clock,
-  TrendingUp,
   Zap,
-  Calendar
+  Calendar,
+  ExternalLink
 } from "lucide-react";
-import Sparkline from "../components/Sparkline";
 import toast from "react-hot-toast";
+
+import KPICard from "../components/KPICard";
+import SeverityBadge from "../components/SeverityBadge";
+import StatusBadge from "../components/StatusBadge";
+import FilterSelect from "../components/FilterSelect";
 
 const SEVERITY_ORDER = { Critical: 3, Major: 2, Minor: 1, Warning: 0 };
 const VALID_FILTER_STATUSES = ["All", "OPEN", "ACK", "RESOLVED", "CLOSED"];
@@ -43,15 +44,6 @@ export default function Tickets() {
   const prevTicketIds = useRef(new Set());
   const isFirstLoad = useRef(true);
 
-  const formatTime = (time) => {
-    if (!time) return "\u2014";
-    return new Date(time).toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-      year: "numeric", month: "numeric", day: "numeric",
-      hour: "2-digit", minute: "2-digit", hour12: true,
-    });
-  };
-
   const fetchTickets = useCallback(async () => {
     setLoading(true);
     try {
@@ -68,27 +60,26 @@ export default function Tickets() {
         setTotal(data.total);
         setTotalPages(data.total_pages);
 
-        // Check for new tickets
         if (!isFirstLoad.current) {
           const newTickets = data.tickets.filter(t => !prevTicketIds.current.has(t.ticket_id));
           if (newTickets.length > 0) {
             newTickets.forEach(t => {
               toast.custom((toastObj) => (
-                <div className={`${toastObj.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-2xl rounded-[1.5rem] pointer-events-auto flex ring-1 ring-black ring-opacity-5 border-l-8 border-indigo-500`}>
+                <div className={`${toastObj.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-slate-900 shadow-2xl rounded-2xl pointer-events-auto flex border-l-4 border-blue-500 text-white`}>
                   <div className="flex-1 w-0 p-4">
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 pt-0.5 text-indigo-500">
-                        <Bell size={24} />
+                      <div className="flex-shrink-0 pt-0.5 text-blue-500">
+                        <Bell size={20} />
                       </div>
                       <div className="ml-3 flex-1">
-                        <p className="text-xs font-black text-slate-400 uppercase tracking-widest">New Ticket Generated</p>
-                        <p className="mt-1 text-sm font-bold text-slate-900">{t.title}</p>
-                        <p className="mt-1 text-xs text-slate-500 font-medium">{t.device_name} — {t.severity_calculated}</p>
+                        <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">New Ticket</p>
+                        <p className="mt-1 text-sm font-bold">{t.title}</p>
+                        <p className="mt-1 text-xs text-slate-400">{t.device_name} &bull; {t.severity_calculated}</p>
                       </div>
                     </div>
                   </div>
-                  <div className="flex border-l border-gray-200">
-                    <button onClick={() => toast.dismiss(toastObj.id)} className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-black text-indigo-600 hover:text-indigo-500 focus:outline-none">Close</button>
+                  <div className="flex border-l border-slate-800">
+                    <button onClick={() => toast.dismiss(toastObj.id)} className="w-full border border-transparent rounded-none rounded-r-2xl p-4 flex items-center justify-center text-xs font-black text-slate-400 hover:text-white transition-colors uppercase">Dismiss</button>
                   </div>
                 </div>
               ), { duration: 6000 });
@@ -96,7 +87,6 @@ export default function Tickets() {
           }
         }
         
-        // Update refs
         prevTicketIds.current = new Set(data.tickets.map(t => t.ticket_id));
         isFirstLoad.current = false;
       }
@@ -118,42 +108,38 @@ export default function Tickets() {
     e.stopPropagation();
     try {
       await acknowledgeTicket(id);
-      toast.success("Ticket Acknowledged");
+      toast.success("Engagement logged");
       fetchTickets();
     } catch (err) {
-      toast.error("Failed to acknowledge");
+      toast.error("Operation failed");
     }
   };
 
   const handleResolve = async (e, id) => {
     e.preventDefault();
     e.stopPropagation();
-    const notes = window.prompt("Resolution notes:");
+    const notes = window.prompt("Tactical resolution notes:");
     if (notes === null) return;
     try {
       await resolveTicket(id, { resolution_notes: notes });
-      toast.success("Ticket Resolved");
+      toast.success("Incident resolved");
       fetchTickets();
     } catch (err) {
-      toast.error("Failed to resolve");
+      toast.error("Resolution failure");
     }
   };
 
-  const openCount = Array.isArray(tickets) ? tickets.filter(t => t.status === "OPEN").length : 0;
-  const ackCount = Array.isArray(tickets) ? tickets.filter(t => t.status === "ACK").length : 0;
-  const resolvedCount = Array.isArray(tickets) ? tickets.filter(t => t.status === "RESOLVED").length : 0;
-  const closedCount = Array.isArray(tickets) ? tickets.filter(t => t.status === "CLOSED").length : 0;
-  const syncedCount = tickets.filter(t => t.sync_status === "synced").length;
-  const pendingCount = tickets.filter(t => t.sync_status === "pending").length;
+  const counts = {
+    open: tickets.filter(t => t.status === "OPEN").length,
+    ack: tickets.filter(t => t.status === "ACK").length,
+    resolved: tickets.filter(t => t.status === "RESOLVED").length,
+    critical: tickets.filter(t => t.severity_calculated === "Critical").length
+  };
 
   const filteredTickets = useMemo(() => {
     let data = [...tickets];
-    if (filter !== "All") {
-      data = data.filter(t => t.status === filter);
-    }
-    if (severityFilter !== "All") {
-      data = data.filter(t => t.severity_calculated === severityFilter);
-    }
+    if (filter !== "All") data = data.filter(t => t.status === filter);
+    if (severityFilter !== "All") data = data.filter(t => t.severity_calculated === severityFilter);
     if (search) {
       const term = search.toLowerCase();
       data = data.filter(t =>
@@ -168,330 +154,181 @@ export default function Tickets() {
 
   const sortedTickets = useMemo(() => {
     if (!sortSeverity) return filteredTickets;
-    return [...filteredTickets].sort(
-      (a, b) =>
-        (SEVERITY_ORDER[b.severity_calculated] || 0) -
-        (SEVERITY_ORDER[a.severity_calculated] || 0)
-    );
-  }, [filteredTickets, sortSeverity]);  return (
-    <div className="space-y-6">
-      {/* HEADER SECTION */}
-      <div className="flex justify-between items-center premium-card p-6 border-b border-white/5 bg-white/5">
-        <div>
-          <h1 className="text-2xl font-black text-white tracking-tighter">TICKET OPERATIONS</h1>
-          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-400 mt-1">
-             Status: <span className="text-emerald-400">Tactical Secure</span> &bull; LNMS_PRO_MODE
+    return [...filteredTickets].sort((a, b) => (SEVERITY_ORDER[b.severity_calculated] || 0) - (SEVERITY_ORDER[a.severity_calculated] || 0));
+  }, [filteredTickets, sortSeverity]);
+
+  return (
+    <div className="space-y-8">
+      {/* HEADER */}
+      <div className="flex justify-between items-center bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/50 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+        
+        <div className="relative z-10">
+          <h1 className="page-title tracking-tighter uppercase">Incident Registry</h1>
+          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 mt-1 flex items-center gap-2">
+             <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse shadow-indigo-200 shadow-lg" />
+             Strategic Dispatch &bull; LNMS Operations Tier 1
           </p>
         </div>
         
-        <div className="flex items-center gap-6">
-           <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-xl border border-white/5 group-hover:border-blue-500/30 transition-all">
-              <Zap size={14} className="text-blue-400 animate-pulse" />
-              <span className="text-[10px] font-black text-white tracking-widest uppercase">Live Auto-Sync</span>
-           </div>
-           <button 
-             onClick={() => fetchTickets()}
-             className="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20 group"
-           >
-             <RefreshCcw size={16} className={`${loading ? "animate-spin" : ""} group-hover:scale-110`} />
-           </button>
+        <div className="flex items-center gap-4 relative z-10">
+          <button 
+            onClick={() => fetchTickets()}
+            className="w-12 h-12 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-500 hover:text-indigo-600 transition-all hover:shadow-xl active:scale-95 group"
+          >
+            <RefreshCcw size={18} className={loading ? "animate-spin" : "group-hover:rotate-180 transition-transform duration-500"} />
+          </button>
+          <div className="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-2xl border border-slate-100">
+            <Zap size={14} className="text-indigo-500 animate-pulse" />
+            <span className="text-[11px] font-black text-indigo-600 uppercase tracking-widest">Master Auth</span>
+          </div>
         </div>
       </div>
 
       {/* KPI SECTION */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <PremiumKPICard title="Total" value={total} color="blue" trend={[20, 22, 18, 25, 23, 27]} />
-        <PremiumKPICard title="Open" value={openCount} color="rose" trend={[5, 8, 4, 9, 6, 10]} />
-        <PremiumKPICard title="Acknowledged" value={ackCount} color="amber" trend={[10, 12, 11, 14, 13, 15]} />
-        <PremiumKPICard title="Resolved" value={resolvedCount} color="emerald" trend={[100, 105, 102, 108, 110, 115]} />
-        <PremiumKPICard title="Synced" value={syncedCount} color="blue" trend={[50, 55, 52, 58, 60, 65]} />
-        <PremiumKPICard title="Pending" value={pendingCount} color="amber" trend={[2, 1, 3, 0, 2, 1]} />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <KPICard label="Active Pool" value={total} color="blue" icon={<TicketIcon />} loading={loading} trend={[20, 22, 18, 25, 23, 27]} />
+        <KPICard label="Critical" value={counts.critical} color="red" icon={<Zap />} loading={loading} trend={[5, 8, 4, 9, 6, 10]} />
+        <KPICard label="Acknowledged" value={counts.ack} color="amber" icon={<Clock />} loading={loading} trend={[10, 12, 11, 14, 13, 15]} />
+        <KPICard label="Resolved Today" value={counts.resolved} color="green" icon={<CheckCircle />} loading={loading} trend={[100, 105, 102, 108, 110, 115]} />
       </div>
 
-      {/* FILTERS & TABLE */}
-      <div className="card space-y-6">
-        <div className="flex flex-col lg:flex-row justify-between gap-4">
-          <div className="flex gap-1 p-1 bg-gray-50 rounded-lg border border-gray-100 w-fit">
-            {VALID_FILTER_STATUSES.map(tab => (
-              <button
-                key={tab}
-                onClick={() => setFilter(tab)}
-                className={`px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${
-                  filter === tab
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-white/40 hover:text-white"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+      {/* FILTERS & SEARCH */}
+      <div className="card shadow-sm border-slate-100 p-8 space-y-8">
+        <div className="flex flex-col lg:flex-row justify-between gap-6">
+          <div className="flex flex-wrap gap-4 items-end flex-1">
+             <div className="flex flex-col gap-1.5 flex-1 min-w-[300px]">
+               <span className="section-title !mb-0 text-[9px]">Insight Search</span>
+               <div className="relative">
+                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                 <input 
+                   type="text"
+                   placeholder="Identify by Ticket Code, Subject or Host..."
+                   value={search}
+                   onChange={(e) => setSearch(e.target.value)}
+                   className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-12 pr-6 py-3 body-text font-bold outline-none focus:ring-4 focus:ring-blue-50 transition-all"
+                 />
+               </div>
+             </div>
+
+             <FilterSelect value={filter} onChange={setFilter} options={VALID_FILTER_STATUSES} label="Lifecycle Status" />
+             <FilterSelect value={severityFilter} onChange={setSeverityFilter} options={["All", "Critical", "Major", "Minor"]} label="Priority Profile" />
           </div>
 
-          <div className="flex flex-wrap gap-3 items-center">
-            <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-100 rounded-lg">
-               <Calendar size={14} className="text-gray-400" />
-               <input 
-                 type="date"
-                 value={startDate}
-                 onChange={(e) => { setStartDate(e.target.value); setCurrentPage(1); }}
-                 className="bg-transparent body-text font-bold outline-none text-xs"
-               />
-               <span className="small-meta font-bold">to</span>
-               <input 
-                 type="date"
-                 value={endDate}
-                 onChange={(e) => { setEndDate(e.target.value); setCurrentPage(1); }}
-                 className="bg-transparent body-text font-bold outline-none text-xs"
-               />
+          <div className="flex flex-wrap gap-4 items-end">
+            <div className="flex flex-col gap-1.5">
+               <span className="section-title !mb-0 text-[9px]">Temporal Range</span>
+               <div className="flex items-center gap-3 px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl">
+                  <Calendar size={14} className="text-slate-400" />
+                  <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="bg-transparent text-xs font-black outline-none" />
+                  <span className="text-[10px] font-black text-slate-300">TO</span>
+                  <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="bg-transparent text-xs font-black outline-none" />
+               </div>
             </div>
 
-            <div className="relative min-w-[200px]">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/20" size={14} />
-              <input
-                type="text"
-                placeholder="Search tickets..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-4 py-2 text-xs font-black text-white outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-              />
-            </div>
-            
-            <select
-              value={severityFilter}
-              onChange={e => setSeverityFilter(e.target.value)}
-              className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs font-black text-white outline-none cursor-pointer"
+            <button 
+              onClick={() => { setSearch(""); setSeverityFilter("All"); setFilter("All"); setStartDate(""); setEndDate(""); }}
+              className="px-6 py-3 text-[10px] font-black text-slate-400 hover:text-rose-600 transition-colors uppercase tracking-widest"
             >
-              <option value="All" className="bg-[#020617]">All Severity</option>
-              <option className="bg-[#020617]">Critical</option>
-              <option className="bg-[#020617]">Major</option>
-              <option className="bg-[#020617]">Minor</option>
-            </select>
+              Reset Registry
+            </button>
           </div>
         </div>
 
-        <div className="card space-y-6 !p-0 overflow-hidden">
+        {/* TABLE Area */}
+        <div className="overflow-hidden border border-slate-100 rounded-2xl">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="table-header table-cell text-slate-400">ID</th>
-                <th className="table-header table-cell text-slate-700">Ticket Details</th>
-                <th className="table-header table-cell text-slate-700">Asset</th>
-                <th
-                  className="table-header table-cell cursor-pointer hover:text-blue-600 text-slate-700"
-                  onClick={() => setSortSeverity(s => !s)}
-                >
-                  Severity {sortSeverity ? "↓" : "↕"}
+              <tr className="bg-slate-50/50">
+                <th className="table-header table-cell">Ticket ID</th>
+                <th className="table-header table-cell">Incident Subject</th>
+                <th className="table-header table-cell">Asset Origin</th>
+                <th className="table-header table-cell cursor-pointer group" onClick={() => setSortSeverity(s => !s)}>
+                   <div className="flex items-center gap-2">
+                     Priority {sortSeverity ? "↓" : "↕"}
+                   </div>
                 </th>
-                <th className="table-header table-cell text-slate-700">Status</th>
-                <th className="table-header table-cell text-slate-700">Sync</th>
-                <th className="table-header table-cell text-center text-slate-700">Action</th>
+                <th className="table-header table-cell text-center">Lifecycle</th>
+                <th className="table-header table-cell text-center text-slate-300">Sync Status</th>
+                <th className="table-header table-cell text-right">Ops</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-slate-50">
               {loading ? (
-                <tr>
-                  <td colSpan={7} className="text-center py-20">
-                    <RefreshCcw className="animate-spin text-blue-primary mx-auto mb-2" size={24} />
-                    <p className="body-text text-gray-400">Syncing tickets...</p>
-                  </td>
-                </tr>
+                <tr><td colSpan={7} className="table-cell text-center py-20 animate-pulse font-black text-slate-300 uppercase tracking-widest">Hydrating data vectors...</td></tr>
               ) : sortedTickets.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-20">
-                    <div className="text-gray-200 mb-2"><TicketIcon size={48} className="mx-auto" /></div>
-                    <p className="body-text font-bold text-gray-500">No tickets found</p>
-                    <p className="small-meta">Adjust your filters to see more results</p>
+                  <td colSpan={7} className="table-cell text-center py-20">
+                    <TicketIcon className="mx-auto text-slate-200 mb-4" size={48} />
+                    <p className="body-text font-black text-slate-400 uppercase tracking-widest">No active logs</p>
                   </td>
                 </tr>
-              ) : sortedTickets.map(ticket => {
-                const ticketIdentifier = ticket.ticket_id || ticket.global_ticket_id;
-                return (
-                  <tr key={ticketIdentifier} className="hover:bg-gray-50/50 transition-colors cursor-pointer group">
-                    <td className="table-cell font-bold text-blue-primary">
-                      {ticketIdentifier.slice(0, 10)}
+              ) : (
+                sortedTickets.map((t) => (
+                  <tr key={t.ticket_id} className="hover:bg-slate-50/50 cursor-pointer transition-colors group" onClick={() => navigate(`/tickets/${t.ticket_id}`)}>
+                    <td className="table-cell font-black text-blue-primary text-xs uppercase">{t.ticket_id.slice(0, 10)}</td>
+                    <td className="table-cell">
+                      <div className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{t.title}</div>
+                      <div className="text-[10px] font-black text-slate-400 tracking-tighter uppercase">{new Date(t.created_at).toLocaleString()}</div>
                     </td>
                     <td className="table-cell">
-                      <div className="body-text font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{ticket.title}</div>
-                      <div className="small-meta mt-0.5">{formatTime(ticket.created_at)}</div>
+                      <div className="font-bold text-slate-700">{t.device_name}</div>
+                      <div className="text-[10px] font-black text-slate-400 tracking-tighter uppercase">{t.ip_address || "UNMAPPED"}</div>
                     </td>
-                    <td className="table-cell">
-                      <div className="body-text text-slate-700">{ticket.device_name}</div>
-                      <div className="small-meta">{ticket.ip_address || "N/A"}</div>
+                    <td className="table-cell"><SeverityBadge sev={t.severity_calculated} /></td>
+                    <td className="table-cell"><div className="flex justify-center"><StatusBadge status={t.status} /></div></td>
+                    <td className="table-cell align-middle">
+                       <div className="flex justify-center items-center gap-2 opacity-50">
+                          <div className={`w-1.5 h-1.5 rounded-full ${t.sync_status === 'synced' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
+                          <span className="text-[9px] font-black uppercase">{t.sync_status || 'pending'}</span>
+                       </div>
                     </td>
-                    <td className="table-cell">
-                      <SeverityBadge sev={ticket.severity_calculated} />
-                    </td>
-                    <td className="table-cell">
-                      <StatusBadge status={ticket.status} />
-                    </td>
-                    <td className="table-cell">
-                      <SyncBadge status={ticket.sync_status || "pending"} pushPending={!ticket.sent_to_cnms_at} />
-                    </td>
-                    <td className="table-cell">
-                      <div className="flex items-center justify-center gap-2">
-                        {ticket.status === "OPEN" && (
-                          <button 
-                            onClick={(e) => handleAck(e, ticketIdentifier)}
-                            className="p-1.5 text-amber-600 hover:bg-amber-50 rounded-md transition-colors"
-                            title="Acknowledge"
-                          >
-                            <Clock size={14} />
-                          </button>
-                        )}
-                        {ticket.status !== "RESOLVED" && ticket.status !== "CLOSED" && (
-                          <button 
-                            onClick={(e) => handleResolve(e, ticketIdentifier)}
-                            className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-md transition-colors"
-                            title="Resolve"
-                          >
-                            <CheckCircle size={14} />
-                          </button>
-                        )}
-                        <Link
-                          to={"/tickets/" + ticketIdentifier}
-                          className="p-1.5 text-blue-primary hover:bg-blue-50 rounded-md transition-colors"
-                        >
-                          <ChevronRight size={14} />
-                        </Link>
-                      </div>
+                    <td className="table-cell text-right" onClick={(e) => e.stopPropagation()}>
+                       <div className="flex justify-end items-center gap-3">
+                          {t.status === "OPEN" && (
+                            <button onClick={(e) => handleAck(e, t.ticket_id)} className="p-2 text-amber-500 hover:bg-amber-50 rounded-xl bg-transparent transition-all"><Clock size={16} /></button>
+                          )}
+                          {t.status !== "RESOLVED" && t.status !== "CLOSED" && (
+                            <button onClick={(e) => handleResolve(e, t.ticket_id)} className="p-2 text-emerald-500 hover:bg-emerald-50 rounded-xl bg-transparent transition-all"><CheckCircle size={16} /></button>
+                          )}
+                          <button className="p-2 text-blue-primary hover:bg-blue-50 rounded-xl bg-transparent transition-all"><ExternalLink size={16} /></button>
+                       </div>
                     </td>
                   </tr>
-                );
-              })}
+                ))
+              )}
             </tbody>
           </table>
         </div>
 
-        {/* PAGINATION */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-50">
-          <div className="flex items-center gap-4">
-             <div className="flex items-center gap-2">
-               <span className="small-meta uppercase font-bold">Rows</span>
-               <select
-                 value={rowsPerPage}
-                 onChange={e => {
-                   setRowsPerPage(Number(e.target.value));
-                   setCurrentPage(1);
-                 }}
-                 className="bg-gray-50 border border-gray-100 rounded-lg px-2 py-1 body-text font-bold outline-none text-xs"
-               >
-                 {[10, 25, 50, 100].map(n => <option key={n} value={n}>{n}</option>)}
+        {/* Pagination */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-6 px-2">
+          <div className="flex items-center gap-6">
+             <div className="flex items-center gap-3">
+               <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Density</span>
+               <select value={rowsPerPage} onChange={(e) => { setRowsPerPage(Number(e.target.value)); setCurrentPage(1); }} className="bg-slate-50 border border-slate-100 rounded-xl px-3 py-1.5 text-xs font-black outline-none cursor-pointer">
+                 {[10, 25, 50, 100].map(n => <option key={n} value={n}>{n} LOGS</option>)}
                </select>
              </div>
-             <div className="w-px h-4 bg-gray-200" />
-             <p className="small-meta">
-               Showing <span className="font-bold text-gray-900">{(currentPage - 1) * rowsPerPage + 1} - {Math.min(currentPage * rowsPerPage, total)}</span> of {total}
+             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                LOG { (currentPage-1)*rowsPerPage + 1} &mdash; {Math.min(currentPage*rowsPerPage, total)} OF {total}
              </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-              disabled={currentPage === 1}
-              className="p-2 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-30"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <div className="flex items-center gap-1">
-               {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(p => p === 1 || p === totalPages || (p >= currentPage -1 && p <= currentPage + 1))
-                .map((p, i, arr) => (
-                  <div key={p} className="flex items-center gap-1">
-                    {i > 0 && p - arr[i-1] > 1 && <span className="small-meta px-1">...</span>}
-                    <button
-                      onClick={() => setCurrentPage(p)}
-                      className={`min-w-[32px] h-8 px-2 rounded-lg text-xs font-bold transition-all ${
-                        currentPage === p 
-                          ? "bg-blue-primary text-white shadow-sm" 
-                          : "text-gray-500 hover:bg-gray-50"
-                      }`}
-                    >
-                      {p}
-                    </button>
+          <div className="flex items-center gap-3">
+            <button disabled={currentPage === 1} onClick={() => setCurrentPage(p => Math.max(1, p - 1))} className="w-10 h-10 flex items-center justify-center border border-slate-100 rounded-xl hover:bg-slate-50 disabled:opacity-20 transition-colors"><ChevronLeft size={16} /></button>
+            <div className="flex items-center gap-1.5">
+               {Array.from({ length: totalPages }, (_, i) => i + 1).filter(p => p === 1 || p === totalPages || (p >= currentPage - 1 && p <= currentPage + 1)).map((p, i, arr) => (
+                  <div key={p} className="flex items-center gap-1.5">
+                    {i > 0 && p - arr[i-1] > 1 && <span className="text-slate-300 px-1 font-black">...</span>}
+                    <button onClick={() => setCurrentPage(p)} className={`w-10 h-10 rounded-xl text-xs font-black transition-all ${currentPage === p ? "bg-slate-900 text-white shadow-xl shadow-slate-200" : "text-slate-400 hover:bg-slate-50"}`}>{p}</button>
                   </div>
-                ))
-               }
+                ))}
             </div>
-            <button
-              onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className="p-2 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-30"
-            >
-              <ChevronRight size={16} />
-            </button>
+            <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} className="w-10 h-10 flex items-center justify-center border border-slate-100 rounded-xl hover:bg-slate-50 disabled:opacity-20 transition-colors"><ChevronRight size={16} /></button>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function PremiumKPICard({ title, value, color, trend }) {
-  const colorMap = {
-     blue: "text-blue-400 border-blue-500/10 bg-blue-500/5",
-     rose: "text-rose-400 border-rose-500/10 bg-rose-500/5",
-     amber: "text-amber-400 border-amber-500/10 bg-amber-500/5",
-     emerald: "text-emerald-400 border-emerald-500/10 bg-emerald-500/5"
-  };
-
-  const sparkColorMap = {
-     blue: "#3b82f6",
-     rose: "#f43f5e",
-     amber: "#fbbf24",
-     emerald: "#10b981"
-  };
-
-  return (
-    <div className={`premium-card p-5 flex flex-col gap-3 group hover:bg-white/[0.05] transition-all ${colorMap[color] || colorMap.blue}`}>
-      <div className="flex justify-between items-start">
-        <p className="text-[9px] uppercase font-black tracking-widest opacity-40">{title}</p>
-        <Sparkline data={trend} color={sparkColorMap[color] || "#3b82f6"} height={20} width={80} />
-      </div>
-      <div className="flex items-baseline gap-2">
-        <p className="text-2xl font-black tracking-tighter tabular-nums text-white">{value.toLocaleString()}</p>
-        <div className="flex items-center gap-1 text-[8px] font-bold text-emerald-400 bg-emerald-400/5 px-1 rounded transition-all group-hover:bg-emerald-400/10">
-           <TrendingUp size={8} /> +
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function KPICard({ title, value, color }) {
-  return <PremiumKPICard title={title} value={value} color={color} trend={[10, 15, 8, 12, 14, 18]} />;
-}
-
-function SeverityBadge({ sev }) {
-  const styles = {
-    Critical: "bg-red-50 text-red-600 border-red-100",
-    Major: "bg-amber-50 text-amber-600 border-amber-100",
-    Minor: "bg-blue-50 text-blue-primary border-blue-100",
-    Warning: "bg-gray-50 text-gray-600 border-gray-100",
-  };
-  return (
-    <span className={`label-badge px-2 py-0.5 rounded border ${styles[sev] || styles.Warning}`}>
-      {sev || "\u2014"}
-    </span>
-  );
-}
-
-function SyncBadge({ status, pushPending }) {
-  const styles = {
-    synced: "bg-emerald-500",
-    pending: "bg-amber-500",
-    out_of_sync: "bg-red-500",
-    conflict: "bg-purple-600",
-  };
-  const key = status?.toLowerCase() in styles ? status.toLowerCase() : "pending";
-  return (
-    <div className="flex flex-col gap-1">
-      <div className="flex items-center gap-2">
-        <div className={`w-1.5 h-1.5 rounded-full ${styles[key]} ${key === 'pending' ? 'animate-pulse' : ''}`} />
-        <span className="small-meta font-bold uppercase tracking-tighter opacity-70">{status || "Waiting"}</span>
-      </div>
-      {pushPending && (
-        <span className="text-[9px] font-bold text-amber-600 uppercase tracking-tighter bg-amber-50 px-1 rounded w-fit">Push Pending</span>
-      )}
     </div>
   );
 }

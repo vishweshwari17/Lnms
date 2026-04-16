@@ -1,59 +1,47 @@
-export default function SLARisk(){
+import React from 'react';
 
-return(
+export default function SLARisk() {
+  const risks = [
+    { label: "Critical Risk", value: 3, total: 20, color: "bg-rose-500", text: "text-rose-600", bg: "bg-rose-50" },
+    { label: "Major Risk", value: 5, total: 20, color: "bg-amber-500", text: "text-amber-600", bg: "bg-amber-50" },
+    { label: "SLA Compliant", value: 12, total: 20, color: "bg-emerald-500", text: "text-emerald-600", bg: "bg-emerald-50" }
+  ];
 
-<div className="bg-white p-6 rounded-xl shadow">
+  return (
+    <div className="space-y-6">
+      {risks.map((risk, idx) => (
+        <div key={idx} className="group">
+          <div className="flex justify-between items-end mb-2">
+            <div>
+               <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.15em] leading-none mb-1">{risk.label}</p>
+               <h4 className={`text-xl font-black tracking-tighter ${risk.text}`}>{risk.value} <span className="text-xs opacity-50 font-medium">Assets</span></h4>
+            </div>
+            <span className="text-[10px] font-black text-slate-300">LIMIT: {risk.total}</span>
+          </div>
 
-<h2 className="font-semibold text-gray-700 mb-6">
-SLA Risk Monitor
-</h2>
+          <div className="flex gap-1 h-3">
+            {[...Array(15)].map((_, i) => {
+               const percentage = (risk.value / risk.total) * 15;
+               const isActive = i < percentage;
+               return (
+                 <div 
+                   key={i} 
+                   className={`flex-1 rounded-sm transition-all duration-500 ${isActive ? risk.color : 'bg-slate-100'}`}
+                   style={{ 
+                     opacity: isActive ? 1 : 0.2,
+                     boxShadow: isActive ? `0 0 8px ${risk.color.replace('bg-', '')}` : 'none'
+                   }} 
+                 />
+               );
+            })}
+          </div>
+        </div>
+      ))}
 
-<div className="space-y-4">
-
-<div>
-
-<div className="flex justify-between text-sm mb-1">
-<span>High Risk</span>
-<span className="text-red-500 font-semibold">3</span>
-</div>
-
-<div className="w-full bg-gray-200 h-2 rounded">
-<div className="bg-red-500 h-2 rounded w-1/5"></div>
-</div>
-
-</div>
-
-
-<div>
-
-<div className="flex justify-between text-sm mb-1">
-<span>Medium Risk</span>
-<span className="text-yellow-500 font-semibold">5</span>
-</div>
-
-<div className="w-full bg-gray-200 h-2 rounded">
-<div className="bg-yellow-500 h-2 rounded w-2/5"></div>
-</div>
-
-</div>
-
-
-<div>
-
-<div className="flex justify-between text-sm mb-1">
-<span>Safe</span>
-<span className="text-green-500 font-semibold">12</span>
-</div>
-
-<div className="w-full bg-gray-200 h-2 rounded">
-<div className="bg-green-500 h-2 rounded w-3/5"></div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-);
+      <div className="pt-4 border-t border-slate-50 flex justify-between items-center">
+        <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Global Priority</span>
+        <button className="text-[9px] font-black text-blue-600 uppercase tracking-widest hover:underline">Full Analytics</button>
+      </div>
+    </div>
+  );
 }

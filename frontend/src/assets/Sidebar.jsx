@@ -38,19 +38,21 @@ const CollapsibleSection = ({ label, Icon, children, collapsed, defaultOpen = fa
   );
 };
 
-export default function Sidebar() {
+export default function Sidebar({ mobileMenuOpen, setMobileMenuOpen }) {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
 
   const NavLink = ({ to, label, Icon, badge }) => (
-    <Link to={to} className={`flex items-center gap-3 px-4 py-2.5 rounded-xl body-text transition-all duration-300 sidebar-item group
+    <Link to={to} 
+      onClick={() => window.innerWidth < 1024 && setMobileMenuOpen(false)}
+      className={`flex items-center gap-3 px-4 py-2.5 rounded-xl body-text transition-all duration-300 sidebar-item group
       ${isActive(to) 
         ? "active-item shadow-lg" 
         : "text-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.05)] hover:text-white"}`}>
       <Icon size={18} className={`shrink-0 ${isActive(to) ? "text-white" : "text-blue-400 group-hover:text-white"}`} />
-      {!collapsed && <span className="flex-1 truncate font-black tracking-tight">{label}</span>}
+      {(!collapsed || window.innerWidth < 1024) && <span className="flex-1 truncate font-black tracking-tight">{label}</span>}
       {badge && (
         <span className={`ml-auto text-[10px] font-black px-2 py-0.5 rounded-lg min-w-5 text-center shadow-inner ${
             isActive(to) ? "bg-white/20 text-white" : "bg-red-500 text-white"
@@ -62,7 +64,11 @@ export default function Sidebar() {
   );
 
   return (
-    <div className={`text-white h-full shrink-0 flex flex-col transition-all duration-500 ${collapsed ? "w-20" : "w-72"} border-r border-white/10 shadow-2xl overflow-hidden z-[60] app-sidebar`} style={{ background: "var(--blue-grad-sidebar)" }}>
+    <div className={`fixed inset-y-0 left-0 z-[70] lg:static text-white h-full shrink-0 flex flex-col transition-all duration-500 
+      ${collapsed ? "lg:w-20" : "lg:w-72"} 
+      ${mobileMenuOpen ? "translate-x-0 w-72" : "-translate-x-full lg:translate-x-0"}
+      border-r border-white/10 shadow-2xl overflow-hidden app-sidebar`}>
+
 
       {/* Header */}
       <div className={`flex items-center border-b border-white/10 px-6 py-6 ${collapsed ? "justify-center" : "justify-between"}`}>

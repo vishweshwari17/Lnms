@@ -1,15 +1,19 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { 
   FaServer, 
-  FaSearch, 
   FaSyncAlt, 
   FaDesktop, 
   FaNetworkWired,
-  FaArrowRight
+  FaArrowRight,
+  FaSearch
 } from "react-icons/fa";
 import toast from "react-hot-toast";
+
+import KPICard from "../components/KPICard";
+import StatusBadge from "../components/StatusBadge";
+import FilterSelect from "../components/FilterSelect";
 
 export default function DevicesDashboard() {
   const navigate = useNavigate();
@@ -32,7 +36,7 @@ export default function DevicesDashboard() {
       setDevices(res.data.devices || []);
     } catch (err) {
       console.error("Failed to fetch devices", err);
-      toast.error("Failed to load devices");
+      toast.error("Asset registry inaccessible");
     } finally {
       setLoading(false);
     }
@@ -40,13 +44,14 @@ export default function DevicesDashboard() {
 
   const handleSync = async () => {
     setSyncing(true);
+    const syncToast = toast.loading("Scanning network perimeter...");
     try {
       await api.post("devices/sync");
-      toast.success("Devices synchronized successfully");
+      toast.success("Infrastructure synchronized", { id: syncToast });
       fetchDevices();
     } catch (err) {
       console.error("Sync failed", err);
-      toast.error("Synchronization failed");
+      toast.error("Synchronization failure", { id: syncToast });
     } finally {
       setSyncing(false);
     }
@@ -64,97 +69,102 @@ export default function DevicesDashboard() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* HEADER */}
-      <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-        <div>
-          <h1 className="page-title mb-0">Core Inventory</h1>
-          <p className="small-meta uppercase tracking-wider">
-            {counts.total} Infrastructure Assets Managed
+      <div className="flex justify-between items-center bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+        
+        <div className="relative z-10">
+          <h1 className="page-title tracking-tighter uppercase">Inventory Core</h1>
+          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mt-1 flex items-center gap-2">
+             <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" />
+             Active Asset Management &bull; {counts.total} Nodes Discovered
           </p>
         </div>
         
         <button 
           onClick={handleSync}
           disabled={syncing}
-          className="flex items-center gap-2 bg-blue-primary text-white px-4 py-2 rounded-lg font-bold text-xs uppercase hover:bg-blue-header transition-colors disabled:opacity-50"
+          className="relative z-10 flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-slate-200 disabled:opacity-50 active:scale-95 group"
         >
-          <FaSyncAlt className={syncing ? "animate-spin" : ""} />
-          {syncing ? "Scanning..." : "Sync Assets"}
+          <FaSyncAlt className={`${syncing ? "animate-spin" : "group-hover:rotate-180 transition-transform duration-500"}`} />
+          {syncing ? "Scanning Vectors..." : "Sync Infrastructure"}
         </button>
       </div>
 
       {/* KPI SECTION */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <KPICard label="Total Assets" value={counts.total} color="blue" icon={<FaNetworkWired />} />
-        <KPICard label="Active Nodes" value={counts.active} color="emerald" icon={<FaDesktop />} />
-        <KPICard label="Routers" value={counts.routers} color="amber" icon={<FaNetworkWired />} />
-        <KPICard label="Servers" value={counts.servers} color="blue" icon={<FaServer />} />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <KPICard label="Total Capacity" value={counts.total} color="blue" icon={<FaNetworkWired />} loading={loading} />
+        <KPICard label="Active Nodes" value={counts.active} color="green" icon={<FaDesktop />} loading={loading} />
+        <KPICard label="Route Vectors" value={counts.routers} color="amber" icon={<FaNetworkWired />} loading={loading} />
+        <KPICard label="Compute Units" value={counts.servers} color="blue" icon={<FaServer />} loading={loading} />
       </div>
 
       {/* FILTERS */}
-      <div className="card flex flex-wrap gap-4 items-center">
-        <div className="relative flex-1 min-w-[260px]">
-          <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} />
-          <input
-            type="text"
-            placeholder="Search hostname or IP..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-gray-50 border border-gray-100 rounded-lg pl-9 pr-4 py-2 body-text focus:ring-2 focus:ring-blue-100 transition-all outline-none"
-          />
+      <div className="card shadow-sm border-slate-100 p-8 space-y-8">
+        <div className="flex flex-wrap gap-6 items-end">
+          <div className="flex flex-col gap-1.5 flex-1 min-w-[300px]">
+            <span className="section-title !mb-0 text-[9px]">Identity Filter</span>
+            <div className="relative">
+              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
+              <input
+                type="text"
+                placeholder="Search Hostname, IP Address or Mac..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-12 pr-6 py-3 body-text font-bold outline-none focus:ring-4 focus:ring-blue-50 transition-all"
+              />
+            </div>
+          </div>
+          <FilterSelect value={typeFilter} onChange={setTypeFilter} options={["All", "SNMP", "Router", "Switch", "Server"]} label="Category" />
+          <FilterSelect value={statusFilter} onChange={setStatusFilter} options={["All", "ACTIVE", "INACTIVE"]} label="Operational State" />
         </div>
-        <div className="flex gap-3">
-          <FilterSelect value={typeFilter} onChange={setTypeFilter} options={["All", "SNMP", "Router", "Switch", "Server"]} label="Type" />
-          <FilterSelect value={statusFilter} onChange={setStatusFilter} options={["All", "ACTIVE", "INACTIVE"]} label="Status" />
-        </div>
-      </div>
 
-      {/* TABLE */}
-      <div className="card !p-0 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* TABLE */}
+        <div className="overflow-hidden border border-slate-100 rounded-2xl">
           <table className="w-full">
             <thead>
-              <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="table-header table-cell">ID</th>
-                <th className="table-header table-cell">Hostname & IP</th>
-                <th className="table-header table-cell">Type</th>
-                <th className="table-header table-cell">Location</th>
+              <tr className="bg-slate-50/50 border-b border-slate-100">
+                <th className="table-header table-cell">Asset ID</th>
+                <th className="table-header table-cell">Metadata & Network</th>
+                <th className="table-header table-cell">System Class</th>
+                <th className="table-header table-cell">Physical Vector</th>
                 <th className="table-header table-cell text-center">Status</th>
-                <th className="table-header table-cell text-right">Action</th>
+                <th className="table-header table-cell text-right">Insight</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-slate-50">
               {loading ? (
-                <tr><td colSpan="6" className="table-cell text-center body-text py-10 animate-pulse">Scanning perimeter...</td></tr>
+                <tr><td colSpan="6" className="table-cell text-center py-20 animate-pulse font-black text-slate-300 uppercase tracking-widest">Hydrating asset registry...</td></tr>
               ) : devices.length === 0 ? (
-                <tr><td colSpan="6" className="table-cell text-center body-text py-10 text-gray-400">No assets discovered.</td></tr>
+                <tr>
+                   <td colSpan="6" className="table-cell text-center py-20">
+                     <FaServer className="mx-auto text-slate-200 mb-4" size={48} />
+                     <p className="body-text font-black text-slate-400 uppercase tracking-widest">No assets intercepted</p>
+                   </td>
+                </tr>
               ) : devices.map((device) => (
-                <tr key={device.id} className="hover:bg-gray-50/50 transition-colors cursor-pointer group">
-                  <td className="table-cell font-bold text-blue-primary">
+                <tr key={device.id} className="transition-colors cursor-pointer group hover:bg-slate-50/50" onClick={() => navigate(`/devices/${device.id}`)}>
+                  <td className="table-cell font-black text-blue-primary text-xs uppercase">
                     DEV-{device.id.toString().padStart(4, '0')}
                   </td>
                   <td className="table-cell">
-                    <div className="body-text font-bold text-gray-900">{device.hostname}</div>
-                    <div className="small-meta">{device.ip_address}</div>
+                    <div className="font-bold text-slate-900">{device.hostname}</div>
+                    <div className="text-[10px] font-black text-slate-400 tracking-tighter uppercase">{device.ip_address}</div>
                   </td>
                   <td className="table-cell">
-                    <span className="label-badge text-gray-600 bg-gray-100 px-2 py-0.5 rounded">{device.type || "IP Node"}</span>
+                    <span className="text-[10px] font-black text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full uppercase tracking-tighter">
+                       {device.type || "IP Node"}
+                    </span>
                   </td>
-                  <td className="table-cell small-meta">{device.location || "N/A"}</td>
+                  <td className="table-cell text-xs font-bold text-slate-500">{device.location || "UNMAPPED"}</td>
                   <td className="table-cell">
-                    <div className="flex items-center justify-center gap-2">
-                       <div className={`w-2 h-2 rounded-full ${device.status === 'ACTIVE' ? 'bg-emerald-500' : 'bg-red-500'}`} />
-                       <span className={`label-badge ${device.status === 'ACTIVE' ? 'text-emerald-600' : 'text-red-600'}`}>
-                         {device.status}
-                       </span>
+                    <div className="flex justify-center">
+                       <StatusBadge status={device.status} />
                     </div>
                   </td>
                   <td className="table-cell text-right">
-                    <button 
-                      onClick={() => navigate(`/devices/${device.id}`)}
-                      className="p-2 text-gray-400 hover:text-blue-primary transition-colors"
-                    >
+                    <button className="w-10 h-10 flex items-center justify-center text-slate-300 group-hover:text-blue-600 group-hover:bg-blue-50 rounded-xl transition-all">
                       <FaArrowRight size={14} />
                     </button>
                   </td>
@@ -164,41 +174,6 @@ export default function DevicesDashboard() {
           </table>
         </div>
       </div>
-    </div>
-  );
-}
-
-function KPICard({ label, value, color, icon }) {
-  const colors = {
-    blue: "text-blue-600 border-blue-100/50 bg-blue-50/20",
-    emerald: "text-emerald-600 border-emerald-100/50 bg-emerald-50/20",
-    amber: "text-amber-600 border-amber-100/50 bg-amber-50/20"
-  };
-
-  return (
-    <div className={`premium-card p-5 group hover:shadow-lg transition-all ${colors[color] || colors.blue}`}>
-      <div className="flex justify-between items-center mb-2">
-        <p className="text-[10px] uppercase font-black tracking-widest opacity-60">{label}</p>
-        <div className="p-1.5 opacity-40 group-hover:opacity-100 transition-all text-current">
-          {icon}
-        </div>
-      </div>
-      <p className="text-3xl font-black tracking-tighter tabular-nums">{value}</p>
-    </div>
-  );
-}
-
-function FilterSelect({ value, onChange, options, label }) {
-  return (
-    <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-100 rounded-lg">
-      <span className="small-meta uppercase font-bold opacity-60">{label}</span>
-      <select 
-        value={value} 
-        onChange={(e) => onChange(e.target.value)}
-        className="bg-transparent body-text font-bold outline-none cursor-pointer p-1"
-      >
-        {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-      </select>
     </div>
   );
 }

@@ -5,8 +5,6 @@ import {
   AlertTriangle, 
   CheckCircle, 
   Clock, 
-  Filter, 
-  Search, 
   RefreshCcw, 
   Calendar,
   ChevronLeft,
@@ -19,6 +17,11 @@ import {
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import toast from "react-hot-toast";
+
+import KPICard from "../components/KPICard";
+import SeverityBadge from "../components/SeverityBadge";
+import StatusBadge from "../components/StatusBadge";
+import FilterSelect from "../components/FilterSelect";
 
 dayjs.extend(relativeTime);
 
@@ -36,10 +39,7 @@ export default function IncomingAlarms() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   
-  const [stats, setStats] = useState({ total: 0, critical: 0, major: 0, minor: 0 });
-
   const navigate = useNavigate();
-  
   const prevAlarmIds = useRef(new Set());
   const isFirstLoad = useRef(true);
 
@@ -60,29 +60,26 @@ export default function IncomingAlarms() {
       setTotal(data.total);
       setTotalPages(data.total_pages);
       
-      // Check for new alarms
       if (!isFirstLoad.current) {
-        const currentIds = data.alarms.map(a => a.alarm_id);
         const newAlarms = data.alarms.filter(a => !prevAlarmIds.current.has(a.alarm_id));
-        
         if (newAlarms.length > 0) {
           newAlarms.forEach(a => {
             toast.custom((t) => (
-              <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-2xl rounded-[1.5rem] pointer-events-auto flex ring-1 ring-black ring-opacity-5 border-l-8 border-rose-500`}>
+              <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-slate-900 shadow-2xl rounded-2xl pointer-events-auto flex border-l-4 border-rose-500 text-white`}>
                 <div className="flex-1 w-0 p-4">
                   <div className="flex items-start">
                     <div className="flex-shrink-0 pt-0.5 text-rose-500">
-                      <Bell size={24} />
+                      <Bell size={20} />
                     </div>
                     <div className="ml-3 flex-1">
-                      <p className="text-xs font-black text-slate-400 uppercase tracking-widest">New Alarm Received</p>
-                      <p className="mt-1 text-sm font-bold text-slate-900">{a.alarm_name}</p>
-                      <p className="mt-1 text-xs text-slate-500 font-medium">{a.device_name} — {a.severity}</p>
+                      <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Alarm Event</p>
+                      <p className="mt-1 text-sm font-bold">{a.alarm_name}</p>
+                      <p className="mt-1 text-xs text-slate-400">{a.device_name} &bull; {a.severity}</p>
                     </div>
                   </div>
                 </div>
-                <div className="flex border-l border-gray-200">
-                  <button onClick={() => toast.dismiss(t.id)} className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-black text-rose-600 hover:text-rose-500 focus:outline-none">Close</button>
+                <div className="flex border-l border-slate-800">
+                  <button onClick={() => toast.dismiss(t.id)} className="w-full border border-transparent rounded-none rounded-r-2xl p-4 flex items-center justify-center text-xs font-black text-slate-400 hover:text-white transition-colors uppercase">Dismiss</button>
                 </div>
               </div>
             ), { duration: 6000 });
@@ -90,7 +87,6 @@ export default function IncomingAlarms() {
         }
       }
       
-      // Update refs
       prevAlarmIds.current = new Set(data.alarms.map(a => a.alarm_id));
       isFirstLoad.current = false;
     } catch (err) {
@@ -106,11 +102,6 @@ export default function IncomingAlarms() {
     return () => clearInterval(interval);
   }, [fetchAlarms]);
 
-  // Derived filtering for search/severity/status (since these are not yet server-side in my backend update, 
-  // I should add them to backend or do them here. User asked for date/pagination server-side specifically, 
-  // but usually search should be too. I'll keep them client-side for now to avoid over-complicating backend 
-  // unless requested, but I'll make sure they work with the current paginated set or suggest server-side search.)
-  
   const filteredAlarms = alarms.filter(a => {
     const matchesSearch = !search || 
       a.device_name?.toLowerCase().includes(search.toLowerCase()) || 
@@ -141,223 +132,136 @@ export default function IncomingAlarms() {
     }
   };
 
-  const getSeverityColor = (sev) => {
-    switch (sev) {
-      case "Critical": return "bg-red-500 text-white shadow-red-200";
-      case "Major": return "bg-orange-500 text-white shadow-orange-200";
-      case "Minor": return "bg-yellow-500 text-white shadow-yellow-200";
-      default: return "bg-blue-500 text-white shadow-blue-200";
-    }
-  };
-
-  const getStatusBadge = (status) => {
-    switch (status) {
-      case "RESOLVED":
-      case "CLOSED":
-        return <span className="flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold"><CheckCircle size={12}/> Resolved</span>;
-      case "ACK":
-        return <span className="flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-bold"><Clock size={12}/> Acknowledged</span>;
-      default:
-        return <span className="flex items-center gap-1.5 px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs font-bold animate-pulse"><Zap size={12}/> Active</span>;
-    }
-  };  return (
-    <div className="space-y-6">
+  return (
+    <div className="space-y-8">
       {/* HEADER */}
-      <div className="flex justify-between items-center premium-card p-5 mb-6">
-        <div>
-          <h1 className="page-title mb-0">Incoming Alarms</h1>
-          <p className="small-meta uppercase tracking-wider">
-            Real-time infrastructure fault monitoring
+      <div className="flex justify-between items-center bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-rose-50/50 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+        
+        <div className="relative z-10">
+          <h1 className="page-title tracking-tighter uppercase">Signals Tracker</h1>
+          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-rose-600 mt-1 flex items-center gap-2">
+             <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse" />
+             Infrastructure Fault Spectrum
           </p>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 relative z-10">
           <button 
             onClick={() => fetchAlarms()}
-            className="w-10 h-10 bg-white border border-gray-100 rounded-lg flex items-center justify-center text-gray-500 hover:text-blue-primary transition-colors shadow-sm"
+            className="w-12 h-12 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-500 hover:text-blue-600 transition-all hover:shadow-xl active:scale-95"
           >
-            <RefreshCcw size={16} className={loading ? "animate-spin" : ""} />
+            <RefreshCcw size={18} className={loading ? "animate-spin" : ""} />
           </button>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg border border-gray-100">
-            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="label-badge text-emerald-600">Active Monitoring</span>
+          <div className="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-2xl border border-slate-100">
+            <span className="w-2 h-2 bg-rose-500 rounded-full animate-pulse shadow-rose-200 shadow-lg" />
+            <span className="text-[11px] font-black text-rose-600 uppercase tracking-widest">Active Scan</span>
           </div>
         </div>
       </div>
 
       {/* KPI SECTION */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <KPICard title="Total Alarms" value={total} color="blue" icon={<AlertTriangle size={16} />} />
-        <KPICard title="Critical" value={loading ? "..." : alarms.filter(a => a.severity === "Critical").length} color="red" icon={<Zap size={16} />} />
-        <KPICard title="Major" value={loading ? "..." : alarms.filter(a => a.severity === "Major").length} color="amber" icon={<Clock size={16} />} />
-        <KPICard title="Resolved" value={loading ? "..." : alarms.filter(a => a.status === "RESOLVED").length} color="emerald" icon={<CheckCircle size={16} />} />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <KPICard label="Volume Pool" value={total} color="blue" icon={<AlertTriangle />} loading={loading} />
+        <KPICard label="Critical" value={loading ? "..." : alarms.filter(a => a.severity === "Critical").length} color="rose" icon={<Zap />} loading={loading} />
+        <KPICard label="Major Alerts" value={loading ? "..." : alarms.filter(a => a.severity === "Major").length} color="amber" icon={<Clock />} loading={loading} />
+        <KPICard label="Resolution Rate" value={loading ? "..." : alarms.filter(a => a.status === "RESOLVED").length} color="green" icon={<CheckCircle />} loading={loading} />
       </div>
 
       {/* FILTERS & SEARCH */}
-      <div className="premium-card p-6 space-y-6">
-        <div className="flex flex-col lg:flex-row justify-between gap-4">
-          <div className="flex flex-wrap gap-3 items-center flex-1">
-             <div className="relative min-w-[240px]">
-               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
-               <input 
-                 type="text"
-                 placeholder="Search alarm or device..."
-                 value={search}
-                 onChange={(e) => setSearch(e.target.value)}
-                 className="w-full bg-gray-50 border border-gray-100 rounded-lg pl-9 pr-4 py-2 body-text outline-none focus:ring-2 focus:ring-blue-100 transition-all font-medium"
-               />
+      <div className="card shadow-sm border-slate-100 p-8 space-y-8">
+        <div className="flex flex-col lg:flex-row justify-between gap-6">
+          <div className="flex flex-wrap gap-4 items-end flex-1">
+             <div className="flex flex-col gap-1.5 flex-1 min-w-[300px]">
+               <span className="section-title !mb-0 text-[9px]">Asset Search</span>
+               <div className="relative">
+                 <Bot className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                 <input 
+                   type="text"
+                   placeholder="Identify by Device ID, Name or IP..."
+                   value={search}
+                   onChange={(e) => setSearch(e.target.value)}
+                   className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-12 pr-6 py-3 body-text font-bold outline-none focus:ring-4 focus:ring-blue-50 transition-all"
+                 />
+               </div>
              </div>
 
-             <div className="flex gap-2">
-               <FilterSelect 
-                 value={severityFilter}
-                 onChange={setSeverityFilter}
-                 options={["All", "Critical", "Major", "Minor"]}
-                 label="Severity"
-               />
-               <FilterSelect 
-                 value={statusFilter}
-                 onChange={setStatusFilter}
-                 options={["All", "OPEN", "ACK", "RESOLVED"]}
-                 label="Status"
-               />
-             </div>
+             <FilterSelect value={severityFilter} onChange={setSeverityFilter} options={["All", "Critical", "Major", "Minor"]} label="Severity Filter" />
+             <FilterSelect value={statusFilter} onChange={setStatusFilter} options={["All", "OPEN", "ACK", "RESOLVED"]} label="State Filter" />
           </div>
 
-          <div className="flex flex-wrap gap-3 items-center">
-            <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-100 rounded-lg">
-               <Calendar size={14} className="text-gray-400" />
-               <input 
-                 type="date"
-                 value={startDate}
-                 onChange={(e) => setStartDate(e.target.value)}
-                 className="bg-transparent body-text font-bold outline-none text-xs"
-               />
-               <span className="small-meta font-bold">to</span>
-               <input 
-                 type="date"
-                 value={endDate}
-                 onChange={(e) => setEndDate(e.target.value)}
-                 className="bg-transparent body-text font-bold outline-none text-xs"
-               />
+          <div className="flex flex-wrap gap-4 items-end">
+            <div className="flex flex-col gap-1.5">
+               <span className="section-title !mb-0 text-[9px]">Timeline Range</span>
+               <div className="flex items-center gap-3 px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl">
+                  <Calendar size={14} className="text-slate-400" />
+                  <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="bg-transparent text-xs font-black outline-none" />
+                  <span className="text-[10px] font-black text-slate-300">TO</span>
+                  <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="bg-transparent text-xs font-black outline-none" />
+               </div>
             </div>
 
             <button 
-              onClick={() => {
-                setSearch("");
-                setSeverityFilter("All");
-                setStatusFilter("All");
-                setStartDate("");
-                setEndDate("");
-              }}
-              className="px-4 py-2 text-blue-primary body-text font-bold hover:underline"
+              onClick={() => { setSearch(""); setSeverityFilter("All"); setStatusFilter("All"); setStartDate(""); setEndDate(""); }}
+              className="px-6 py-3 text-[10px] font-black text-slate-400 hover:text-rose-600 transition-colors uppercase tracking-widest"
             >
-              Reset
+              Flush Filters
             </button>
           </div>
         </div>
 
         {/* TABLE Area */}
-        <div className="overflow-x-auto border border-gray-100 rounded-lg">
+        <div className="overflow-hidden border border-slate-100 rounded-2xl">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="table-header table-cell">ID</th>
-                <th className="table-header table-cell">Source</th>
-                <th className="table-header table-cell">Device Info</th>
-                <th className="table-header table-cell">Alarm Type</th>
+              <tr className="bg-slate-50/50">
+                <th className="table-header table-cell">Entity ID</th>
+                <th className="table-header table-cell">Entity Specs</th>
+                <th className="table-header table-cell">Fault Vector</th>
                 <th className="table-header table-cell">Severity</th>
-                <th className="table-header table-cell">Status</th>
-                <th className="table-header table-cell">Created</th>
-                <th className="table-header table-cell text-center">Action</th>
+                <th className="table-header table-cell">Condition</th>
+                <th className="table-header table-cell">Timestamp</th>
+                <th className="table-header table-cell text-center">Operations</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-slate-50">
               {loading ? (
-                <tr>
-                  <td colSpan={8} className="table-cell text-center py-20 animate-pulse body-text font-bold text-gray-400">
-                    Syncing alarms...
-                  </td>
-                </tr>
+                <tr><td colSpan={7} className="table-cell text-center py-20 animate-pulse font-black text-slate-300 uppercase tracking-widest">Compiling signal data...</td></tr>
               ) : filteredAlarms.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="table-cell text-center py-20">
-                    <div className="text-gray-200 mb-2 font-black text-4xl">🔕</div>
-                    <p className="body-text font-bold text-gray-500">No alarms found</p>
-                    <p className="small-meta">Try adjusting your filters or date range</p>
+                  <td colSpan={7} className="table-cell text-center py-20">
+                    <Zap className="mx-auto text-slate-200 mb-4" size={48} />
+                    <p className="body-text font-black text-slate-400 uppercase tracking-widest">No signals intercepted</p>
                   </td>
                 </tr>
               ) : (
                 filteredAlarms.map((a) => (
-                  <tr 
-                    key={a.alarm_id} 
-                    className="hover:bg-gray-50/50 cursor-pointer group transition-colors body-text"
-                    onClick={() => navigateToDetail(a)}
-                  >
-                    <td className="table-cell font-bold text-blue-primary">
-                      {a.alarm_id.slice(0, 8)}
+                  <tr key={a.alarm_id} className="hover:bg-slate-50/50 cursor-pointer transition-colors group" onClick={() => navigateToDetail(a)}>
+                    <td className="table-cell font-black text-blue-primary text-xs uppercase">{a.alarm_id.slice(0, 8)}</td>
+                    <td className="table-cell">
+                      <div className="font-bold text-slate-900">{a.device_name}</div>
+                      <div className="text-[10px] font-black text-slate-400 tracking-tighter uppercase">{a.ip_address}</div>
                     </td>
                     <td className="table-cell">
-                      <span className="label-badge text-gray-600 bg-gray-100 px-2 py-0.5 rounded">
-                        {a.source || "LNMS"}
-                      </span>
+                      <div className="font-bold text-slate-700">{a.alarm_name}</div>
+                      <span className="text-[9px] font-black text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full uppercase tracking-tighter">{a.source || "LNMS"}</span>
                     </td>
+                    <td className="table-cell"><SeverityBadge sev={a.severity} /></td>
+                    <td className="table-cell"><StatusBadge status={a.status} /></td>
                     <td className="table-cell">
-                      <div className="font-bold text-gray-900">{a.device_name}</div>
-                      <div className="small-meta">{a.ip_address}</div>
+                      <div className="font-bold text-slate-700">{dayjs(a.created_at).format("DD MMM, HH:mm")}</div>
+                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">{dayjs(a.created_at).fromNow()}</div>
                     </td>
-                    <td className="table-cell">
-                      <div className="font-medium text-gray-700">{a.alarm_name}</div>
-                    </td>
-                    <td className="table-cell">
-                      <SeverityBadge sev={a.severity} />
-                    </td>
-                    <td className="table-cell">
-                      {getStatusBadgeRefactored(a.status)}
-                    </td>
-                    <td className="table-cell">
-                      <div className="font-bold text-gray-700">{dayjs(a.created_at).format("DD MMM, HH:mm")}</div>
-                      <div className="small-meta mt-0.5">{dayjs(a.created_at).fromNow()}</div>
-                    </td>
-                    <td className="table-cell">
-                      <div className="flex justify-center items-center gap-2">
-                        {a.status !== "RESOLVED" && (
-                          <>
-                            <button 
-                              onClick={(e) => handleAction(e, a.alarm_id, "Ack")} 
-                              className="p-1.5 text-amber-600 hover:bg-amber-50 rounded-md transition-colors"
-                              title="Acknowledge"
-                            >
-                              <Clock size={14} />
-                            </button>
-                            <button 
-                              onClick={(e) => handleAction(e, a.alarm_id, "Resolved")} 
-                              className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-md transition-colors"
-                              title="Resolve"
-                            >
-                              <CheckCircle size={14} />
-                            </button>
-                          </>
-                        )}
-                        {a.ticket_id ? (
-                           <div className="p-1.5 text-blue-primary bg-blue-50 rounded-md" title="Linked Ticket">
-                             <ExternalLink size={14} />
-                           </div>
-                        ) : (
-                           <button 
-                             onClick={(e) => {
-                               e.stopPropagation();
-                               window.dispatchEvent(new CustomEvent("ask-ai", { 
-                                 detail: { question: `${a.device_name} is having a ${a.alarm_name} issue. What should I do?` } 
-                               }));
-                             }}
-                             className="p-1.5 text-blue-primary hover:bg-blue-50 rounded-md transition-colors" 
-                             title="Ask AI Assistant"
-                           >
-                             <Bot size={14} />
-                           </button>
-                        )}
-                      </div>
+                    <td className="table-cell" onClick={(e) => e.stopPropagation()}>
+                       <div className="flex justify-center items-center gap-3">
+                          {a.status !== "RESOLVED" && (
+                            <>
+                              <button onClick={(e) => handleAction(e, a.alarm_id, "Ack")} className="p-2 text-amber-500 hover:bg-amber-50 rounded-xl bg-transparent transition-all"><Clock size={16} /></button>
+                              <button onClick={(e) => handleAction(e, a.alarm_id, "Resolved")} className="p-2 text-emerald-500 hover:bg-emerald-50 rounded-xl bg-transparent transition-all"><CheckCircle size={16} /></button>
+                            </>
+                          )}
+                          <button className="p-2 text-blue-primary hover:bg-blue-50 rounded-xl bg-transparent transition-all"><ExternalLink size={16} /></button>
+                       </div>
                     </td>
                   </tr>
                 ))
@@ -366,130 +270,34 @@ export default function IncomingAlarms() {
           </table>
         </div>
 
-        {/* Pagination Bar */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-50">
-          <div className="flex items-center gap-4">
-             <div className="flex items-center gap-2">
-               <span className="small-meta uppercase font-bold text-xs">Rows</span>
-               <select 
-                 value={limit} 
-                 onChange={(e) => { setLimit(Number(e.target.value)); setPage(1); }}
-                 className="bg-gray-50 border border-gray-100 rounded-lg px-2 py-1 body-text font-bold outline-none text-xs cursor-pointer"
-               >
-                 {[10, 25, 50, 100].map(n => <option key={n} value={n}>{n}</option>)}
+        {/* Pagination */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-6 px-2">
+          <div className="flex items-center gap-6">
+             <div className="flex items-center gap-3">
+               <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Density</span>
+               <select value={limit} onChange={(e) => { setLimit(Number(e.target.value)); setPage(1); }} className="bg-slate-50 border border-slate-100 rounded-xl px-3 py-1.5 text-xs font-black outline-none cursor-pointer">
+                 {[10, 25, 50, 100].map(n => <option key={n} value={n}>{n} ROWS</option>)}
                </select>
              </div>
-             <div className="w-px h-4 bg-gray-200 mx-1"></div>
-             <span className="small-meta">
-               Showing {(page-1)*limit + 1} - {Math.min(page*limit, total)} of {total}
+             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+               Entry { (page-1)*limit + 1} &mdash; {Math.min(page*limit, total)} OF {total}
              </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button 
-              disabled={page === 1}
-              onClick={() => setPage(p => Math.max(1, p - 1))}
-              className="p-2 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-30"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            
-            <div className="flex items-center gap-1">
-               {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(p => p === 1 || p === totalPages || (p >= page - 1 && p <= page + 1))
-                .map((p, i, arr) => (
-                  <div key={p} className="flex items-center gap-1">
-                    {i > 0 && p - arr[i-1] > 1 && <span className="small-meta px-1">...</span>}
-                    <button
-                      onClick={() => setPage(p)}
-                      className={`min-w-[32px] h-8 px-2 rounded-lg text-xs font-bold transition-all ${
-                        page === p 
-                          ? "bg-blue-primary text-white shadow-sm" 
-                          : "text-gray-500 hover:bg-gray-50"
-                      }`}
-                    >
-                      {p}
-                    </button>
+          <div className="flex items-center gap-3">
+            <button disabled={page === 1} onClick={() => setPage(p => Math.max(1, p - 1))} className="w-10 h-10 flex items-center justify-center border border-slate-100 rounded-xl hover:bg-slate-50 disabled:opacity-20 transition-colors"><ChevronLeft size={16} /></button>
+            <div className="flex items-center gap-1.5">
+               {Array.from({ length: totalPages }, (_, i) => i + 1).filter(p => p === 1 || p === totalPages || (p >= page - 1 && p <= page + 1)).map((p, i, arr) => (
+                  <div key={p} className="flex items-center gap-1.5">
+                    {i > 0 && p - arr[i-1] > 1 && <span className="text-slate-300 px-1 font-black">...</span>}
+                    <button onClick={() => setPage(p)} className={`w-10 h-10 rounded-xl text-xs font-black transition-all ${page === p ? "bg-slate-900 text-white shadow-xl shadow-slate-200" : "text-slate-400 hover:bg-slate-50"}`}>{p}</button>
                   </div>
-                ))
-               }
+                ))}
             </div>
-
-            <button 
-              disabled={page === totalPages}
-              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-              className="p-2 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-30"
-            >
-              <ChevronRight size={16} />
-            </button>
+            <button disabled={page === totalPages} onClick={() => setPage(p => Math.min(totalPages, p + 1))} className="w-10 h-10 flex items-center justify-center border border-slate-100 rounded-xl hover:bg-slate-50 disabled:opacity-20 transition-colors"><ChevronRight size={16} /></button>
           </div>
         </div>
       </div>
     </div>
   );
-}
-
-function KPI({ title, value, icon, color }) {
-  const colorMap = {
-     blue: "text-blue-600 border-blue-100/50 bg-blue-50/20",
-     red: "text-red-600 border-red-100/50 bg-red-50/20",
-     amber: "text-amber-600 border-amber-100/50 bg-amber-50/20",
-     emerald: "text-emerald-600 border-emerald-100/50 bg-emerald-50/20"
-  };
-  
-  return (
-    <div className={`premium-card p-5 group hover:shadow-lg transition-all ${colorMap[color] || colorMap.blue}`}>
-      <div className="flex justify-between items-center mb-2">
-        <p className="text-[10px] uppercase font-black tracking-widest opacity-60">{title}</p>
-        <div className="p-1.5 opacity-40 group-hover:opacity-100 group-hover:text-blue-500 transition-all">
-          {icon}
-        </div>
-      </div>
-      <p className="text-3xl font-black tracking-tighter tabular-nums">{value}</p>
-    </div>
-  );
-}
-
-function KPICard({ title, value, icon, color }) {
-  return <KPI title={title} value={value} icon={icon} color={color} />;
-}
-
-function FilterSelect({ value, onChange, options, label }) {
-  return (
-    <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-100 rounded-lg">
-      <span className="small-meta uppercase font-bold opacity-60 text-[10px]">{label}</span>
-      <select 
-        value={value} 
-        onChange={(e) => onChange(e.target.value)}
-        className="bg-transparent body-text font-bold outline-none cursor-pointer p-1 text-xs"
-      >
-        {options.map(opt => <option key={opt} value={opt}>{opt === 'OPEN' ? 'ACTIVE' : opt}</option>)}
-      </select>
-    </div>
-  );
-}
-
-function SeverityBadge({ sev }) {
-  const styles = {
-    Critical: "bg-red-50 text-red-600 border-red-100",
-    Major: "bg-amber-50 text-amber-600 border-amber-100",
-    Minor: "bg-blue-50 text-blue-primary border-blue-100",
-  };
-  return (
-    <span className={`label-badge px-2 py-0.5 rounded border ${styles[sev] || "bg-gray-50 text-gray-600 border-gray-100"}`}>
-      {sev || "\u2014"}
-    </span>
-  );
-}
-
-function getStatusBadgeRefactored(status) {
-  switch (status) {
-    case "RESOLVED":
-    case "CLOSED":
-      return <span className="flex items-center gap-1.5 text-emerald-600 label-badge"><CheckCircle size={12}/> {status}</span>;
-    case "ACK":
-      return <span className="flex items-center gap-1.5 text-amber-600 label-badge"><Clock size={12}/> {status}</span>;
-    default:
-      return <span className="flex items-center gap-1.5 text-red-600 label-badge animate-pulse"><Zap size={12}/> ACTIVE</span>;
-  }
 }
